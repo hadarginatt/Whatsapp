@@ -3,6 +3,10 @@ import React from 'react'
 import UserChat from '../userchat/UserChat';
 
 
+function addNewUser(){
+    console.log("adding")
+}
+
 function LeftMenu(){
     return(
         <div className="leftmenu">
@@ -15,9 +19,9 @@ function LeftMenu(){
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
                     </form>*/}
 
-                    <div class="list-group-item">
+                    <div className="list-group-item">
                             <span>Add a new chat</span>
-                            <i class="bi bi-person-plus"></i>
+                            <i id="clickicon" onClick={addNewUser} className="bi bi-person-plus"></i>
                     </div>
                 </div>
             </div>
