@@ -11,6 +11,7 @@ function App({nameOfPage}) {
   var isLogin = false;
   var username;
   var pass;
+  var noa;
 
   var userDetails;
   return (
