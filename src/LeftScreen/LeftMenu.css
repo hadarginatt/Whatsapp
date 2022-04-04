@@ -1,0 +1,22 @@
+.leftmenu{
+    flex: 20;
+    background-color: lightblue;
+    /* overflow-y: scroll; */
+}
+
+.leftmenuheader{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-right: 1px solid lightgrey;
+}
+.leftmenuusers{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 10vw;
+    background-color: blue;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}

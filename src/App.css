@@ -5,16 +5,15 @@
 .mainScreen{
   background-color: white;
 
-  width: 50%;
+  width: 70%;
   border: 3px solid #0000ff;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 100px auto;
-  padding: 70px 0;
-  vertical-align: middle;
 
+  vertical-align: middle;
 }
 
 

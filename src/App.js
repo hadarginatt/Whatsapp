@@ -16,7 +16,7 @@ function App({nameOfPage}) {
   return (
 
     <div className="home">
-      <div className="nameOfPage">{nameOfPage}
+      <div className="nameOfPage">HadarNoaChat
       </div>
       <div className="mainScreen">
         <BrowserRouter>
@@ -24,6 +24,7 @@ function App({nameOfPage}) {
           <Routes>
             <Route path="/" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
+            <Route path="/chat" element={<Chat />}></Route>
           </Routes>
         </BrowserRouter>
         
