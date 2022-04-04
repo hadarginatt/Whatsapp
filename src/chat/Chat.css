@@ -1,0 +1,24 @@
+body{
+    background-color: paleturquoise;
+}
+#screen{
+    width: 800px;
+    height: 400px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+
+}
+.list-group-item{ 
+    border: 0;
+    background-color: transparent;
+}
+.list-group-item:hover{
+    background-color:lightgray;
+    cursor: pointer;
+}
+/* .list-group{
+    overflow-y: scroll;
+} */
+.card{
+    overflow-y: auto;
+}

@@ -1,0 +1,20 @@
+.home{
+  background-color: paleturquoise;
+}
+
+.mainScreen{
+  background-color: white;
+
+  width: 50%;
+  border: 3px solid #0000ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 100px auto;
+  padding: 70px 0;
+  vertical-align: middle;
+
+}
+
+
