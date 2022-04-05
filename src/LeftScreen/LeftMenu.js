@@ -4,17 +4,14 @@ import UserChat from '../userchat/UserChat';
 import databaseusers from '../databaseusers';
 
 
-function addNewUser(){
+function addNewUser({userOnScreen}){
     console.log("adding")
 }
 
 // the messages that the user connected with
 let usermessages = databaseusers.find((value) => { return value.username === "Hadar" }).messages;
 
-function LeftMenu(){
-
-    
-
+function LeftMenu({setUserChat}){
 
     return(
         <div className="leftmenu">
@@ -34,20 +31,24 @@ function LeftMenu(){
                 </div>
             </div>
             <div className='leftmenuusers'>
-                    {showUsers(usermessages)}
+                    {showUsers(setUserChat, usermessages)}
 
 
             </div>
         </div>
     );
 }
-
-function showUsers(usermessages){
+// taking the setUserChat param 
+function showUsers(setUserChat, usermessages){
     console.log("Param is: " + JSON.stringify(usermessages))
     var addUser = usermessages.map((message, key) => {
-        return <div><UserChat name = {message.user} time = "3" /> </div>})
+        return <div onClick={() => setUserChat(message.user)}><UserChat name = {message.user} time = "3" /> </div>})
     return addUser;
 }
+
+// function chooseUserScreen(userName, newName){
+//     userName.setUser(newName)
+// }
 
 export default LeftMenu;
 
