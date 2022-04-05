@@ -6,10 +6,12 @@ import Login from './login/Login'
 import Register from './register/Register'
 import Chat from './chat/Chat'
 import users from './users.js'
+import { useState } from 'react'
 
 function App({nameOfPage}) {
   var isLogin = false;
   var username;
+ 
   var pass;
   var noa;
 
@@ -28,7 +30,6 @@ function App({nameOfPage}) {
             <Route path="/chat" element={<Chat />}></Route>
           </Routes>
         </BrowserRouter>
-        
       </div>
     </div>
     

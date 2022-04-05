@@ -1,25 +1,7 @@
 import './Register.css'
 
 import React, { useState } from "react";
-
-
-function Upload(){
-    if (isValid){
-        var name = document.getElementById("inputUserName").value;
-        var pass = document.getElementById("inputPassword").value;
-        var pass2 = document.getElementById("inputPassword2").value;
-        var nickname = document.getElementById("inputNickname").value;
-        var img = document.getElementById("inputimg").value;
-
-        console.log(img)
-        
-
-        //save photo
-
-    } else {
-        console.log("not valid")
-    }
-}
+import { useNavigate } from 'react-router-dom';
 
 function isValid(){
     // check if pass and confirmation is equal
@@ -31,11 +13,41 @@ function isValid(){
 
 
 
-function Register() {
+function Register({ updateUserFunction }) {
+    
     const [file, setFile] = useState();
+    //created a path to the location by navigae 
+    const shareNewUser = useNavigate()
+
     function handleChange(e) {
         console.log(e.target.files);
         setFile(URL.createObjectURL(e.target.files[0]));
+    }
+
+    function Upload(){
+        if (isValid){
+            var name = document.getElementById("inputUserName").value;
+            var pass = document.getElementById("inputPassword").value;
+            var pass2 = document.getElementById("inputPassword2").value;
+            var nickname = document.getElementById("inputNickname").value;
+            var img = document.getElementById("inputimg").value;
+    
+            //itay:
+            let newUser = {
+                name: name,
+                nicname: nickname,
+                pwd: pass,
+                imgSrc: img
+            }
+            console.log(newUser)
+            //change the  locations state of login (now iys null)
+            shareNewUser('/', {state: newUser})
+    // now we have a new user dictionary as state instead of null
+            //save photo
+    
+        } else {
+            console.log("not valid")
+        }
     }
 
   return (

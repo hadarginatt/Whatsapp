@@ -1,4 +1,5 @@
 import './Login.css'
+import { useLocation } from 'react-router-dom';
 import userNameAndPasswords from '../usersAndPass';
 
 function isValidLogin() {
@@ -32,12 +33,18 @@ function isValidLogin() {
 
 
 function Login() {
+    // the way to acces the location sharedData.state.name is the display of the new user
+    const sharedData = useLocation();
     return (
         <div id="inputsLogin" className="container-fluid">
             <div className="row col-4 offset-4 justify-content-md-center">
                 <div className="form-floating mb-3">
                     <input type="username" className="form-control" id="userName" placeholder="Isreal Israeli"></input>
                     <label htmlFor="floatingInput">User Name</label>
+                    {/** 
+
+                    <h1>you tried to pass to me  new user = {sharedData.state == null ? "" : sharedData.state.name}</h1>
+                    */}
                 </div>
                 <div className="form-floating">
                     <input type="password" className="form-control" id="password" placeholder="Password"></input>
