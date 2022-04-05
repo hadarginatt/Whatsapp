@@ -4,7 +4,7 @@
  {user: "David",message: {type : "text", content: "hello", time: "6 minutes ago", fromto: "to"}},
  {user: "Itay",message: {type : "text", content: "hello", time: "6 minutes ago", fromto: "to"}},
  {user: "Noam",message: {type : "text", content: "hello", time: "6 minutes ago", fromto: "to"}},
- {user: "Noa",message: {type : "text", content: "hello", time: "6 minutes ago", fromto: "to"}}]},
+ {user: "Ofer",message: {type : "text", content: "hello", time: "6 minutes ago", fromto: "to"}}]},
   {username : "Noa", password : "2222", nickName: "Hadari", img: "img1.png", messages: {type: "text", content: "hello", time: "6 minutes ago", from:"Hadar", to:"Noa"}},
   {username : "Itay", password : "3333", nickName: "Hadari", img: "img1.png", messages: {type: "text", content: "hello", time: "6 minutes ago", from:"Hadar", to:"Noa"}},
   {username : "Ofer", password : "4444", nickName: "Hadari", img: "img1.png", messages: {type: "text", content: "hello", time: "6 minutes ago", from:"Hadar", to:"Noa"}},

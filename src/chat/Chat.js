@@ -3,8 +3,21 @@ import './Chat.css'
 import LeftMenu from '../LeftScreen/LeftMenu'
 import databaseusers from '../databaseusers'
 import React, { useState } from 'react'
+import Message from '../message/Message'
+
+function showScreen(username){
+    //found the list of all chats of this person
+    let usermessages = databaseusers.find((value) => { return value.username === "Hadar" }).messages;
+
+    let messagesFromUser = usermessages.find((value) => { return value.user === username }).message;
+    console.log("from showScreen:" + JSON.stringify(messagesFromUser))
+    var showMessage = messagesFromUser.map((message, key) => {
+        return <div><Message type={message.type} content={message.content} time={message.time} fromto={message.fromto}/></div>})
+    return showMessage;
 
 
+
+}
 
 function Chat() {
     console.log("from chat")
@@ -33,9 +46,11 @@ function Chat() {
                     <div class="row g-2">
                         <div class="card">
                             <img src={Logo} class="card-img-top" alt="..."></img>
-                            <p class="card-text">Start chat</p>
-                            <p class="card-text">Choose a photo</p>
-                            <p class="card-text">Settings</p>
+                            {/**
+
+                            continue main screen chats dis[lay from here
+                            {showScreen(user)}
+                             */}
                         </div>
                     </div>
                 </div>
