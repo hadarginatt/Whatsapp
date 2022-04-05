@@ -1,6 +1,6 @@
 import './Login.css'
 import { useLocation } from 'react-router-dom';
-import userNameAndPasswords from '../usersAndPass';
+import databaseusers from '../databaseusers';
 
 function isValidLogin() {
     var name = document.getElementById("userName").value;
@@ -16,7 +16,7 @@ function isValidLogin() {
         var message = 'Oops!! Empty fields! Please enter user name and password.'
         wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
         alertPlaceholder.append(wrapper)
-    } else if (userNameAndPasswords.find((value) => { return value.username === name && value.password === pass })) {
+    } else if (databaseusers.find((value) => { return value.username === name && value.password === pass })) {
         console.log("goooooooooooooood");
         // go to chat
         window.location.replace("/chat");
@@ -41,10 +41,9 @@ function Login() {
                 <div className="form-floating mb-3">
                     <input type="username" className="form-control" id="userName" placeholder="Isreal Israeli"></input>
                     <label htmlFor="floatingInput">User Name</label>
-                    {/** 
-
-                    <h1>you tried to pass to me  new user = {sharedData.state == null ? "" : sharedData.state.name}</h1>
-                    */}
+{/** 
+                    <h1>you tried to pass to me  new user = {sharedData.state == null ? "" : sharedData.state[0].username}</h1>
+*/}
                 </div>
                 <div className="form-floating">
                     <input type="password" className="form-control" id="password" placeholder="Password"></input>

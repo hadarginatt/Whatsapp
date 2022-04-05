@@ -1,4 +1,5 @@
 import './Register.css'
+import databaseusers from '../databaseusers';
 
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
@@ -13,11 +14,11 @@ function isValid(){
 
 
 
-function Register({ updateUserFunction }) {
+function Register() {
     
     const [file, setFile] = useState();
     //created a path to the location by navigae 
-    const shareNewUser = useNavigate()
+    const shareDataBaseUsers = useNavigate()
 
     function handleChange(e) {
         console.log(e.target.files);
@@ -33,17 +34,32 @@ function Register({ updateUserFunction }) {
             var img = document.getElementById("inputimg").value;
     
             //itay:
-            let newUser = {
+            // new user
+            let user = {
                 name: name,
-                nicname: nickname,
-                pwd: pass,
+                nickname: nickname,
+                pass: pass,
                 imgSrc: img
             }
-            console.log(newUser)
-            //change the  locations state of login (now iys null)
-            shareNewUser('/', {state: newUser})
+            console.log(user)
+            // //change the  locations state of login (now iys null)
+            // shareNewUser('/', {state: user})
     // now we have a new user dictionary as state instead of null
             //save photo
+
+            
+             // shareDataBaseUsers('/', {state: user})
+
+             //add the user to database
+            console.log(databaseusers)
+            databaseusers.push({username: name, password: pass})
+            console.log(databaseusers)
+
+             
+             //change the  locations state of login (now iys null)
+            shareDataBaseUsers('/', {state: databaseusers})
+            // shareDataBaseUsers('/chat', {state: databaseusers})
+
     
         } else {
             console.log("not valid")
