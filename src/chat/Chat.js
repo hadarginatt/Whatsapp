@@ -3,9 +3,13 @@ import './Chat.css'
 import LeftMenu from '../LeftScreen/LeftMenu'
 import databaseusers from '../databaseusers'
 
+
+
 function Chat() {
     console.log("from chat")
     console.log(databaseusers)
+
+    
     return (
         <div class="container-fluid" id="screen">
             <div id="chats" class="row">

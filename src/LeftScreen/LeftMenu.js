@@ -44,9 +44,9 @@ function LeftMenu(){
 
 function showUsers(usermessages){
     console.log("Param is: " + JSON.stringify(usermessages))
-    usermessages.map((message, key) => {console.log('hadar: ' + message.user);
-        return <UserChat name = {usermessages.user} time = "3" />})
-
+    var addUser = usermessages.map((message, key) => {
+        return <div><UserChat name = {message.user} time = "3" /> </div>})
+    return addUser;
 }
 
 export default LeftMenu;
