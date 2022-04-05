@@ -1,13 +1,21 @@
 import './LeftMenu.css'
 import React from 'react'
 import UserChat from '../userchat/UserChat';
+import databaseusers from '../databaseusers';
 
 
 function addNewUser(){
     console.log("adding")
 }
 
+// the messages that the user connected with
+let usermessages = databaseusers.find((value) => { return value.username === "Hadar" }).messages;
+
 function LeftMenu(){
+
+    
+
+
     return(
         <div className="leftmenu">
             <div className='leftmenuheader'>
@@ -26,14 +34,19 @@ function LeftMenu(){
                 </div>
             </div>
             <div className='leftmenuusers'>
-                <UserChat/>
-                <UserChat/>
-                <UserChat/>
-                <UserChat/>
+                    {showUsers(usermessages)}
+
 
             </div>
         </div>
     );
+}
+
+function showUsers(usermessages){
+    console.log("Param is: " + JSON.stringify(usermessages))
+    usermessages.map((message, key) => {console.log('hadar: ' + message.user);
+        return <UserChat name = {usermessages.user} time = "3" />})
+
 }
 
 export default LeftMenu;
