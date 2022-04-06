@@ -1,6 +1,5 @@
 import './Register.css'
 import databaseusers from '../databaseusers';
-
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
@@ -8,18 +7,42 @@ function isValid(){
     // check if pass and confirmation is equal
     //not empty
     //only strings
-    console.log("entered is valid");
     var name = document.getElementById("inputUserName").value;
     var pass = document.getElementById("inputPassword").value;
+    var verifyPass = document.getElementById("inputPassword2").value;
+    var nickname = document.getElementById("inputNickname").value;
     
    
     var flag = true;
-     var error = "";
+    var error = "";
+
+    
+
+
     //check username is not empty   
-    if(name.length ===0){
+    if(name.length === 0){
         error += " " + "username is empty"; 
         flag = false;
+        console.log("username is empty")  
+        document.getElementById("noUserName").style.visibility =  "visible";
+
+    }
+    //check if the username is already exist
+    if (databaseusers.find((value) => { return value.username === name })){
+        error += " " + "username is already exist"; 
+        flag = false;
+        console.log("username is already exist")  
+    }
+    //check nickname is not empty 
+    if(nickname.length === 0){
+        error += " " + "nickname is empty"; 
+        flag = false;
         console.log("username is empty")   
+    }
+    if (pass != verifyPass) {
+        error += " " + "Verification password do not match"; 
+        flag = false;
+        console.log("Verification password do not match")
     }
      //check password length is  
     if (pass.length < 6){
@@ -27,11 +50,13 @@ function isValid(){
         flag = false;
         console.log("Password should have at least 6 letters")
     }
+
     //check password consist of at list one digit
     var flagNum = false;
+    var number = /^[0-9]+$/;
     for (let i = 0; i < pass.length; i++){
-        if((Number.isInteger(name))){
-            flagNum = true;  
+        if(pass[i].match(number)) {
+            flagNum = true
         }
     }
     if(!flagNum){
@@ -40,12 +65,13 @@ function isValid(){
         console.log("Password should consist of at least one number");
     }
 
+    //check password consist of at list one letter  
     var flagLetter = false;
-            //check password consist of at list one letter   
-    for (let i = 0; i < pass.length; i++){
-        let text = name.toString();
-        if((text >= '65' && text <='90') || (text >= '97' && text <= '122')){
-            flagLetter = true;
+    var letter = /^[a-zA-Z]+$/;
+             
+    for (let i = 0; i < pass.length; i++) {
+        if (pass[i].match(letter)) {
+            flagLetter = true
         }
     }
     if(!flagLetter){
@@ -53,11 +79,11 @@ function isValid(){
         flag = false;
         console.log("Password should have at least one letter");
         } 
-    console.log(error);
+
+    
+    // console.log(error);
     return flag;
 }
-
-
 
 
 
@@ -77,7 +103,6 @@ function Register() {
         if (isValid()){
             var name = document.getElementById("inputUserName").value;
             var pass = document.getElementById("inputPassword").value;
-            var pass2 = document.getElementById("inputPassword2").value;
             var nickname = document.getElementById("inputNickname").value;
             var img = document.getElementById("inputimg").value;
     
@@ -120,25 +145,33 @@ function Register() {
               <div className="col-md-10">
                   <div>
                       <label htmlFor="inputEmail4" className="form-label">User Name</label>
-                      <input type="text" className="form-control" id="inputUserName" placeholder="Israel Israeli"></input>              </div>
+                      <input type="text" className="form-control" id="inputUserName" placeholder="Israel Israeli"></input>
+                      <p><small id="noUserName" className="errorMessages">Please enter user name</small></p>
+                      <p><small id="existingName" className="errorMessages">User name already exists</small></p>
+                  </div>
               </div>
               <div className="col-md-5">
                   <label htmlFor="inputPassword4" className="form-label">Password</label>
-                  <input type="password" className="form-control" id="inputPassword"></input>
+                  <input type="password" className="form-control" id="inputPassword" placeholder="Put hard password!"></input>
+                  <p><small id="lessLetters" className="errorMessages">Password should consist at least 6 letters</small></p>
+                  <p><small id="noLetter" className="errorMessages">Password should consist at least one letter</small></p>
+                  <p><small id="noDigit" className="errorMessages">Password should consist at least one digit</small></p>
               </div>
               <div className="col-md-5">
                   <label htmlFor="inputPassword5" className="form-label">Verify Password</label>
-                  <input type="password" className="form-control" id="inputPassword2"></input>
+                  <input type="password" className="form-control" id="inputPassword2" placeholder="Enter the same password.."></input>
+                  <p><small id="noMatch" className="errorMessages">Passwords do not match</small></p>
               </div>
               <div className="col-md-10">
                   <label htmlFor="inputAddress" className="form-label">Nickname</label>
                   <input type="text" className="form-control" id="inputNickname" placeholder="Israel Israeli"></input>
+                  <p><small id="noNickName" className="errorMessages">Please enter nickname</small></p>
               </div>
 
               <div className="App">
                   <label htmlFor="inputAddress" className="form-label">Profile Picture</label>
                   <br></br>
-                  <input id="inputimg" type="file" onChange={handleChange} />
+                  <input id="inputimg" type="file" />
                   <img src={file} />
               </div>
 
@@ -147,7 +180,7 @@ function Register() {
                   <p>Already registered? <a href='/'>Click here</a> to Login</p>
               </div>
               <div className="col-12" id="buttenSignIn">
-                  <button onClick={function (e) {Upload()}} type="button" className="btn btn-primary">Sign in</button>
+                  <button onClick={function (e) { Upload() }} type="button" className="btn btn-primary">Sign in</button>
               </div>
           </form>
       </div>
