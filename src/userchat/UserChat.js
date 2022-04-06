@@ -10,7 +10,9 @@ function UserChat({name, time}){
                 <div className="d-flex w-100 justify-content-between">
                 </div>
                 <div  className="profileImage">
-                <img src={image1} alt="..."></img>
+                <img src={image1} alt="..."
+                style={{width: "100%", height: "100%", borderRadius: "50%"}}
+                ></img>
                 </div>
                     <h5 className="mb-1">{name}</h5>
                     <small className="text-muted">{time}</small>
