@@ -21,34 +21,34 @@ function LeftMenu({ setUserChat }) {
             <div className='leftmenuheader'>
                 <div>
                     {/** 
-                    <i class="bi bi-search"></i>
+                    <i className="bi bi-search"></i>
                     
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
+                    <form className="d-flex">
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
                     </form>*/}
-                    <button type="button" class="bi bi-person-plus" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" className="bi bi-person-plus" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Add a new chat
                     </button>
 
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Add a new chat</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title" id="exampleModalLabel">Add a new chat</h5>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
-                                <input class="form-control form-control-lg" type="text" placeholder="username"></input><br></br>
+                                <div className="modal-body">
+                                <input className="form-control form-control-lg" type="text" placeholder="username"></input><br></br>
                                 <form>
-                                        <div class="form-group">
-                                            <label for="exampleFormControlFile1">add a new picture</label><br></br>
-                                            <input type="file" class="form-control-file" id="exampleFormControlFile1"></input>
+                                        <div className="form-group">
+                                            <label htmlFor="exampleFormControlFile1">add a new picture</label><br></br>
+                                            <input type="file" className="form-control-file" id="exampleFormControlFile1"></input>
                                         </div>
                                     </form>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Add new chat</button>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" className="btn btn-primary">Add new chat</button>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +82,6 @@ function LeftMenu({ setUserChat }) {
 }
 // taking the setUserChat param 
 function showUsers(setUserChat, usermessages) {
-    console.log("Param is: " + JSON.stringify(usermessages))
     var addUser = usermessages.map((message, key) => {
         return <div onClick={() => setUserChat(message.user)}><UserChat name={message.user} time="3" key={key} /> </div>
     })
@@ -96,29 +95,29 @@ function showUsers(setUserChat, usermessages) {
 export default LeftMenu;
 
 
-// <div class="col-3 bg-light vh-100">
-//     <ul class="list-group">
+// <div className="col-3 bg-light vh-100">
+//     <ul className="list-group">
 
 
-//         <li class="list-group-item d-flex justify-content-between align-items-center">
-//             <i class="bi bi-messenger"></i>
+//         <li className="list-group-item d-flex justify-content-between align-items-center">
+//             <i className="bi bi-messenger"></i>
 //             <span>Noa Eitan</span>
-//             <span class="badge bg-primary rounded-pill">14</span>
+//             <span className="badge bg-primary rounded-pill">14</span>
 //         </li>
-//         <li class="list-group-item d-flex justify-content-between align-items-center">
-//             <i class="bi bi-messenger"></i>
+//         <li className="list-group-item d-flex justify-content-between align-items-center">
+//             <i className="bi bi-messenger"></i>
 //             <span>Hadar Ginatt</span>
-//             <span class="badge bg-primary rounded-pill">2</span>
+//             <span className="badge bg-primary rounded-pill">2</span>
 //         </li>
-//         <li class="list-group-item d-flex justify-content-between align-items-center">
-//             <i class="bi bi-messenger"></i>
+//         <li className="list-group-item d-flex justify-content-between align-items-center">
+//             <i className="bi bi-messenger"></i>
 //             <span>Eden</span>
-//             <span class="badge bg-primary rounded-pill">1</span>
+//             <span className="badge bg-primary rounded-pill">1</span>
 //         </li>
-//         <li class="list-group-item d-flex justify-content-between align-items-center">
-//             <i class="bi bi-messenger"></i>
+//         <li className="list-group-item d-flex justify-content-between align-items-center">
+//             <i className="bi bi-messenger"></i>
 //             <span> Gal</span>
-//             <span class="badge bg-primary rounded-pill">1</span>
+//             <span className="badge bg-primary rounded-pill">1</span>
 //         </li>
 //     </ul>
 // </div>

@@ -4,11 +4,8 @@ import './Massage.css'
 
 
 function showMessage({type,content,time, fromto}) {
-    console.log("inside single nessage")
     if (type === "text") {
-        console.log("inside text")
         if(fromto === "from") {
-            console.log("from")
             return (
                 <div id="messageLeft">
                     {/** text */}
@@ -36,8 +33,6 @@ function showMessage({type,content,time, fromto}) {
 }
 
 function Message({type,content,time, fromto}) {    
-    console.log("inside message")  
-    console.log("the type is" + JSON.stringify(type))
     return (
         <div>
             {showMessage({type,content,time, fromto})}

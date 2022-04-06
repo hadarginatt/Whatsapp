@@ -5,13 +5,12 @@ import databaseusers from '../databaseusers'
 import React, { useState } from 'react'
 import Message from '../message/Message'
 
-//save the messages of my account
-var myMessages = databaseusers.find((value) => { return value.username === "Hadar" }).messages;
 
 
-function showChat(username){
+
+function showChat(username, myMessages, setMessages, userMessages, setuserMessages){
     if (username === "" || username === null) {
-        // show onlu logo
+        // show only logo
         return (<img src={Logo} className="card-img-top" alt="..."></img>)
     } else {
 
@@ -21,12 +20,55 @@ function showChat(username){
         var showMessage = messagesFromUser.map((message, key) => {
             return <div className="messages"><Message type={message.type} content={message.content} time={message.time} fromto={message.fromto} key={key} /></div>
         })
-        
         return showMessage;
     }
 }
 
-function showTypeArea(username){
+
+function sendNewMessage(username, myMessages, setMessages, userMessages, setuserMessages){
+    //get the new message
+    console.log('sendNewMessage',username)
+    if (username===null || username === "" || document.getElementById("newMessage") === null) {
+        return;
+    }
+    var content = document.getElementById("newMessage").value;
+    if (content === "" || content === null){
+        console.log("empty")
+        return;
+    } else {
+        console.log("inside")
+        // insert into the local database
+        var type = "text";
+        // change the time !!!!!!!!!! to real time!
+        var time = "12:00";
+        var fromto = "to";
+        var newMessage = {type, content, time, fromto};
+
+        //insert into local data the new data
+        console.log("before:" + JSON.stringify(myMessages));
+        var newUserMessages = myMessages;
+        // console.log("after:" + JSON.stringify(newUserMessages));
+        newUserMessages = newUserMessages.find((value) => { return value.user === username }).message;
+        // console.log("after after :" + JSON.stringify(newUserMessages));
+        newUserMessages.push(newMessage);
+
+        
+        var newM = myMessages;
+        newM[username] = newUserMessages;
+        console.log("afterrrrrr:" + JSON.stringify(newM));
+        setMessages(newM.concat([]));
+
+        // setMessages(myMessages.concat([]))
+
+
+        //insert into the state of the data the 
+        document.getElementById("newMessage").value = "";
+
+    }
+}
+
+
+function showTypeArea(username, myMessages, setMessages, userMessages, setuserMessages){
     if (username === "" || username === null) {
         return;
     } else {
@@ -34,7 +76,7 @@ function showTypeArea(username){
             <div className="input-group mb-3">
                 <div className="input-group-prepend">
 
-                    <button onClick={sendNewMessage(username)} id="sendMessage">
+                    <button onClick={function(e) {sendNewMessage(username, myMessages, setMessages)}} id="sendMessage">
                         <i className="bi bi-send-fill"></i>
                     </button>
 
@@ -59,30 +101,9 @@ function showTypeArea(username){
     }
 }
 
-function sendNewMessage(username){
-    //get the new message
-    console.log("booo")
-    if (username===null || username === "" || document.getElementById("newMessage") === null) {
-        return;
-    }
-    var content = document.getElementById("newMessage").value;
-    if (content === "" || content === null){
-        console.log("empty")
-        return;
-    } else {
-        console.log("inside")
-        // insert into the local database
-        var type = "text"
-        // change the time !!!!!!!!!! to real time!
-        var time = "12:00"
-        var fromto = "to"
 
-        var newMessage = {type, content, time, fromto}
-        myMessages.find((value) => { return value.user === username }).message.push(newMessage);
-    }
-}
 
-function showUserProfile(username){
+function showUserProfile(username, myMessages, setMessages, userMessages, setuserMessages){
     if (username === "" || username === null) {
         return;
     } else {
@@ -98,15 +119,17 @@ function showUserProfile(username){
 }
 
 function Chat() {
-    console.log("from chat")
-    console.log(databaseusers)
     // parent has a state name user
     const [user, setUser] = useState('');
     //function to inject to the chikd left menu
     const setUserChat = (newName) => {
         setUser(newName)
-        console.log(newName)
     }
+
+    //save the messages of my account
+    const [myMessages, setMyMessages] = useState(databaseusers.find((value) => { return value.username === "Hadar" }).messages);
+
+    const [userMessages, setuserMessages] = useState([]);
     
 
     return (
@@ -123,9 +146,9 @@ function Chat() {
                     <div className="row"></div>
                     <div className="row g-2">
                         <div className="card">
-                            {showUserProfile(user)}
-                            {showChat(user)}
-                            {showTypeArea(user)}                           
+                            {showUserProfile(user, myMessages, setMyMessages)}
+                            {showChat(user, myMessages, setMyMessages, userMessages, setuserMessages)}
+                            {showTypeArea(user, myMessages, setMyMessages, userMessages, setuserMessages)}                           
                         </div>
                     </div>
                 </div>
@@ -133,5 +156,7 @@ function Chat() {
         </div>
     );
 }
+
+
   
 export default Chat;
