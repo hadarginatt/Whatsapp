@@ -109,7 +109,7 @@ function Chat() {
 
                 {/**main screen */}
 
-                <div className="col-9">
+                <div id="mainScreen" className="col-9">
                     <div className="row"></div>
                     <div className="row"></div>
                     <div className="row g-2">
@@ -120,7 +120,6 @@ function Chat() {
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     );

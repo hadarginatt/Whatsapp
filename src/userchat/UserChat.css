@@ -2,3 +2,8 @@
     background-color:grey;
     cursor: pointer;
 }
+.LeftMenuChat{
+    background-color: gainsboro;
+    cursor: pointer;
+    border-radius: 1px;
+}

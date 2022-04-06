@@ -11,7 +11,13 @@ body{
 
 #sendMessage:hover{
     cursor: pointer;
-    
+
+}
+
+#mainScreen{
+    float: right;
+    flex: 80;
+    height: 100%;
 }
 /*
 #screen{

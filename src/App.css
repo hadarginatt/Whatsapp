@@ -3,15 +3,14 @@
 }
 
 .mainScreen{
-  background-color: white;
-
+  background-color: lightcyan;
   width: 70%;
-  border: 3px solid #0000ff;
   /* display: flex; */
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 100px auto;
+  border-radius: 10px;
 
   vertical-align: middle;
 }
