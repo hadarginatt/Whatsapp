@@ -1,13 +1,15 @@
 .leftmenu{
     flex: 20;
     /* overflow-y: scroll; */
+    border-right: 1px solid lightgrey;
 }
 
 .leftmenuheader{
     display: flex;
     /* justify-content: space-between; */
-    padding: 3px;
-    border-right: 1px solid lightgrey;
+    /* padding: 3px; */
+    width: 100%;
+    
 }
 .leftmenuusers{
     display: flex;
@@ -22,3 +24,6 @@
 #clickicon:hover{
     cursor: pointer;
 }
+/* .search{
+    padding-left: 3px;
+} */

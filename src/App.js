@@ -10,19 +10,22 @@ import { useState } from 'react'
 
 
 function App({nameOfPage}) {
-  var isLogin = false;
 
-  // var [nameConnected, setnameConnected] = useState("")
+  var [nameConnected, setnameConnected] = useState('')
+  const setUserConnected = (newName) => {
+    setnameConnected(newName)
+}
 
   return (
 
     <div className="home">
       <div className="nameOfPage">HadarNoaChat</div>
+      <div>{nameConnected} is connected</div>
       <div className="mainScreen">
         <BrowserRouter>
 
           <Routes>
-            <Route path="/" element={<Login/>}></Route>
+            <Route path="/" element={<Login nameConnected={nameConnected} setfunc={setUserConnected}/>}></Route>
             <Route path="/register" element={<Register />}></Route>
             <Route path="/chat" element={<Chat/>}></Route>
           </Routes>

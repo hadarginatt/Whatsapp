@@ -139,7 +139,7 @@ function Chat() {
     // function getTime() {
     //     return this.state.curTime;
     // }
-    
+    //גישה עושים עם:
     // <p>{this.state.curTime}</p>
 
     return (
@@ -154,13 +154,11 @@ function Chat() {
                 {/**main screen */}
 
                 <div id="mainScreen" className="col-9">
-                    <div className="row"></div>
-                    <div className="row"></div>
                     <div className="row card">
-                            {showUserProfile(user)}
-                            {showChat(user, myMessages)}
-                            {showTypeArea(user, myMessages, setMyMessages)}                           
-                        </div>
+                        {showUserProfile(user)}
+                        {showChat(user, myMessages)}
+                        {showTypeArea(user, myMessages, setMyMessages)}
+                    </div>
                 </div>
             </div>
         </div>

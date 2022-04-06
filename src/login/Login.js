@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import databaseusers from '../databaseusers';
 import { useState } from 'react';
 
-function isValidLogin() {
+function isValidLogin(nameConnected, setnameConnected) {
     var name = document.getElementById("userName").value;
     var pass = document.getElementById("password").value;
     var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
@@ -18,7 +18,9 @@ function isValidLogin() {
     } else if (databaseusers.find((value) => { return value.username === name && value.password === pass })) {
         console.log("goooooooooooooood");
         // change state of name connected
+        console.log("before" + JSON.stringify(nameConnected))
         // setnameConnected(name)
+        console.log("after" + JSON.stringify(nameConnected))
         // go to chat
         window.location.replace("/chat");
     } else {
@@ -33,7 +35,7 @@ function isValidLogin() {
 
 
 
-function Login() {
+function Login(nameConnected, setnameConnected) {
     // the way to acces the location sharedData.state.name is the display of the new user
     const sharedData = useLocation();
     return (
@@ -56,7 +58,7 @@ function Login() {
             </div>
 
             <div id="liveAlertPlaceholder"></div>
-            <button onClick={function(e) {isValidLogin()}} type="button" class="btn btn-primary" id="liveAlertBtn">Login</button>
+            <button onClick={() => {isValidLogin(nameConnected, setnameConnected)}} type="button" class="btn btn-primary" id="liveAlertBtn">Login</button>
         </div>
     );
 }

@@ -19,16 +19,16 @@ function LeftMenu({ setUserChat }) {
     return (
         <div className="leftmenu">
             <div className='leftmenuheader'>
-                <div>
+                <div class="search">
                     {/** 
                     <i className="bi bi-search"></i>
                     
                     <form className="d-flex">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
                     </form>*/}
-                    <button onClick={function(e) {addNewUser()}} type="button" className="bi bi-person-plus" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Add a new chat
+                    <button onClick={function (e) { addNewUser() }} type="button" className="bi bi-person-plus sarch" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     </button>
+                    <span className="justufy-center mb-3">Hadar</span>
 
                     <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div className="modal-dialog">
@@ -38,8 +38,8 @@ function LeftMenu({ setUserChat }) {
                                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div className="modal-body">
-                                <input className="form-control form-control-lg" type="text" placeholder="username"></input><br></br>
-                                <form>
+                                    <input className="form-control form-control-lg" type="text" placeholder="username"></input><br></br>
+                                    <form>
                                         <div className="form-group">
                                             <label htmlFor="exampleFormControlFile1">add a new picture</label><br></br>
                                             <input type="file" className="form-control-file" id="exampleFormControlFile1"></input>
@@ -53,10 +53,10 @@ function LeftMenu({ setUserChat }) {
                             </div>
                         </div>
                     </div>
-                    
-                    
+
+
                     <div className="list-group-item">
-                    {/** 
+                        {/** 
                         <span>Add a new chat</span>
 
                         <button className='button' onClick={addNewUser}>
@@ -83,7 +83,7 @@ function LeftMenu({ setUserChat }) {
 // taking the setUserChat param 
 function showUsers(setUserChat, usermessages) {
     var addUser = usermessages.map((message, key) => {
-        return <div onClick={() => setUserChat(message.user)}><UserChat name={message.name}
+        return <div onClick={() => setUserChat(message.user)}><UserChat name={message.user}
         time={message.message[(message.message).length - 1].time} lastMessage={message.message[(message.message).length - 1].content} key={key} /></div>
     })
     return addUser;
@@ -93,31 +93,4 @@ function showUsers(setUserChat, usermessages) {
 
 export default LeftMenu;
 
-
-// <div className="col-3 bg-light vh-100">
-//     <ul className="list-group">
-
-
-//         <li className="list-group-item d-flex justify-content-between align-items-center">
-//             <i className="bi bi-messenger"></i>
-//             <span>Noa Eitan</span>
-//             <span className="badge bg-primary rounded-pill">14</span>
-//         </li>
-//         <li className="list-group-item d-flex justify-content-between align-items-center">
-//             <i className="bi bi-messenger"></i>
-//             <span>Hadar Ginatt</span>
-//             <span className="badge bg-primary rounded-pill">2</span>
-//         </li>
-//         <li className="list-group-item d-flex justify-content-between align-items-center">
-//             <i className="bi bi-messenger"></i>
-//             <span>Eden</span>
-//             <span className="badge bg-primary rounded-pill">1</span>
-//         </li>
-//         <li className="list-group-item d-flex justify-content-between align-items-center">
-//             <i className="bi bi-messenger"></i>
-//             <span> Gal</span>
-//             <span className="badge bg-primary rounded-pill">1</span>
-//         </li>
-//     </ul>
-// </div>
 

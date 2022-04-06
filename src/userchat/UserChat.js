@@ -15,7 +15,7 @@ function UserChat({name, time, lastMessage}){
                     ></img>
                 </span>
                 
-                <span className="mb-1">{name}</span>
+                <span id="name" className="mb-3">{name}</span>
                 <span><small id="time" className="text-muted">{time}</small></span>
                 
 
@@ -24,7 +24,6 @@ function UserChat({name, time, lastMessage}){
             </div>
         </div>
     )
-
 }
 
 export default UserChat;
