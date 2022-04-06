@@ -5,21 +5,18 @@ import databaseusers from '../databaseusers'
 import React, { useState } from 'react'
 import Message from '../message/Message'
 
+//save the messages of my account
+var myMessages = databaseusers.find((value) => { return value.username === "Hadar" }).messages;
+
 
 function showChat(username){
-
     if (username === "" || username === null) {
         // show onlu logo
         return (<img src={Logo} className="card-img-top" alt="..."></img>)
-        
     } else {
-        //found the list of all chats of this person
-        let usermessages = databaseusers.find((value) => { return value.username === "Hadar" }).messages;
-        // console.log("from showScreen1:" + JSON.stringify(usermessages))
-        // console.log(JSON.stringify(username))
 
-        var messagesFromUser = usermessages.find((value) => { return value.user === username }).message;
-        console.log("from showScreen2:" + JSON.stringify(messagesFromUser))
+        var messagesFromUser = myMessages.find((value) => { return value.user === username }).message;
+        // console.log("from showScreen2:" + JSON.stringify(messagesFromUser))
 
         var showMessage = messagesFromUser.map((message, key) => {
             return <div className="messages"><Message type={message.type} content={message.content} time={message.time} fromto={message.fromto} key={key} /></div>
@@ -37,16 +34,43 @@ function showTypeArea(username){
         return (
             <div className="input-group mb-3">
                 <div className="input-group-prepend">
-                    <i class="bi bi-send-fill"></i>
+                {/** 
+                    <button onClick={sendNewMessage(username)} id="sendMessage">
+                        <i className="bi bi-send-fill"></i>
+                    </button>
+                */}
+                    <button id="sendMessage">
+                        <i className="bi bi-send-fill"></i>
+                    </button>
                 </div>
-                <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
-                {/** attach buttom*/} 
-                <i class="bi bi-paperclip"></i>
-                {/** recording buttom*/} 
-                <i class="bi bi-mic-fill"></i>
+                <input type="username" className="form-control" id="newMessage" placeholder="New Message..."></input>
+                {/** attach button*/} 
+                <i className="bi bi-paperclip"></i>
+                {/** recording button*/} 
+                <i className="bi bi-mic-fill"></i>
             </div>
         )
     }
+}
+
+function sendNewMessage(username){
+    //get the new message
+    console.log("booo")
+    // var content = document.getElementById("newMessage").value;
+    // if (content === "" || content === null){
+    //     console.log("empty")
+    //     return;
+    // } else {
+    //     console.log("inside")
+    //     // insert into the local database
+    //     var type = "text"
+    //     // change the time !!!!!!!!!! to real time!
+    //     var time = "12:00"
+    //     var fromto = "to"
+
+    //     var newMessage = {type, content, time, fromto}
+    //     myMessages.find((value) => { return value.user === username }).message.push(newMessage);
+    // }
 }
 
 function showUserProfile(username){
@@ -54,8 +78,9 @@ function showUserProfile(username){
         return;
     } else {
         return (
-            <div class="card">
-                <div class="card-body">
+            <div className="card">
+                <div className="card-body">
+                    {/**  TODO ::: Show the image of the user!!*/}
                     {username}
                 </div>
             </div>

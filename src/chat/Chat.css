@@ -5,7 +5,14 @@ body{
 .messages{
     background-image: url('chatBackground.jpeg');
 }
+.card{
+    background-color: lavenderblush;
+}
 
+#sendMessage:hover{
+    cursor: pointer;
+    
+}
 /*
 #screen{
     /* width: 800px;
