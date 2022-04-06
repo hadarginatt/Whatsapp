@@ -1,0 +1,28 @@
+#messageLeft{
+    position: relative;
+    float:Left;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 10px;
+    width: fit-content;
+    background-color: #ffffff;
+    margin: 5px;
+}
+#time{
+    font-size: 8px;
+    padding: 1px;
+}
+#text{
+    padding: 1px;
+}
+
+#messageRight{
+    position: relative;
+    float:Right;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 10px;
+    width: fit-content;
+    background-color: #ffffff;
+    margin: 5px;
+}
