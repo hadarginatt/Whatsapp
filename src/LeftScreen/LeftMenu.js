@@ -38,11 +38,17 @@ function LeftMenu({ setUserChat }) {
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    ...
+                                <input class="form-control form-control-lg" type="text" placeholder="username"></input><br></br>
+                                <form>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlFile1">add a new picture</label><br></br>
+                                            <input type="file" class="form-control-file" id="exampleFormControlFile1"></input>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <button type="button" class="btn btn-primary">Add new chat</button>
                                 </div>
                             </div>
                         </div>
@@ -50,12 +56,13 @@ function LeftMenu({ setUserChat }) {
                     
                     
                     <div className="list-group-item">
+                    {/** 
                         <span>Add a new chat</span>
 
                         <button className='button' onClick={addNewUser}>
                             <i id="clickicon" className="bi bi-person-plus"></i>
                         </button>
-                        {/** 
+                        
                         <Modal show={addNewUser}>
                             <Modal.Body>
                                 
