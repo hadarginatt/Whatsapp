@@ -2,6 +2,10 @@ body{
     background-color: paleturquoise;
 }
 
+.messages{
+    background-image: url('chatBackground.jpeg');
+}
+
 /*
 #screen{
     /* width: 800px;

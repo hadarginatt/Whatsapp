@@ -42,7 +42,7 @@ function LeftMenu({setUserChat}){
 function showUsers(setUserChat, usermessages){
     console.log("Param is: " + JSON.stringify(usermessages))
     var addUser = usermessages.map((message, key) => {
-        return <div onClick={() => setUserChat(message.user)}><UserChat name = {message.user} time = "3" /> </div>})
+        return <div onClick={() => setUserChat(message.user)}><UserChat name = {message.user} time = "3" key = {key} /> </div>})
     return addUser;
 }
 

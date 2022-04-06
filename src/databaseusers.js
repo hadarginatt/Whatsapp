@@ -1,7 +1,7 @@
 
  var databaseusers = [{username : "Hadar", password : "1111", nickName: "Hadari", img: "img1.png", messages: 
  [{user: "Noa",message: [{type : "text", content: "hello", time: "6 minutes ago", fromto: "to"},{type : "text", content: "hello2", time: "6 minutes ago", fromto: "to"}]},
- {user: "David",message: [{type : "text", content: "hello", time: "6 minutes ago", fromto: "to"}]},
+ {user: "David",message: [{type : "text", content: "hellohhhhhhh", time: "6 minutes ago", fromto: "to"}]},
  {user: "Itay",message: [{type : "text", content: "hello", time: "6 minutes ago", fromto: "to"}]},
  {user: "Noam",message: [{type : "text", content: "hello", time: "6 minutes ago", fromto: "to"}]},
  {user: "Ofer",message: [{type : "text", content: "hello", time: "6 minutes ago", fromto: "to"}]}]},
