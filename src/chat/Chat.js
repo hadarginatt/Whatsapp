@@ -8,10 +8,10 @@ import Message from '../message/Message'
 
 
 
-function showChat(username, myMessages, setMessages, userMessages, setuserMessages){
+function showChat(username, myMessages){
     if (username === "" || username === null) {
         // show only logo
-        return (<img src={Logo} className="card-img-top" alt="..."></img>)
+        return (<img id="startImg" src={Logo} className="card-img-top" alt="..."></img>)
     } else {
 
         var messagesFromUser = myMessages.find((value) => { return value.user === username }).message;
@@ -25,7 +25,7 @@ function showChat(username, myMessages, setMessages, userMessages, setuserMessag
 }
 
 
-function sendNewMessage(username, myMessages, setMessages, userMessages, setuserMessages){
+function sendNewMessage(username, myMessages, setMessages){
     //get the new message
     console.log('sendNewMessage',username)
     if (username===null || username === "" || document.getElementById("newMessage") === null) {
@@ -40,7 +40,7 @@ function sendNewMessage(username, myMessages, setMessages, userMessages, setuser
         // insert into the local database
         var type = "text";
         // change the time !!!!!!!!!! to real time!
-        var time = "12:00";
+        var time = "12:00"
         var fromto = "to";
         var newMessage = {type, content, time, fromto};
 
@@ -68,7 +68,7 @@ function sendNewMessage(username, myMessages, setMessages, userMessages, setuser
 }
 
 
-function showTypeArea(username, myMessages, setMessages, userMessages, setuserMessages){
+function showTypeArea(username, myMessages, setMessages){
     if (username === "" || username === null) {
         return;
     } else {
@@ -103,7 +103,7 @@ function showTypeArea(username, myMessages, setMessages, userMessages, setuserMe
 
 
 
-function showUserProfile(username, myMessages, setMessages, userMessages, setuserMessages){
+function showUserProfile(username){
     if (username === "" || username === null) {
         return;
     } else {
@@ -119,6 +119,9 @@ function showUserProfile(username, myMessages, setMessages, userMessages, setuse
 }
 
 function Chat() {
+    // if (nameConnected === ""){
+    //     window.location.replace("/");
+    // }
     // parent has a state name user
     const [user, setUser] = useState('');
     //function to inject to the chikd left menu
@@ -129,28 +132,35 @@ function Chat() {
     //save the messages of my account
     const [myMessages, setMyMessages] = useState(databaseusers.find((value) => { return value.username === "Hadar" }).messages);
 
-    const [userMessages, setuserMessages] = useState([]);
+    // time
+    // state={
+    //     curTime : new Date().toLocaleString(),
+    //   }
+    // function getTime() {
+    //     return this.state.curTime;
+    // }
     
+    // <p>{this.state.curTime}</p>
 
     return (
         <div className="container-fluid" id="screen">
             <div id="chats" className="row">
                 {/**side screen */}
                 {/**the property param for the child */}
-                <LeftMenu setUserChat={setUserChat}/>
+                <div id="leftMenu" className='col-3'>
+                    <LeftMenu setUserChat={setUserChat} />
+                </div>
 
                 {/**main screen */}
 
                 <div id="mainScreen" className="col-9">
                     <div className="row"></div>
                     <div className="row"></div>
-                    <div className="row g-2">
-                        <div className="card">
-                            {showUserProfile(user, myMessages, setMyMessages)}
-                            {showChat(user, myMessages, setMyMessages, userMessages, setuserMessages)}
-                            {showTypeArea(user, myMessages, setMyMessages, userMessages, setuserMessages)}                           
+                    <div className="row card">
+                            {showUserProfile(user)}
+                            {showChat(user, myMessages)}
+                            {showTypeArea(user, myMessages, setMyMessages)}                           
                         </div>
-                    </div>
                 </div>
             </div>
         </div>

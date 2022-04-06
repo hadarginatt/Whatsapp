@@ -8,26 +8,23 @@ import Chat from './chat/Chat'
 import users from './users.js'
 import { useState } from 'react'
 
+
 function App({nameOfPage}) {
   var isLogin = false;
-  var username;
- 
-  var pass;
-  var noa;
 
-  var userDetails;
+  // var [nameConnected, setnameConnected] = useState("")
+
   return (
 
     <div className="home">
-      <div className="nameOfPage">HadarNoaChat
-      </div>
+      <div className="nameOfPage">HadarNoaChat</div>
       <div className="mainScreen">
         <BrowserRouter>
 
           <Routes>
-            <Route path="/" element={<Login />}></Route>
+            <Route path="/" element={<Login/>}></Route>
             <Route path="/register" element={<Register />}></Route>
-            <Route path="/chat" element={<Chat />}></Route>
+            <Route path="/chat" element={<Chat/>}></Route>
           </Routes>
         </BrowserRouter>
       </div>

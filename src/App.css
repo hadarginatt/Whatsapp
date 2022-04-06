@@ -4,15 +4,15 @@
 
 .mainScreen{
   background-color: lightcyan;
-  width: 70%;
+  width: 1200px;
   /* display: flex; */
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 100px auto;
+  margin: 80px auto;
   border-radius: 10px;
 
-  vertical-align: middle;
+  vertical-align: middle;  
 }
 
 

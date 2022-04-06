@@ -7,7 +7,7 @@ import databaseusers from '../databaseusers';
 
 
 function addNewUser({ userOnScreen }) {
-    // setaddUser(true);
+    console.log("adding")
 }
 
 // the messages that the user connected with
@@ -26,7 +26,7 @@ function LeftMenu({ setUserChat }) {
                     <form className="d-flex">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
                     </form>*/}
-                    <button type="button" className="bi bi-person-plus" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button onClick={function(e) {addNewUser()}} type="button" className="bi bi-person-plus" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Add a new chat
                     </button>
 
@@ -83,14 +83,13 @@ function LeftMenu({ setUserChat }) {
 // taking the setUserChat param 
 function showUsers(setUserChat, usermessages) {
     var addUser = usermessages.map((message, key) => {
-        return <div onClick={() => setUserChat(message.user)}><UserChat name={message.user} time="3" key={key} /> </div>
+        return <div onClick={() => setUserChat(message.user)}><UserChat name={message.name}
+        time={message.message[(message.message).length - 1].time} lastMessage={message.message[(message.message).length - 1].content} key={key} /></div>
     })
     return addUser;
 }
 
-// function chooseUserScreen(userName, newName){
-//     userName.setUser(newName)
-// }
+
 
 export default LeftMenu;
 

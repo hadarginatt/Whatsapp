@@ -1,12 +1,11 @@
 import './Login.css'
 import { useLocation } from 'react-router-dom';
 import databaseusers from '../databaseusers';
+import { useState } from 'react';
 
 function isValidLogin() {
     var name = document.getElementById("userName").value;
     var pass = document.getElementById("password").value;
-    console.log(name);
-    console.log(pass);
     var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
     if (name == "" || name == null || pass == "" || pass == null) {
         console.log("emptyyyyyyyyyyyyy");
@@ -18,6 +17,8 @@ function isValidLogin() {
         alertPlaceholder.append(wrapper)
     } else if (databaseusers.find((value) => { return value.username === name && value.password === pass })) {
         console.log("goooooooooooooood");
+        // change state of name connected
+        // setnameConnected(name)
         // go to chat
         window.location.replace("/chat");
     } else {
@@ -55,7 +56,7 @@ function Login() {
             </div>
 
             <div id="liveAlertPlaceholder"></div>
-            <button onClick={isValidLogin} type="button" class="btn btn-primary" id="liveAlertBtn">Login</button>
+            <button onClick={function(e) {isValidLogin()}} type="button" class="btn btn-primary" id="liveAlertBtn">Login</button>
         </div>
     );
 }

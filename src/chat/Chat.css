@@ -1,12 +1,10 @@
-body{
-    background-color: paleturquoise;
-}
 
 .messages{
     background-image: url('chatBackground.jpeg');
 }
 .card{
-    background-color: lavenderblush;
+    background-color: white;
+    margin: 0px;
 }
 
 #sendMessage:hover{
@@ -16,8 +14,22 @@ body{
 
 #mainScreen{
     float: right;
-    flex: 80;
     height: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+#leftMenu{
+    padding: 0px;
+}
+
+#startImg{
+    width: 100%;
+    height: 100%;
+}
+
+#screen{
+    padding: 0px;
+    height: 100px;
 }
 /*
 #screen{
