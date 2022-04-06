@@ -24,7 +24,6 @@ function showChat(username){
         
         return showMessage;
     }
-
 }
 
 function showTypeArea(username){
@@ -34,26 +33,26 @@ function showTypeArea(username){
         return (
             <div className="input-group mb-3">
                 <div className="input-group-prepend">
-                {/**
+
                     <button onClick={sendNewMessage(username)} id="sendMessage">
                         <i className="bi bi-send-fill"></i>
                     </button>
-                    */}
-                 
+
+                    {/**
                     <button id="sendMessage">
                         <i className="bi bi-send-fill"></i>
                     </button>
-        
-                   
+        */}
+
                 </div>
                 <input type="username" className="form-control" id="newMessage" placeholder="New Message..."></input>
-                {/** attach button*/} 
-                 <button className='button' onClick={""}>
-                <i className="bi bi-paperclip"></i>
+                {/** attach button*/}
+                <button className='button' onClick={() => { }}>
+                    <i className="bi bi-paperclip"></i>
                 </button>
                 {/** recording button*/}
-                <button className='button' onClick={""}> 
-                <i className="bi bi-mic-fill"></i>
+                <button className='button' onClick={() => { }}>
+                    <i className="bi bi-mic-fill"></i>
                 </button>
             </div>
         )
@@ -63,6 +62,9 @@ function showTypeArea(username){
 function sendNewMessage(username){
     //get the new message
     console.log("booo")
+    if (username===null || username === "" || document.getElementById("newMessage") === null) {
+        return;
+    }
     var content = document.getElementById("newMessage").value;
     if (content === "" || content === null){
         console.log("empty")
