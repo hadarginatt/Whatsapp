@@ -8,9 +8,56 @@ function isValid(){
     // check if pass and confirmation is equal
     //not empty
     //only strings
-    //have img
-    return true;
+    console.log("entered is valid");
+    var name = document.getElementById("inputUserName").value;
+    var pass = document.getElementById("inputPassword").value;
+    
+   
+    var flag = true;
+     var error = "";
+    //check username is not empty   
+    if(name.length ===0){
+        error += " " + "username is empty"; 
+        flag = false;
+        console.log("username is empty")   
+    }
+     //check password length is  
+    if (pass.length < 6){
+        error += " " + "Password should have at least 6 letters"; 
+        flag = false;
+        console.log("Password should have at least 6 letters")
+    }
+    //check password consist of at list one digit
+    var flagNum = false;
+    for (let i = 0; i < pass.length; i++){
+        if((Number.isInteger(name))){
+            flagNum = true;  
+        }
+    }
+    if(!flagNum){
+        error += "Password should consist of at least one number";
+        flag = false;
+        console.log("Password should consist of at least one number");
+    }
+
+    var flagLetter = false;
+            //check password consist of at list one letter   
+    for (let i = 0; i < pass.length; i++){
+        let text = name.toString();
+        if((text >= '65' && text <='90') || (text >= '97' && text <= '122')){
+            flagLetter = true;
+        }
+    }
+    if(!flagLetter){
+        error += "Password should have at least one letter"; 
+        flag = false;
+        console.log("Password should have at least one letter");
+        } 
+    console.log(error);
+    return flag;
 }
+
+
 
 
 
@@ -26,7 +73,8 @@ function Register() {
     }
 
     function Upload(){
-        if (isValid){
+        console.log("in upload")
+        if (isValid()){
             var name = document.getElementById("inputUserName").value;
             var pass = document.getElementById("inputPassword").value;
             var pass2 = document.getElementById("inputPassword2").value;
@@ -71,24 +119,24 @@ function Register() {
           <form className="row g-3">
               <div className="col-md-10">
                   <div>
-                      <label htmlfor="inputEmail4" className="form-label">User Name</label>
+                      <label htmlFor="inputEmail4" className="form-label">User Name</label>
                       <input type="text" className="form-control" id="inputUserName" placeholder="Israel Israeli"></input>              </div>
               </div>
               <div className="col-md-5">
-                  <label htmlfor="inputPassword4" className="form-label">Password</label>
+                  <label htmlFor="inputPassword4" className="form-label">Password</label>
                   <input type="password" className="form-control" id="inputPassword"></input>
               </div>
               <div className="col-md-5">
-                  <label htmlfor="inputPassword5" className="form-label">Verify Password</label>
+                  <label htmlFor="inputPassword5" className="form-label">Verify Password</label>
                   <input type="password" className="form-control" id="inputPassword2"></input>
               </div>
               <div className="col-md-10">
-                  <label htmlfor="inputAddress" className="form-label">Nickname</label>
+                  <label htmlFor="inputAddress" className="form-label">Nickname</label>
                   <input type="text" className="form-control" id="inputNickname" placeholder="Israel Israeli"></input>
               </div>
 
               <div className="App">
-                  <label htmlfor="inputAddress" className="form-label">Profile Picture</label>
+                  <label htmlFor="inputAddress" className="form-label">Profile Picture</label>
                   <br></br>
                   <input id="inputimg" type="file" onChange={handleChange} />
                   <img src={file} />
@@ -99,7 +147,7 @@ function Register() {
                   <p>Already registered? <a href='/'>Click here</a> to Login</p>
               </div>
               <div className="col-12" id="buttenSignIn">
-                  <button onClick={Upload} type="button" className="btn btn-primary">Sign in</button>
+                  <button onClick={function (e) {Upload()}} type="button" className="btn btn-primary">Sign in</button>
               </div>
           </form>
       </div>
