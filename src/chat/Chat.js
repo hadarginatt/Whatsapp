@@ -34,20 +34,27 @@ function showTypeArea(username){
         return (
             <div className="input-group mb-3">
                 <div className="input-group-prepend">
-                {/** 
+                {/**
                     <button onClick={sendNewMessage(username)} id="sendMessage">
                         <i className="bi bi-send-fill"></i>
                     </button>
-                */}
+                    */}
+                 
                     <button id="sendMessage">
                         <i className="bi bi-send-fill"></i>
                     </button>
+        
+                   
                 </div>
                 <input type="username" className="form-control" id="newMessage" placeholder="New Message..."></input>
                 {/** attach button*/} 
+                 <button className='button' onClick={""}>
                 <i className="bi bi-paperclip"></i>
-                {/** recording button*/} 
+                </button>
+                {/** recording button*/}
+                <button className='button' onClick={""}> 
                 <i className="bi bi-mic-fill"></i>
+                </button>
             </div>
         )
     }
@@ -56,21 +63,21 @@ function showTypeArea(username){
 function sendNewMessage(username){
     //get the new message
     console.log("booo")
-    // var content = document.getElementById("newMessage").value;
-    // if (content === "" || content === null){
-    //     console.log("empty")
-    //     return;
-    // } else {
-    //     console.log("inside")
-    //     // insert into the local database
-    //     var type = "text"
-    //     // change the time !!!!!!!!!! to real time!
-    //     var time = "12:00"
-    //     var fromto = "to"
+    var content = document.getElementById("newMessage").value;
+    if (content === "" || content === null){
+        console.log("empty")
+        return;
+    } else {
+        console.log("inside")
+        // insert into the local database
+        var type = "text"
+        // change the time !!!!!!!!!! to real time!
+        var time = "12:00"
+        var fromto = "to"
 
-    //     var newMessage = {type, content, time, fromto}
-    //     myMessages.find((value) => { return value.user === username }).message.push(newMessage);
-    // }
+        var newMessage = {type, content, time, fromto}
+        myMessages.find((value) => { return value.user === username }).message.push(newMessage);
+    }
 }
 
 function showUserProfile(username){
