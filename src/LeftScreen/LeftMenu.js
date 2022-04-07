@@ -5,7 +5,7 @@ import UserChat from '../userchat/UserChat';
 // import 'react-bootstrap'
 
 
-function addNewUser() {
+function addNewUser(myMessages, setMyMessages) {
     console.log("adding")
     var errorMessage = document.getElementById("errorMessage")
     errorMessage.innerHTML = ""
@@ -15,18 +15,27 @@ function addNewUser() {
         var message = "Pleae enter user name"
         errorHtml.innerHTML = "<p><small id='noUserName' className='errorMessages'>"  + message + "</small></p>"
         errorMessage.append(errorHtml)
+        return
     }
+    // adding
+    var username = document.getElementById("usernameInput").value
+
+    var addToDB = [{user: username, message: [{}]}]
+    setMyMessages(myMessages.concat(addToDB))
+    
 }
 
 function closeModal(){
     var errorMessage = document.getElementById("errorMessage")
     errorMessage.innerHTML = ""
+    document.getElementById("usernameInput").value = ""
+
 }
 
 // the messages that the user connected with
 
 
-function LeftMenu({ nameConnected, myMessages, setUserChat }) {
+function LeftMenu({ nameConnected, myMessages, setUserChat, setMyMessages }) {
     var [addUser, setaddUser] = useState(false);
 
     return (
@@ -53,17 +62,10 @@ function LeftMenu({ nameConnected, myMessages, setUserChat }) {
                                 <div className="modal-body">
                                     <input id="usernameInput" className="form-control form-control-lg" type="text" placeholder="Enter user name"></input>
                                     <div id="errorMessage"></div>
-                                    <br></br>
-                                    <form>
-                                        <div className="form-group">
-                                            <label htmlFor="exampleFormControlFile1">add a new picture</label><br></br>
-                                            <input type="file" className="form-control-file" id="exampleFormControlFile1"></input>
-                                        </div>
-                                    </form>
                                 </div>
                                 <div className="modal-footer">
                                     <button onClick={function (e) { closeModal() }} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button onClick={function (e) { addNewUser() }} type="button" className="btn btn-primary">Add new chat</button>
+                                    <button onClick={function (e) { addNewUser(myMessages, setMyMessages) }} type="button" className="btn btn-primary">Add new chat</button>
                                 </div>
                             </div>
                         </div>

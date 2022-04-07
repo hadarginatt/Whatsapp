@@ -34,11 +34,9 @@ function showMessage({type,content,time, fromto}) {
 
 function Message({type,content,time, fromto}) {    
     return (
-        type == "text" ? 
         (<div>
             {showMessage({type,content,time, fromto})}
-        </div>) :
-        <audio controls src={content} />
+        </div>) 
     );
 }
   
