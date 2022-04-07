@@ -5,6 +5,8 @@ import databaseusers from '../databaseusers'
 import React, { useState } from 'react'
 import Message from '../message/Message'
 import { useLocation } from 'react-router-dom';
+import Recorder from '../recorder/Recorder'
+
 
 
 
@@ -26,13 +28,16 @@ function showChat(username, myMessages){
 }
 
 
-function sendNewMessage(username, myMessages, setMessages){
+function sendNewMessage(username, myMessages, setMessages, message){
     //get the new message
     console.log('sendNewMessage',username)
     if (username===null || username === "" || document.getElementById("newMessage") === null) {
         return;
     }
-    var content = document.getElementById("newMessage").value;
+    var content;
+    if(message != undefined) 
+        content = message;
+    content = document.getElementById("newMessage").value;
     if (content === "" || content === null){
         console.log("empty")
         return;
@@ -53,6 +58,7 @@ function sendNewMessage(username, myMessages, setMessages){
         // console.log("after after :" + JSON.stringify(newUserMessages));
         newUserMessages.push(newMessage);
 
+        console.log(newUserMessages);
         
         var newM = myMessages;
         newM[username] = newUserMessages;
@@ -94,8 +100,9 @@ function showTypeArea(username, myMessages, setMessages){
                     <i className="bi bi-paperclip"></i>
                 </button>
                 {/** recording button*/}
+              
                 <button className='button' onClick={() => { }}>
-                    <i className="bi bi-mic-fill"></i>
+                <Recorder addToDbFunc={sendNewMessage} user={username} messages={myMessages} setNewMessages={setMessages}></Recorder>
                 </button>
             </div>
         )
@@ -128,6 +135,7 @@ function Chat({ nameConnected }) {
 
 
     // state of the user name that this user wants to talk to him, saved in the parent component
+
     const [user, setUser] = useState('');
     // function to inject to the chikd left menu
     const setUserChat = (newName) => {
