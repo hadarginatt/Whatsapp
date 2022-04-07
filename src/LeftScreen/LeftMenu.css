@@ -24,6 +24,12 @@
 #clickicon:hover{
     cursor: pointer;
 }
+
+#errorMessage{
+    color: red;
+}
+
+
 /* .search{
     padding-left: 3px;
 } */

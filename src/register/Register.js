@@ -3,52 +3,77 @@ import databaseusers from '../databaseusers';
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
+
+
 function isValid(){
-    // check if pass and confirmation is equal
-    //not empty
-    //only strings
+    // save the data from the inputs
     var name = document.getElementById("inputUserName").value;
     var pass = document.getElementById("inputPassword").value;
     var verifyPass = document.getElementById("inputPassword2").value;
     var nickname = document.getElementById("inputNickname").value;
+
+    // save div to alerts of errors and initial to be without any message
+    var noUserName = document.getElementById('noUserNameAlert')
+    var existingName = document.getElementById('existingNameAlert')
+    var lessLetters = document.getElementById('lessLettersAlert')
+    var noLetter = document.getElementById('noLetterAlert')
+    var noDigit = document.getElementById('noDigitAlert')
+    var noMatch = document.getElementById('noMatchAlert')
+    var noNickName = document.getElementById('noNickNameAlert')
+
+    noUserName.innerHTML = ""
+    existingName.innerHTML = ""
+    lessLetters.innerHTML = ""
+    noLetter.innerHTML = ""
+    noDigit.innerHTML = ""
+    noMatch.innerHTML = ""
+    noNickName.innerHTML = ""
     
    
     var flag = true;
-    var error = "";
-
-    
-
 
     //check username is not empty   
     if(name.length === 0){
-        error += " " + "username is empty"; 
         flag = false;
-        console.log("username is empty")  
-        document.getElementById("noUserName").style.visibility =  "visible";
-
+        var errorHtml = document.createElement('div')
+        var message = "Please enter user name"
+        errorHtml.innerHTML = "<p><small id='noUserName' className='errorMessages'>" + message + "</small></p>"
+        noUserName.append(errorHtml)
     }
+
     //check if the username is already exist
     if (databaseusers.find((value) => { return value.username === name })){
-        error += " " + "username is already exist"; 
         flag = false;
-        console.log("username is already exist")  
+        var errorHtml = document.createElement('div')
+        var message = "User name is already exists"
+        errorHtml.innerHTML = "<p><small id='existingName' className='errorMessages'>"  + message + "</small></p>"
+        existingName.append(errorHtml)
     }
+
     //check nickname is not empty 
     if(nickname.length === 0){
-        error += " " + "nickname is empty"; 
         flag = false;
-        console.log("username is empty")   
+        var errorHtml = document.createElement('div')
+        var message = "Please enter nickname"
+        errorHtml.innerHTML = "<p><small id='noNickName' className='errorMessages'>" + message + "</small></p>"
+        noNickName.append(errorHtml)
     }
+
+    //check if password and verify password is equal
     if (pass != verifyPass) {
-        error += " " + "Verification password do not match"; 
         flag = false;
-        console.log("Verification password do not match")
+        var errorHtml = document.createElement('div')
+        var message = "Passwords do not match"
+        errorHtml.innerHTML = "<p><small id='noMatch' className='errorMessages'>" + message + "</small></p>"
+        noMatch.append(errorHtml)
     }
-     //check password length is  
+    //check password length is not less than 6
     if (pass.length < 6){
-        error += " " + "Password should have at least 6 letters"; 
         flag = false;
-        console.log("Password should have at least 6 letters")
+        var errorHtml = document.createElement('div')
+        var message = "Password should consist at least 6 letters"
+        errorHtml.innerHTML = "<p><small id='lessLetters' className='errorMessages'>" + message + "</small></p>"
+        lessLetters.append(errorHtml)
     }
 
     //check password consist of at list one digit
@@ -60,28 +85,28 @@ function isValid(){
         }
     }
     if(!flagNum){
-        error += "Password should consist of at least one number";
         flag = false;
-        console.log("Password should consist of at least one number");
+        var errorHtml = document.createElement('div')
+        var message = "Password should consist at least one digit"
+        errorHtml.innerHTML = "<p><small id='noLetter' className='errorMessages'>" + message +"</small></p>"
+        noDigit.append(errorHtml)
     }
 
     //check password consist of at list one letter  
     var flagLetter = false;
-    var letter = /^[a-zA-Z]+$/;
-             
+    var letter = /^[a-zA-Z]+$/; 
     for (let i = 0; i < pass.length; i++) {
         if (pass[i].match(letter)) {
             flagLetter = true
         }
     }
     if(!flagLetter){
-        error += "Password should have at least one letter"; 
         flag = false;
-        console.log("Password should have at least one letter");
+        var errorHtml = document.createElement('div')
+        var message = "Password should consist at least one letter"
+        errorHtml.innerHTML = "<p><small id='noLetter' className='errorMessages'>" + message +"</small></p>"
+        noLetter.append(errorHtml)
         } 
-
-    
-    // console.log(error);
     return flag;
 }
 
@@ -146,28 +171,28 @@ function Register() {
                   <div>
                       <label htmlFor="inputEmail4" className="form-label">User Name</label>
                       <input type="text" className="form-control" id="inputUserName" placeholder="Israel Israeli"></input>
-                      <p><small id="noUserName" className="errorMessages">Please enter user name</small></p>
-                      <p><small id="existingName" className="errorMessages">User name already exists</small></p>
+                      <div className="errorMessages"></div>
+                      <div id="noUserNameAlert" className='alerts'></div>
+                      <div id="existingNameAlert" className='alerts'></div>
                   </div>
               </div>
               <div className="col-md-5">
                   <label htmlFor="inputPassword4" className="form-label">Password</label>
-                  <input type="password" className="form-control" id="inputPassword" placeholder="Put hard password!"></input>
-                  <p><small id="lessLetters" className="errorMessages">Password should consist at least 6 letters</small></p>
-                  <p><small id="noLetter" className="errorMessages">Password should consist at least one letter</small></p>
-                  <p><small id="noDigit" className="errorMessages">Password should consist at least one digit</small></p>
+                  <input type="password" className="form-control" id="inputPassword" placeholder="Put at least 6 chars, at least 1 digit, at least 1 letter"></input>
+                  <div id="lessLettersAlert" className='alerts'></div>
+                  <div id="noLetterAlert" className='alerts'></div>
+                  <div id="noDigitAlert" className='alerts'></div>
               </div>
               <div className="col-md-5">
                   <label htmlFor="inputPassword5" className="form-label">Verify Password</label>
                   <input type="password" className="form-control" id="inputPassword2" placeholder="Enter the same password.."></input>
-                  <p><small id="noMatch" className="errorMessages">Passwords do not match</small></p>
+                  <div id="noMatchAlert" className='alerts'></div>
               </div>
               <div className="col-md-10">
                   <label htmlFor="inputAddress" className="form-label">Nickname</label>
                   <input type="text" className="form-control" id="inputNickname" placeholder="Israel Israeli"></input>
-                  <p><small id="noNickName" className="errorMessages">Please enter nickname</small></p>
+                  <div id="noNickNameAlert" className='alerts'></div>
               </div>
-
               <div className="App">
                   <label htmlFor="inputAddress" className="form-label">Profile Picture</label>
                   <br></br>

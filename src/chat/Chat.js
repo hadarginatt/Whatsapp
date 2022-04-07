@@ -4,6 +4,7 @@ import LeftMenu from '../LeftScreen/LeftMenu'
 import databaseusers from '../databaseusers'
 import React, { useState } from 'react'
 import Message from '../message/Message'
+import { useLocation } from 'react-router-dom';
 
 
 
@@ -119,18 +120,24 @@ function showUserProfile(username){
 }
 
 function Chat({ nameConnected }) {
-    // if (nameConnected === ""){
-    //     window.location.replace("/");
-    // }
-    // parent has a state name user
+    // security to the page
+    if (nameConnected === "" || nameConnected === "null"){
+        alert("please login first")
+        window.location.replace("/");
+    }
+
+
+    // state of the user name that this user wants to talk to him, saved in the parent component
     const [user, setUser] = useState('');
-    //function to inject to the chikd left menu
+    // function to inject to the chikd left menu
     const setUserChat = (newName) => {
         setUser(newName)
     }
+    // save the name of the user name that connected
+    // const nameConnected = useLocation()
 
     //save the messages of my account
-    const [myMessages, setMyMessages] = useState(databaseusers.find((value) => { return value.username === "Hadar" }).messages);
+    const [myMessages, setMyMessages] = useState(databaseusers.find((value) => { return value.username === nameConnected }).messages);
 
     // time
     // state={
@@ -148,7 +155,8 @@ function Chat({ nameConnected }) {
                 {/**side screen */}
                 {/**the property param for the child */}
                 <div id="leftMenu" className='col-3'>
-                    <LeftMenu setUserChat={setUserChat} />
+                <div>{nameConnected}</div>
+                    <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} />
                 </div>
 
                 {/**main screen */}
