@@ -28,16 +28,14 @@ function showChat(username, myMessages){
 }
 
 
-function sendNewMessage(username, myMessages, setMessages, message){
+function sendNewMessage(username, myMessages, setMessages){
     //get the new message
     console.log('sendNewMessage',username)
     if (username===null || username === "" || document.getElementById("newMessage") === null) {
         return;
     }
-    var content;
-    if(message != undefined) 
-        content = message;
-    content = document.getElementById("newMessage").value;
+
+    var content = document.getElementById("newMessage").value;
     if (content === "" || content === null){
         console.log("empty")
         return;
@@ -51,18 +49,17 @@ function sendNewMessage(username, myMessages, setMessages, message){
         var newMessage = {type, content, time, fromto};
 
         //insert into local data the new data
-        console.log("before:" + JSON.stringify(myMessages));
+
         var newUserMessages = myMessages;
         // console.log("after:" + JSON.stringify(newUserMessages));
         newUserMessages = newUserMessages.find((value) => { return value.user === username }).message;
         // console.log("after after :" + JSON.stringify(newUserMessages));
         newUserMessages.push(newMessage);
 
-        console.log(newUserMessages);
         
         var newM = myMessages;
         newM[username] = newUserMessages;
-        console.log("afterrrrrr:" + JSON.stringify(newM));
+
         setMessages(newM.concat([]));
 
         // setMessages(myMessages.concat([]))
@@ -74,8 +71,31 @@ function sendNewMessage(username, myMessages, setMessages, message){
     }
 }
 
+function addNewAudioMessage(username, myMessages, setMessages, userAudioBlob){
+    // insert into the local database
+    var type = "audio";
+    // change the time !!!!!!!!!! to real time!
+    var time = "12:00"
+    var fromto = "to";
+    var newMessage = { type, userAudioBlob, time, fromto };
 
-function showTypeArea(username, myMessages, setMessages){
+    //insert into local data the new data
+    console.log("before:" + JSON.stringify(myMessages));
+    var newUserMessages = myMessages;
+    // console.log("after:" + JSON.stringify(newUserMessages));
+    newUserMessages = newUserMessages.find((value) => { return value.user === username }).message;
+    // console.log("after after :" + JSON.stringify(newUserMessages));
+    newUserMessages.push(newMessage);
+
+    console.log(newUserMessages);
+
+    var newM = myMessages;
+    newM[username] = newUserMessages;
+    console.log("afterrrrrr:" + JSON.stringify(newM));
+    setMessages(newM.concat([]));
+}
+
+function showTypeArea(username, myMessages, setMessages, userAudioBlob, setUserBlob){
     if (username === "" || username === null) {
         return;
     } else {
@@ -101,14 +121,14 @@ function showTypeArea(username, myMessages, setMessages){
                 </button>
                 {/** recording button*/}
               
-                <button className='button' onClick={() => { }}>
-                <Recorder addToDbFunc={sendNewMessage} user={username} messages={myMessages} setNewMessages={setMessages}></Recorder>
+                <button className='button'>
+                <Recorder addToDbFunc={addNewAudioMessage} userAudioBlob={userAudioBlob} setUserBlob={setUserBlob}
+                username = {username} myMessages = {myMessages} setMessages = {setMessages}></Recorder>
                 </button>
             </div>
         )
     }
 }
-
 
 
 function showUserProfile(username){
@@ -141,6 +161,8 @@ function Chat({ nameConnected }) {
     const setUserChat = (newName) => {
         setUser(newName)
     }
+    // state of audio recording content
+    const [userAudioBlob, setUserBlob] = useState('');
     // save the name of the user name that connected
     // const nameConnected = useLocation()
 
@@ -173,7 +195,7 @@ function Chat({ nameConnected }) {
                     <div className="row card">
                         {showUserProfile(user)}
                         {showChat(user, myMessages)}
-                        {showTypeArea(user, myMessages, setMyMessages)}
+                        {showTypeArea(user, myMessages, setMyMessages, userAudioBlob, setUserBlob)}
                     </div>
                 </div>
             </div>

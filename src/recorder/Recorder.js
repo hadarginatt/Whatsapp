@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 
 
-export default function Recorder({addToDbFunc, user, messages, setNewMessages}) {
+export default function Recorder({addToDbFunc, userAudioBlob, setUserBlob, username, myMessages, setMessages}) {
   const [stream, setStream] = useState({
     access: false,
     recorder: null,
@@ -52,6 +52,7 @@ export default function Recorder({addToDbFunc, user, messages, setNewMessages}) 
           console.log("stopped");
 {/* blob*/}
           url = URL.createObjectURL(chunks.current[0]);
+          setUserBlob(url);
           
 
           chunks.current = [];
@@ -63,8 +64,7 @@ export default function Recorder({addToDbFunc, user, messages, setNewMessages}) 
           });
         };
 
-        // addToDbFunc, user, messages, setNewMessages
-        addToDbFunc(user, messages, setNewMessages, url);
+
 
         setStream({
           ...stream,
@@ -88,16 +88,19 @@ export default function Recorder({addToDbFunc, user, messages, setNewMessages}) 
           >
             Start Recording
           </button>
-          <button onClick={() => stream.recorder.stop()}>Stop Recording</button>
+          <button onClick={ function(e) { stream.recorder.stop();
+            addToDbFunc(username, myMessages, setMessages, userAudioBlob);}}>Stop and send</button>
           {recording.available && <audio controls src={recording.url} />}
 
 
         </div>
       ) : (
-        <button onClick={getAccess}>
+        <button onClick={function(e) {getAccess()}}>
         <i className="bi bi-mic-fill"></i>
         </button>
       )}
     </div>
   );
 }
+
+
