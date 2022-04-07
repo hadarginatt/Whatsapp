@@ -26,13 +26,16 @@ function showChat(username, myMessages){
 }
 
 
-function sendNewMessage(username, myMessages, setMessages){
+function sendNewMessage(username, myMessages, setMessages, message){
     //get the new message
     console.log('sendNewMessage',username)
     if (username===null || username === "" || document.getElementById("newMessage") === null) {
         return;
     }
-    var content = document.getElementById("newMessage").value;
+    var content;
+    if(message != undefined) 
+        content = message;
+    content = document.getElementById("newMessage").value;
     if (content === "" || content === null){
         console.log("empty")
         return;
@@ -53,6 +56,7 @@ function sendNewMessage(username, myMessages, setMessages){
         // console.log("after after :" + JSON.stringify(newUserMessages));
         newUserMessages.push(newMessage);
 
+        console.log(newUserMessages);
         
         var newM = myMessages;
         newM[username] = newUserMessages;
@@ -96,7 +100,7 @@ function showTypeArea(username, myMessages, setMessages){
                 {/** recording button*/}
               
                 <button className='button' onClick={() => { }}>
-                <Recorder></Recorder>
+                <Recorder addToDbFunc={sendNewMessage} user={username} messages={myMessages} setNewMessages={setMessages}></Recorder>
                 </button>
             </div>
         )
@@ -121,6 +125,7 @@ function showUserProfile(username){
 }
 
 function Chat({ nameConnected }) {
+
     // if (nameConnected === ""){
     //     window.location.replace("/");
     // }

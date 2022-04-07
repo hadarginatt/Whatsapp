@@ -11,6 +11,7 @@
   {username : "Dror", password : "4444", nickName: "Hadari", img: "img1.png", messages: {type: "text", content: "hello", time: "10:18", from:"Hadar", to:"Noa"}},
   {username : "David", password : "4444", nickName: "Hadari", img: "img1.png", messages: {type: "text", content: "hello", time: "17:17", from:"Hadar", to:"Noa"}},
   {username : "Noam", password : "5555", nickName: "Hadari", img: "img1.png", messages: {type: "text", content: "hello", time: "15:20", from:"Hadar", to:"Noa"}}];
+  
 
 //   let user = {
 //     name: null,

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 
 
-export default function Recorder() {
+export default function Recorder({addToDbFunc, user, messages, setNewMessages}) {
   const [stream, setStream] = useState({
     access: false,
     recorder: null,
@@ -30,8 +30,8 @@ export default function Recorder() {
           console.log(err);
         }
 
-        const track = mediaRecorder.stream.getTracks()[0];
-        track.onended = () => console.log("ended");
+        // const track = mediaRecorder.stream.getTracks()[0];
+        // track.onended = () => console.log("ended");
 
         mediaRecorder.onstart = function () {
           setRecording({
@@ -46,10 +46,14 @@ export default function Recorder() {
           chunks.current.push(e.data);
         };
 
+        var url = '';
+
         mediaRecorder.onstop = async function () {
           console.log("stopped");
+{/* blob*/}
+          url = URL.createObjectURL(chunks.current[0]);
+          
 
-          const url = URL.createObjectURL(chunks.current[0]);
           chunks.current = [];
 
           setRecording({
@@ -58,6 +62,9 @@ export default function Recorder() {
             url
           });
         };
+
+        // addToDbFunc, user, messages, setNewMessages
+        addToDbFunc(user, messages, setNewMessages, url);
 
         setStream({
           ...stream,
@@ -83,6 +90,8 @@ export default function Recorder() {
           </button>
           <button onClick={() => stream.recorder.stop()}>Stop Recording</button>
           {recording.available && <audio controls src={recording.url} />}
+
+
         </div>
       ) : (
         <button onClick={getAccess}>
