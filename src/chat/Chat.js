@@ -44,7 +44,7 @@ function sendNewMessage(username, myMessages, setMessages){
         // insert into the local database
         var type = "text";
         // change the time !!!!!!!!!! to real time!
-        var time = "12:00"
+        var time = getTime();
         var fromto = "to";
         var newMessage = {type, content, time, fromto};
 
@@ -75,7 +75,7 @@ function addNewAudioMessage(username, myMessages, setMessages, userAudioBlob){
     // insert into the local database
     var type = "audio";
     // change the time !!!!!!!!!! to real time!
-    var time = "12:00"
+    var time = getTime();
     var fromto = "to";
     var newMessage = { type, userAudioBlob, time, fromto };
 
@@ -128,6 +128,21 @@ function showTypeArea(username, myMessages, setMessages, userAudioBlob, setUserB
             </div>
         )
     }
+}
+
+function getTime(){
+    var today = new Date();
+    var hours = today.getHours()
+    if (hours < 10) {
+        hours = "0" + hours
+    }
+    var minutes = today.getMinutes()
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+   
+    var time =  hours + ":" +  minutes;
+    return time;
 }
 
 
