@@ -118,7 +118,7 @@ function showUserProfile(username){
     }
 }
 
-function Chat() {
+function Chat({ nameConnected }) {
     // if (nameConnected === ""){
     //     window.location.replace("/");
     // }

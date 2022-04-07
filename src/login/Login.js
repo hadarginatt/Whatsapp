@@ -1,9 +1,12 @@
 import './Login.css'
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import databaseusers from '../databaseusers';
 import { useState } from 'react';
+import {BrowserRouter, Routes, Route } from 'react-router-dom'
 
-function isValidLogin(nameConnected, setnameConnected) {
+
+
+function isValidLogin(setUserConnected, userName, navigate) {
     var name = document.getElementById("userName").value;
     var pass = document.getElementById("password").value;
     var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
@@ -13,31 +16,42 @@ function isValidLogin(nameConnected, setnameConnected) {
         var wrapper = document.createElement('div')
         var type = 'warning'
         var message = 'Oops!! Empty fields! Please enter user name and password.'
-        wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+        wrapper.innerHTML = '<div className="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
         alertPlaceholder.append(wrapper)
     } else if (databaseusers.find((value) => { return value.username === name && value.password === pass })) {
         console.log("goooooooooooooood");
+
+
         // change state of name connected
-        console.log("before" + JSON.stringify(nameConnected))
-        // setnameConnected(name)
-        console.log("after" + JSON.stringify(nameConnected))
+        setUserConnected(name);
+
         // go to chat
-        window.location.replace("/chat");
+        // window.storage.setItem()
+        // window.location.replace("/chat");
+        // navigate('/chat')
+        navigate('/chat', {state: userName})
+        // this.props.history.push('/chat');
+        // return (<switch to="/chat" />)
+        // this.router.push('/chat')
+        // window.history.pushState('Hadar', 'Hadar', '/chat');
+
     } else {
         console.log("baaaaaaaaaaaaaaadd");
         var wrapper = document.createElement('div')
         var type = 'warning'
         var message = 'Oops!! User name or Password invalid.'
-        wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+        wrapper.innerHTML = '<div className="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
         alertPlaceholder.append(wrapper)
     }
 }
 
 
 
-function Login(nameConnected, setnameConnected) {
-    // the way to acces the location sharedData.state.name is the display of the new user
+function Login({setUserConnected, userName}) {
+    // the way to acces the location sharedData.state.name is the display of the new user ????
     const sharedData = useLocation();
+    const navigate = useNavigate()
+
     return (
         <div id="inputsLogin" className="container-fluid">
             <div className="row col-4 offset-4 justify-content-md-center">
@@ -58,7 +72,7 @@ function Login(nameConnected, setnameConnected) {
             </div>
 
             <div id="liveAlertPlaceholder"></div>
-            <button onClick={() => {isValidLogin(nameConnected, setnameConnected)}} type="button" class="btn btn-primary" id="liveAlertBtn">Login</button>
+            <button onClick={() => {isValidLogin(setUserConnected, userName, navigate)}} type="button" className="btn btn-primary" id="liveAlertBtn">Login</button>
         </div>
     );
 }
