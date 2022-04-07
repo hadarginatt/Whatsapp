@@ -4,6 +4,7 @@ import LeftMenu from '../LeftScreen/LeftMenu'
 import databaseusers from '../databaseusers'
 import React, { useState } from 'react'
 import Message from '../message/Message'
+import Recorder from '../recorder/Recorder'
 
 
 
@@ -93,8 +94,9 @@ function showTypeArea(username, myMessages, setMessages){
                     <i className="bi bi-paperclip"></i>
                 </button>
                 {/** recording button*/}
+              
                 <button className='button' onClick={() => { }}>
-                    <i className="bi bi-mic-fill"></i>
+                <Recorder></Recorder>
                 </button>
             </div>
         )

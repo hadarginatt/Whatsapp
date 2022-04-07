@@ -39,12 +39,7 @@ function LeftMenu({ setUserChat }) {
                                 </div>
                                 <div className="modal-body">
                                     <input className="form-control form-control-lg" type="text" placeholder="username"></input><br></br>
-                                    <form>
-                                        <div className="form-group">
-                                            <label htmlFor="exampleFormControlFile1">add a new picture</label><br></br>
-                                            <input type="file" className="form-control-file" id="exampleFormControlFile1"></input>
-                                        </div>
-                                    </form>
+
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
