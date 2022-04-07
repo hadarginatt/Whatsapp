@@ -9,8 +9,8 @@ export default function Recorder({addToDbFunc, userAudioBlob, setUserBlob, usern
   });
 
   const [recording, setRecording] = useState({
-    // active: false,
-    // available: false,
+    active: false,
+    available: false,
     url: ""
   });
 
@@ -29,8 +29,14 @@ export default function Recorder({addToDbFunc, userAudioBlob, setUserBlob, usern
         } catch (err) {
           console.log(err);
         }
+
+        // const track = mediaRecorder.stream.getTracks()[0];
+        // track.onended = () => console.log("ended");
+
         mediaRecorder.onstart = function () {
           setRecording({
+            active: true,
+            available: false,
             url: ""
           });
         };
