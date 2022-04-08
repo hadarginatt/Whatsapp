@@ -5,7 +5,7 @@ import './Massage.css'
 
 function showMessage({type,content,time, fromto}) {
     if (type === "text") {
-        if(fromto === "from") {
+        if(fromto === "to") {
             return (
                 <div id="messageLeft">
                     {/** text */}

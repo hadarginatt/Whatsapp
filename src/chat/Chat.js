@@ -30,17 +30,14 @@ function showChat(username, myMessages){
 
 function sendNewMessage(username, myMessages, setMessages){
     //get the new message
-    console.log('sendNewMessage',username)
     if (username===null || username === "" || document.getElementById("newMessage") === null) {
         return;
     }
 
     var content = document.getElementById("newMessage").value;
     if (content === "" || content === null){
-        console.log("empty")
         return;
     } else {
-        console.log("inside")
         // insert into the local database
         var type = "text";
         // change the time !!!!!!!!!! to real time!
@@ -163,9 +160,10 @@ function showUserProfile(username){
 
 function Chat({ nameConnected }) {
     // security to the page
-    if (nameConnected === "" || nameConnected === "null"){
+    if (nameConnected === "" || nameConnected === "null") {
+
         alert("please login first")
-        window.location.replace("/");
+        window.location.replace("/")
     }
 
 
@@ -200,8 +198,8 @@ function Chat({ nameConnected }) {
                 {/**side screen */}
                 {/**the property param for the child */}
                 <div id="leftMenu" className='col-3'>
-                <div>{nameConnected}</div>
-                    <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages}/>
+                    <div>{nameConnected}</div>
+                    <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages} />
                 </div>
 
                 {/**main screen */}
@@ -216,6 +214,7 @@ function Chat({ nameConnected }) {
             </div>
         </div>
     );
+
 }
 
 

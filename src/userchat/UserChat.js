@@ -3,14 +3,14 @@ import './UserChat.css'
 import image1 from '../image1.jpeg'
 
 
-function UserChat({name, time, lastMessage}){
+function UserChat({name, time, lastMessage, img}){
     return(
         <div className='LeftMenuChat'>
             <div id="user" className="list-group-item list-group-item-action w-100">
                 <div className="d-flex w-100 justify-content-between">
                 </div>
                 <span className="profileImage">
-                    <img src={image1} alt="..."
+                    <img src={img} alt="..."
                         style={{ width: "20%", height: "80%", borderRadius: "50%" }}
                     ></img>
                 </span>
