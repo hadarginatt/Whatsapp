@@ -35,12 +35,12 @@ function sendNewMessage(username, myMessages, setMessages){
     }
 
     var content = document.getElementById("newMessage").value;
-    if (content === "" || content === "null"){
+    if (content === "" || content === null){
         return;
     } else {
         // insert into the local database
         var type = "text";
-        var time = getTime();
+        var time = "12:00";
         var fromto = "to";
         var newMessage = {type, content, time, fromto};
 
@@ -69,11 +69,12 @@ function sendNewMessage(username, myMessages, setMessages){
 
 function addNewAudioMessage(username, myMessages, setMessages, userAudioBlob){
     // insert into the local database
-    var type = "audio";
-    var content = userAudioBlob;
-    var time = getTime();
-    var fromto = "to";
-    var newMessage = { type, content, time, fromto };
+    // var type = "audio";
+    // var content = userAudioBlob;
+    // var time = "12:00";
+    // var fromto = "to";
+    console.log("from adding:", userAudioBlob)
+    var newMessage = { type: "audio", content : userAudioBlob, time : "12:00", fromto : "to" };
 
     //insert into local data the new data
     console.log("before in adding audio:" + JSON.stringify(myMessages));
@@ -97,7 +98,8 @@ function addNewAudioMessage(username, myMessages, setMessages, userAudioBlob){
     document.getElementById("newMessage").value = "";
 }
 
-function showTypeArea(username, myMessages, setMessages, userAudioBlob, setUserBlob){
+function showTypeArea(username, myMessages, setMessages){
+
     if (username === "" || username === "null") {
         return;
     } else {
@@ -124,8 +126,7 @@ function showTypeArea(username, myMessages, setMessages, userAudioBlob, setUserB
                 {/** recording button*/}
 
                 <button className='button'>
-                    <Recorder addToDbFunc={addNewAudioMessage} userAudioBlob={userAudioBlob} setUserBlob={setUserBlob}
-                        username={username} myMessages={myMessages} setMessages={setMessages}></Recorder>
+                    <Recorder addToDbFunc={addNewAudioMessage} username={username} myMessages={myMessages} setMessages={setMessages}/>
                 </button>
             </div>
         )
@@ -180,8 +181,9 @@ function Chat({ nameConnected }) {
     const setUserChat = (newName) => {
         setUser(newName)
     }
-    // state of audio recording content
-    const [userAudioBlob, setUserBlob] = useState('null');
+    // // state of audio recording content
+    // const [userAudioBlob, setUserBlob] = useState('null');
+    
 
     //save the messages of my account
     const [myMessages, setMyMessages] = useState(databaseusers.find((value) => { return value.username === nameConnected }).messages);
@@ -203,7 +205,7 @@ function Chat({ nameConnected }) {
                     <div className="row card">
                         {showUserProfile(user)}
                         {showChat(user, myMessages)}
-                        {showTypeArea(user, myMessages, setMyMessages, userAudioBlob, setUserBlob)}
+                        {showTypeArea(user, myMessages, setMyMessages)}
                     </div>
                 </div>
             </div>

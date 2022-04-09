@@ -1,9 +1,11 @@
 import React, { useState, useRef } from "react";
 
 
-export default function Recorder({addToDbFunc, userAudioBlob, setUserBlob, username, myMessages, setMessages}) {
+export default function Recorder({ addToDbFunc, username, myMessages, setMessages }) {
 
-  console.log(addToDbFunc, userAudioBlob, setUserBlob, username, myMessages, setMessages)
+  // state of audio recording content
+  const [userAudioBlob, setUserBlob] = useState('null');
+
   const [stream, setStream] = useState({
     access: false,
     recorder: null,
@@ -32,8 +34,8 @@ export default function Recorder({addToDbFunc, userAudioBlob, setUserBlob, usern
           console.log(err);
         }
 
-        // const track = mediaRecorder.stream.getTracks()[0];
-        // track.onended = () => console.log("ended");
+        const track = mediaRecorder.stream.getTracks()[0];
+        track.onended = () => console.log("ended");
 
         mediaRecorder.onstart = function () {
           setRecording({
@@ -52,21 +54,21 @@ export default function Recorder({addToDbFunc, userAudioBlob, setUserBlob, usern
 
         mediaRecorder.onstop = async function () {
           console.log("stopped");
-{/* blob*/}
-          url = URL.createObjectURL(chunks.current[0]);
-          console.log("blob", url)
-          console.log("before" + JSON.stringify(userAudioBlob))
-          setUserBlob(url);
-          console.log("after" + JSON.stringify(userAudioBlob))
-          
+          {/* blob*/ }
+          url = URL.createObjectURL(chunks.current[0])
+          // console.log("before" + JSON.stringify(userAudioBlob))
+          // setUserBlob(recording.url)
+          // console.log("after" + JSON.stringify(userAudioBlob))
+
 
           chunks.current = [];
-
+{/** blob */ }
           setRecording({
             active: false,
             available: true,
             url
           });
+          addToDbFunc(username, myMessages, setMessages, url)
         };
 
 
@@ -93,16 +95,14 @@ export default function Recorder({addToDbFunc, userAudioBlob, setUserBlob, usern
           >
             Start Recording
           </button>
-          <button onClick={ function(e) { stream.recorder.stop();
-            addToDbFunc(username, myMessages, setMessages, userAudioBlob);
-          }}>Stop and send</button>
+          <button onClick={function (e) {stream.recorder.stop();}}>Stop and send</button>
           {recording.available && <audio controls src={recording.url} />}
 
 
         </div>
       ) : (
-        <button onClick={function(e) {getAccess()}}>
-        <i className="bi bi-mic-fill"></i>
+        <button onClick={function (e) { getAccess() }}>
+          <i className="bi bi-mic-fill"></i>
         </button>
       )}
     </div>
