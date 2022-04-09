@@ -25,8 +25,15 @@ function showMessage({type,content,time, fromto}) {
             )
         }
 
-    } else if (type === "video") {
-
+    } else if (type === "audio") {
+        return (
+            <div id="messageLeft">
+                {/** text */}
+                <span id="text">video</span><br></br>
+                {/** time */}
+                <span id="time">{time}</span>
+            </div>
+        )
     } else {
 
     }

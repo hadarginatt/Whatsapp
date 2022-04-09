@@ -10,7 +10,7 @@ function UserChat({name, time, lastMessage, img}){
                 <div className="d-flex w-100 justify-content-between">
                 </div>
                 <span className="profileImage">
-                    <img src={img} alt="..."
+                    <img src={image1} alt="..."
                         style={{ width: "20%", height: "80%", borderRadius: "50%" }}
                     ></img>
                 </span>

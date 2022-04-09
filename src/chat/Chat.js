@@ -12,7 +12,7 @@ import Recorder from '../recorder/Recorder'
 
 
 function showChat(username, myMessages){
-    if (username === "" || username === null) {
+    if (username === "" || username === "null") {
         // show only logo
         return (<img id="startImg" src={Logo} className="card-img-top" alt="..."></img>)
     } else {
@@ -30,17 +30,16 @@ function showChat(username, myMessages){
 
 function sendNewMessage(username, myMessages, setMessages){
     //get the new message
-    if (username===null || username === "" || document.getElementById("newMessage") === null) {
+    if (username=== "null" || username === "" || document.getElementById("newMessage") === null) {
         return;
     }
 
     var content = document.getElementById("newMessage").value;
-    if (content === "" || content === null){
+    if (content === "" || content === "null"){
         return;
     } else {
         // insert into the local database
         var type = "text";
-        // change the time !!!!!!!!!! to real time!
         var time = getTime();
         var fromto = "to";
         var newMessage = {type, content, time, fromto};
@@ -71,36 +70,42 @@ function sendNewMessage(username, myMessages, setMessages){
 function addNewAudioMessage(username, myMessages, setMessages, userAudioBlob){
     // insert into the local database
     var type = "audio";
-    // change the time !!!!!!!!!! to real time!
+    var content = userAudioBlob;
     var time = getTime();
     var fromto = "to";
-    var newMessage = { type, userAudioBlob, time, fromto };
+    var newMessage = { type, content, time, fromto };
 
     //insert into local data the new data
-    console.log("before:" + JSON.stringify(myMessages));
+    console.log("before in adding audio:" + JSON.stringify(myMessages));
     var newUserMessages = myMessages;
     // console.log("after:" + JSON.stringify(newUserMessages));
     newUserMessages = newUserMessages.find((value) => { return value.user === username }).message;
     // console.log("after after :" + JSON.stringify(newUserMessages));
     newUserMessages.push(newMessage);
 
-    console.log(newUserMessages);
-
+    
     var newM = myMessages;
     newM[username] = newUserMessages;
-    console.log("afterrrrrr:" + JSON.stringify(newM));
+
     setMessages(newM.concat([]));
+    console.log("after audio:" + JSON.stringify(myMessages))
+
+    // setMessages(myMessages.concat([]))
+
+
+    //insert into the state of the data the 
+    document.getElementById("newMessage").value = "";
 }
 
 function showTypeArea(username, myMessages, setMessages, userAudioBlob, setUserBlob){
-    if (username === "" || username === null) {
+    if (username === "" || username === "null") {
         return;
     } else {
         return (
             <div className="input-group mb-3">
                 <div className="input-group-prepend">
 
-                    <button onClick={function(e) {sendNewMessage(username, myMessages, setMessages)}} id="sendMessage">
+                    <button onClick={function (e) { sendNewMessage(username, myMessages, setMessages) }} id="sendMessage">
                         <i className="bi bi-send-fill"></i>
                     </button>
 
@@ -117,10 +122,10 @@ function showTypeArea(username, myMessages, setMessages, userAudioBlob, setUserB
                     <i className="bi bi-paperclip"></i>
                 </button>
                 {/** recording button*/}
-              
+
                 <button className='button'>
-                <Recorder addToDbFunc={addNewAudioMessage} userAudioBlob={userAudioBlob} setUserBlob={setUserBlob}
-                username = {username} myMessages = {myMessages} setMessages = {setMessages}></Recorder>
+                    <Recorder addToDbFunc={addNewAudioMessage} userAudioBlob={userAudioBlob} setUserBlob={setUserBlob}
+                        username={username} myMessages={myMessages} setMessages={setMessages}></Recorder>
                 </button>
             </div>
         )
@@ -144,7 +149,7 @@ function getTime(){
 
 
 function showUserProfile(username){
-    if (username === "" || username === null) {
+    if (username === "" || username === "null") {
         return;
     } else {
         return (
@@ -159,6 +164,7 @@ function showUserProfile(username){
 }
 
 function Chat({ nameConnected }) {
+    
     // security to the page
     if (nameConnected === "" || nameConnected === "null") {
 
@@ -169,28 +175,17 @@ function Chat({ nameConnected }) {
 
     // state of the user name that this user wants to talk to him, saved in the parent component
 
-    const [user, setUser] = useState('');
+    const [user, setUser] = useState('null');
     // function to inject to the chikd left menu
     const setUserChat = (newName) => {
         setUser(newName)
     }
     // state of audio recording content
-    const [userAudioBlob, setUserBlob] = useState('');
-    // save the name of the user name that connected
-    // const nameConnected = useLocation()
+    const [userAudioBlob, setUserBlob] = useState('null');
 
     //save the messages of my account
     const [myMessages, setMyMessages] = useState(databaseusers.find((value) => { return value.username === nameConnected }).messages);
-
-    // time
-    // state={
-    //     curTime : new Date().toLocaleString(),
-    //   }
-    // function getTime() {
-    //     return this.state.curTime;
-    // }
-    //גישה עושים עם:
-    // <p>{this.state.curTime}</p>
+    console.log("messages:" + JSON.stringify(myMessages))
 
     return (
         <div className="container-fluid" id="screen">
