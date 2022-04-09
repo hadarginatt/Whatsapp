@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 
 
 export default function Recorder({addToDbFunc, userAudioBlob, setUserBlob, username, myMessages, setMessages}) {
+
+  console.log(addToDbFunc, userAudioBlob, setUserBlob, username, myMessages, setMessages)
   const [stream, setStream] = useState({
     access: false,
     recorder: null,
@@ -52,7 +54,10 @@ export default function Recorder({addToDbFunc, userAudioBlob, setUserBlob, usern
           console.log("stopped");
 {/* blob*/}
           url = URL.createObjectURL(chunks.current[0]);
+          console.log("blob", url)
+          console.log("before" + JSON.stringify(userAudioBlob))
           setUserBlob(url);
+          console.log("after" + JSON.stringify(userAudioBlob))
           
 
           chunks.current = [];
@@ -89,7 +94,8 @@ export default function Recorder({addToDbFunc, userAudioBlob, setUserBlob, usern
             Start Recording
           </button>
           <button onClick={ function(e) { stream.recorder.stop();
-            addToDbFunc(username, myMessages, setMessages, userAudioBlob);}}>Stop and send</button>
+            addToDbFunc(username, myMessages, setMessages, userAudioBlob);
+          }}>Stop and send</button>
           {recording.available && <audio controls src={recording.url} />}
 
 

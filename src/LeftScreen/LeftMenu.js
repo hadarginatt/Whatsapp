@@ -21,7 +21,8 @@ function addNewUser(myMessages, setMyMessages, setUserChat) {
     // adding the user to the database (to the messages of this user who connected)
     var username = document.getElementById("usernameInput").value
 
-    var addToDB = [{user: username, img: addUserImg, message: [{}]}]
+    // var addToDB = [{user: username, img: addUserImg, message: [{}]}]
+    var addToDB = [{user: username, message: [{}]}]
     setMyMessages(myMessages.concat(addToDB))
     //change the window of the chat to be the window with this new username
     setUserChat(username)
@@ -95,7 +96,7 @@ function LeftMenu({ nameConnected, myMessages, setUserChat, setMyMessages }) {
 function showUsers(setUserChat, myMessages) {
     var addUser = myMessages.map((message, key) => {
         return <div onClick={() => setUserChat(message.user)}><UserChat name={message.user}
-        time={message.message[(message.message).length - 1].time} lastMessage={message.message[(message.message).length - 1].content} img={message.img }key={key} /></div>
+        time={message.message[(message.message).length - 1].time} lastMessage={message.message[(message.message).length - 1].content} key={key} /></div>
     })
     return addUser;
 }
