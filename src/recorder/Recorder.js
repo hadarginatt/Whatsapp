@@ -97,15 +97,29 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
           </button>
           <button onClick={function (e) {stream.recorder.stop();}}>Stop and send</button>
           {recording.available && <audio controls src={recording.url} />}
-
+      {/*
+      **for record display and dissmiss**
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+             /// add functionality of dissmis
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+      */}
+      
 
         </div>
       ) : (
         <button onClick={function (e) { getAccess() }}>
           <i className="bi bi-mic-fill"></i>
         </button>
+        
       )}
     </div>
   );
 }
-
