@@ -103,4 +103,3 @@ export default function Recorder({addToDbFunc, userAudioBlob, setUserBlob, usern
   );
 }
 
-
