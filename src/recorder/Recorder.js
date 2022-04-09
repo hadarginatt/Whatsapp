@@ -6,6 +6,10 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
   // state of audio recording content
   const [userAudioBlob, setUserBlob] = useState('null');
 
+
+  // for record display and hidden functionality
+  //const [recordMenu, hideRecordMenu] = useState('null');
+
   const [stream, setStream] = useState({
     access: false,
     recorder: null,
@@ -97,7 +101,25 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
           </button>
           <button onClick={function (e) {stream.recorder.stop();}}>Stop and send</button>
           {recording.available && <audio controls src={recording.url} />}
-      {/*
+   
+        </div>
+      ) : (
+        <button onClick={function (e) { getAccess()}}>
+        {/*}
+        // useState try - need to change from visibile to hidden
+        <button onClick={()=>hideRecordMenu(prev => !prev)}  aria-hidden="true"><i className="bi bi-mic-fill"></i></button>
+      */}
+        
+          <i className="bi bi-mic-fill"></i>
+        </button>
+        
+      )}
+    </div>
+  );
+}
+
+
+   {/*
       **for record display and dissmiss**
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -111,15 +133,3 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
             </div>
           </div>
       */}
-      
-
-        </div>
-      ) : (
-        <button onClick={function (e) { getAccess() }}>
-          <i className="bi bi-mic-fill"></i>
-        </button>
-        
-      )}
-    </div>
-  );
-}
