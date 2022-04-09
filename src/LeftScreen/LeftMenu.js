@@ -96,7 +96,7 @@ function LeftMenu({ nameConnected, myMessages, setUserChat, setMyMessages }) {
 function showUsers(setUserChat, myMessages) {
     var addUser = myMessages.map((message, key) => {
         var lastMessage= message.message[(message.message).length - 1].content
-        if (lastMessage.match("blob")){
+        if (lastMessage != null && lastMessage.match("blob")){
             lastMessage = "audio"
         }
         return <div onClick={() => setUserChat(message.user)}><UserChat name={message.user}

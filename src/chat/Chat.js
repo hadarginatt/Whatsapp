@@ -180,8 +180,6 @@ function Chat({ nameConnected }) {
     const setUserChat = (newName) => {
         setUser(newName)
     }
-    // // state of audio recording content
-    // const [userAudioBlob, setUserBlob] = useState('null');
     
 
     //save the messages of my account
