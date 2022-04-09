@@ -40,7 +40,7 @@ function sendNewMessage(username, myMessages, setMessages){
     } else {
         // insert into the local database
         var type = "text";
-        var time = "12:00";
+        var time = getTime();
         var fromto = "to";
         var newMessage = {type, content, time, fromto};
 
@@ -69,12 +69,11 @@ function sendNewMessage(username, myMessages, setMessages){
 
 function addNewAudioMessage(username, myMessages, setMessages, userAudioBlob){
     // insert into the local database
-    // var type = "audio";
-    // var content = userAudioBlob;
-    // var time = "12:00";
-    // var fromto = "to";
-    console.log("from adding:", userAudioBlob)
-    var newMessage = { type: "audio", content : userAudioBlob, time : "12:00", fromto : "to" };
+    var type = "audio";
+    var content = userAudioBlob;
+    var time = getTime();
+    var fromto = "to";
+    var newMessage = {type, content, time, fromto};
 
     //insert into local data the new data
     console.log("before in adding audio:" + JSON.stringify(myMessages));

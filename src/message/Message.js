@@ -28,8 +28,8 @@ function showMessage({type,content,time, fromto}) {
     } else if (type === "audio") {
         return (
             <div id="messageLeft">
-                {/** text */}
-                <span id="text">video</span><br></br>
+                {/** audio */}
+                <span id="text"><audio controls src={content}></audio></span><br></br>
                 {/** time */}
                 <span id="time">{time}</span>
             </div>
