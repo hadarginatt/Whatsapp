@@ -109,4 +109,3 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
   );
 }
 
-
