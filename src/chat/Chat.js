@@ -167,8 +167,6 @@ function Chat({ nameConnected }) {
     
     // security to the page
     if (nameConnected === "" || nameConnected === "null") {
-
-        alert("please login first")
         window.location.replace("/")
     }
 

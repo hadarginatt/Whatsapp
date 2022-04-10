@@ -2,6 +2,8 @@ import './LeftMenu.css'
 import React, { useState } from 'react'
 import UserChat from '../userchat/UserChat';
 import addUserImg from '../newUser.png'
+import databaseusers from '../databaseusers';
+import newUserImg from '../newUser.png'
 // import {Modal} from 'react-bootstrap';
 // import 'react-bootstrap'
 
@@ -99,8 +101,15 @@ function showUsers(setUserChat, myMessages) {
         if (lastMessage != null && lastMessage.match("blob")){
             lastMessage = "audio"
         }
-        return <div onClick={() => setUserChat(message.user)}><UserChat name={message.user}
-        time={message.message[(message.message).length - 1].time} lastMessage={lastMessage} key={key} /></div>
+        var name = message.user
+        var time = message.message[(message.message).length - 1].time
+        var userDetails = databaseusers.find((value) => { return value.username === name })
+        var img = newUserImg
+        if (userDetails) {
+            img = userDetails.img
+        }
+        return <div onClick={() => setUserChat(message.user)}><UserChat name={name}
+        time={time} lastMessage={lastMessage} img={img} key={key} /></div>
     })
     return addUser;
 }
