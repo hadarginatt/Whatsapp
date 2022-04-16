@@ -8,7 +8,21 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
 
 
   // for record display and hidden functionality
-  //const [recordMenu, hideRecordMenu] = useState('null');
+ // const hideRecorder = useRef(null);
+ 
+ // const [recordMenu, hideRecordMenu] = useState(true);
+  //const hide = function(recordMenu){
+  
+ // return (
+  //  <div style={{ display: recordMenu ? "block" : "none" }}>
+   // <p>This is the visibilityi test div</p>
+   // <button onClick={() => hideRecordMenu(false)}>Click me </button>
+ // </div>
+ // )
+ 
+  
+  //}
+
 
   const [stream, setStream] = useState({
     access: false,
@@ -105,31 +119,15 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
         </div>
       ) : (
         <button onClick={function (e) { getAccess()}}>
-        {/*}
-        // useState try - need to change from visibile to hidden
-        <button onClick={()=>hideRecordMenu(prev => !prev)}  aria-hidden="true"><i className="bi bi-mic-fill"></i></button>
-      */}
-        
-          <i className="bi bi-mic-fill"></i>
-        </button>
+     
+       
+      
+        <i className="bi bi-mic-fill"></i>
+        {/*} <i  ref={hideRecorder} onClick={hide(recordMenu)} className="bi bi-mic-fill"></i> */}
+    
+        </button> 
         
       )}
     </div>
   );
 }
-
-
-   {/*
-      **for record display and dissmiss**
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-             /// add functionality of dissmis
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-      */}
