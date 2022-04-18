@@ -22,6 +22,7 @@ function showChat(username, myMessages){
         var showMessage = messagesFromUser.map((message, key) => {
             return <div className="messages"><Message type={message.type} content={message.content} time={message.time} fromto={message.fromto} key={key} /></div>
         })
+        
         return showMessage;
     }
 }
@@ -199,7 +200,9 @@ function Chat({ nameConnected, dataBase}) {
                     <div className="row card">
                         {showUserProfile(user)}
                         {showChat(user, myMessages)}
+                        <div id="screenLimit">
                         {showTypeArea(user, myMessages, setMyMessages)}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -17,6 +17,9 @@
     height: 100%;
     padding: 0px;
     margin: 0px;
+    background-image: url('chatBackground.png');
+    height: 500px;
+    width: 500px;
 }
 #leftMenu{
     padding: 0px;
@@ -30,6 +33,10 @@
 #screen{
     padding: 0px;
     height: 100px;
+}
+
+#screenLimit{
+    position:fixed;
 }
 /*
 #screen{
