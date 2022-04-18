@@ -8,6 +8,7 @@ import Register from './register/Register'
 import Chat from './chat/Chat'
 import users from './users.js'
 import { useState } from 'react'
+import databaseusers from './databaseusers'
 
 
 
@@ -17,6 +18,8 @@ function App({nameOfPage}) {
   const setUserConnected = (newName) => {
     setnameConnected(newName)
   }
+  
+  var [dataBase, setDataBase] = useState(databaseusers)
 
   return (
 
@@ -26,9 +29,9 @@ function App({nameOfPage}) {
       <div className="mainScreen">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Login setUserConnected={setUserConnected} userName={nameConnected}/>}></Route>
-            <Route path="/register" element={<Register />}></Route>
-            <Route path="/chat" element={<Chat nameConnected={nameConnected} />}></Route>
+            <Route path="/" element={<Login setUserConnected={setUserConnected} userName={nameConnected} dataBase={dataBase}/>}></Route>
+            <Route path="/register" element={<Register dataBase={dataBase} setDataBase={setDataBase}/>}></Route>
+            <Route path="/chat" element={<Chat nameConnected={nameConnected} dataBase={dataBase}/>}></Route>
           </Routes>
         </BrowserRouter>
       </div>

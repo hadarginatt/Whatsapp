@@ -47,7 +47,7 @@ function isValidLogin(setUserConnected, userName, navigate) {
 
 
 
-function Login({setUserConnected, userName}) {
+function Login({setUserConnected, userName, dataBase}) {
     // the way to acces the location sharedData.state.name is the display of the new user ????
     const sharedData = useLocation();
     const navigate = useNavigate()

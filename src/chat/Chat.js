@@ -1,7 +1,6 @@
 import Logo from './logo.jpeg'
 import './Chat.css'
 import LeftMenu from '../LeftScreen/LeftMenu'
-import databaseusers from '../databaseusers'
 import React, { useState } from 'react'
 import Message from '../message/Message'
 import { useLocation } from 'react-router-dom';
@@ -163,7 +162,7 @@ function showUserProfile(username){
     }
 }
 
-function Chat({ nameConnected }) {
+function Chat({ nameConnected, dataBase}) {
     
     // security to the page
     if (nameConnected === "" || nameConnected === "null") {
@@ -181,7 +180,7 @@ function Chat({ nameConnected }) {
     
 
     //save the messages of my account
-    const [myMessages, setMyMessages] = useState(databaseusers.find((value) => { return value.username === nameConnected }).messages);
+    const [myMessages, setMyMessages] = useState(dataBase.find((value) => { return value.username === nameConnected }).messages);
     console.log("messages:" + JSON.stringify(myMessages))
 
     return (

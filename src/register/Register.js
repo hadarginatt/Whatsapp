@@ -1,11 +1,10 @@
 import './Register.css'
-import databaseusers from '../databaseusers';
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 
 
-function isValid(){
+function isValid(dataBase){
     // save the data from the inputs
     var name = document.getElementById("inputUserName").value;
     var pass = document.getElementById("inputPassword").value;
@@ -42,7 +41,7 @@ function isValid(){
     }
 
     //check if the username is already exist
-    if (databaseusers.find((value) => { return value.username === name })){
+    if (dataBase.find((value) => { return value.username === name })){
         flag = false;
         var errorHtml = document.createElement('div')
         var message = "User name is already exists"
@@ -112,7 +111,7 @@ function isValid(){
 
 
 
-function Register() {
+function Register({dataBase, setDataBase}) {
     
     const [file, setFile] = useState();
     //created a path to the location by navigae 
@@ -125,7 +124,7 @@ function Register() {
 
     function Upload(){
         console.log("in upload")
-        if (isValid()){
+        if (isValid(dataBase)){
             var name = document.getElementById("inputUserName").value;
             var pass = document.getElementById("inputPassword").value;
             var nickname = document.getElementById("inputNickname").value;
@@ -133,13 +132,13 @@ function Register() {
     
             //itay:
             // new user
-            let user = {
-                name: name,
-                nickname: nickname,
-                pass: pass,
-                imgSrc: img
-            }
-            console.log(user)
+            // let user = {
+            //     name: name,
+            //     nickname: nickname,
+            //     pass: pass,
+            //     imgSrc: img
+            // }
+            // console.log(user)
             // //change the  locations state of login (now iys null)
             // shareNewUser('/', {state: user})
     // now we have a new user dictionary as state instead of null
@@ -149,13 +148,14 @@ function Register() {
              // shareDataBaseUsers('/', {state: user})
 
              //add the user to database
-            console.log(databaseusers)
-            databaseusers.push({username: name, password: pass})
-            console.log(databaseusers)
+            console.log(dataBase)
+            dataBase.push({username: name, password: pass, nickName: nickname, img: img, messages: []})
+            setDataBase(dataBase.concat([]))
+            console.log(dataBase)
 
              
              //change the  locations state of login (now iys null)
-            shareDataBaseUsers('/', {state: databaseusers})
+            shareDataBaseUsers('/', {state: dataBase})
             // shareDataBaseUsers('/chat', {state: databaseusers})
 
     
