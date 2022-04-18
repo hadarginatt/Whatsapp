@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import Message from '../message/Message'
 import { useLocation } from 'react-router-dom';
 import Recorder from '../recorder/Recorder'
-
+import { Modal, ModalBody, ModalHeader } from 'react-bootstrap';
 
 
 
@@ -97,7 +97,15 @@ function addNewAudioMessage(username, myMessages, setMessages, userAudioBlob){
     document.getElementById("newMessage").value = "";
 }
 
-function showTypeArea(username, myMessages, setMessages){
+function showModal(setShowUploadModal) {
+    setShowUploadModal(true)
+}
+
+function closeModal(setShowUploadModal) {
+    setShowUploadModal(false)
+}
+
+function showTypeArea(username, myMessages, setMessages, showUploadModal, setShowUploadModal){
 
     if (username === "" || username === "null") {
         return;
@@ -123,38 +131,70 @@ function showTypeArea(username, myMessages, setMessages){
                     <i className="bi bi-paperclip"></i>
                 </button>*/}
 
-                <button type="button" class="bi bi-paperclip" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="bi bi-paperclip" onClick={function (e) {showModal(setShowUploadModal)}}>
                 </button>
-              
-               
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                       ...
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Upload</button>
-                      </div>
+{/** 
+                <div className="modal fade" role="dialog" id="uploadImg" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Upload</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" data-target="#exampleModal"></button>
+                            </div>
+                            <div id="modalBody" className="modal-body">
+                                <div>...</div>
+                            </div>
+                            <div id="modalfotter" className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-primary">Upload</button>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
 
+                */}
 
-                {/** recording button*/}
+                <Modal show={showUploadModal}>
+                    <Modal.Header>
+                        <h5 className="modal-title" id="exampleModalLabel">Upload Image Or Video</h5>
+                        <button onClick={function (e) {closeModal(setShowUploadModal)}} type="button" className="btn-close"></button>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div><input id="inputimg" type="file" accept="image/*" name="image"/></div>
+                        <div id="errorMessage"></div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <button type="button" className="btn btn-primary">Upload</button>
+                    </Modal.Footer>
+                </Modal>
+
+
+
+                
+
+
+                {/** recording button
 
                 <button className='button'>
                     <Recorder addToDbFunc={addNewAudioMessage} username={username} myMessages={myMessages} setMessages={setMessages}/>
-                </button>
+                </button>*/}
             </div>
         )
     }
 }
+
+// function uploadImgOrVideo () {
+//     if (isValidImgVideo) {
+
+//     } else {
+
+//     }
+// }
+
+// function isValidImgVideo() {
+
+// }
 
 function getTime(){
     var today = new Date();
@@ -203,6 +243,8 @@ function Chat({ nameConnected, dataBase}) {
     const setUserChat = (newName) => {
         setUser(newName)
     }
+
+    const [showUploadModal, setShowUploadModal] = useState(false);
     
 
     //save the messages of my account
@@ -226,7 +268,7 @@ function Chat({ nameConnected, dataBase}) {
                         {showUserProfile(user, dataBase)}
                         {showChat(user, myMessages)}
                         <div id="screenLimit">
-                        {showTypeArea(user, myMessages, setMyMessages)}
+                        {showTypeArea(user, myMessages, setMyMessages, showUploadModal, setShowUploadModal)}
                         </div>
                     </div>
                 </div>
