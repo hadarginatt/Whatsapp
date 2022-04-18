@@ -10,6 +10,7 @@ import { Modal, ModalBody, ModalHeader } from 'react-bootstrap';
 
 
 
+
 function showChat(username, myMessages){
     if (username === "" || username === "null") {
         // show only logo
@@ -105,8 +106,8 @@ function closeModal(setShowUploadModal) {
     setShowUploadModal(false)
 }
 
-function showTypeArea(username, myMessages, setMessages, showUploadModal, setShowUploadModal){
-
+function showTypeArea(username, myMessages, setMessages, showUploadModal, setShowUploadModal,showRecorderModal, setShowRecorderModal){
+   
     if (username === "" || username === "null") {
         return;
     } else {
@@ -175,19 +176,39 @@ function showTypeArea(username, myMessages, setMessages, showUploadModal, setSho
                 </Modal>
 
 
+                <Modal show={showRecorderModal}>
+                    <Modal.Header>
+                        <h5 className="modal-title">Upload Image Or Video</h5>
+                       
+                    </Modal.Header>
+                    <Modal.Body>
+                    <button className='button'>
+                    <Recorder addToDbFunc={addNewAudioMessage} username={username} myMessages={myMessages} setMessages={setMessages}/>
+                </button>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <button type="button" className="btn btn-primary">Upload</button>
+                    </Modal.Footer>
+                </Modal>
 
                 
 
 
-                {/** recording button
-
-                <button className='button'>
-                    <Recorder addToDbFunc={addNewAudioMessage} username={username} myMessages={myMessages} setMessages={setMessages}/>
-                </button>*/}
+                {/** recording button*/}
+               
+                <button onClick={function (e) { setShowRecorderModal(true)}}>  <i className="bi bi-mic-fill"></i> </button>
+                
             </div>
         )
     }
 }
+
+
+
+
+
+
+
 
 // function uploadImgOrVideo () {
 //     if (isValidImgVideo) {
@@ -250,6 +271,8 @@ function Chat({ nameConnected, dataBase}) {
     }
 
     const [showUploadModal, setShowUploadModal] = useState(false);
+    var [showRecorderModal, setShowRecorderModal] = useState(false);
+
     
 
     //save the messages of my account
@@ -273,7 +296,7 @@ function Chat({ nameConnected, dataBase}) {
                         {showUserProfile(user, dataBase)}
                         {showChat(user, myMessages)}
                         <div id="screenLimit">
-                        {showTypeArea(user, myMessages, setMyMessages, showUploadModal, setShowUploadModal)}
+                        {showTypeArea(user, myMessages, setMyMessages, showUploadModal, setShowUploadModal,showRecorderModal, setShowRecorderModal)}
                         </div>
                     </div>
                 </div>

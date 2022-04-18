@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { Modal, ModalBody, ModalHeader } from 'react-bootstrap';
 
 
 export default function Recorder({ addToDbFunc, username, myMessages, setMessages }) {
@@ -7,21 +8,6 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
   const [userAudioBlob, setUserBlob] = useState('null');
 
 
-  // for record display and hidden functionality
- // const hideRecorder = useRef(null);
- 
- // const [recordMenu, hideRecordMenu] = useState(true);
-  //const hide = function(recordMenu){
-  
- // return (
-  //  <div style={{ display: recordMenu ? "block" : "none" }}>
-   // <p>This is the visibilityi test div</p>
-   // <button onClick={() => hideRecordMenu(false)}>Click me </button>
- // </div>
- // )
- 
-  
-  //}
 
 
   const [stream, setStream] = useState({
@@ -103,9 +89,13 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
       });
   }
 
+  useEffect(()=>{
+    getAccess();
+  })
+
   return (
     <div className="App">
-      {stream.access ? (
+     
         <div className="audio-container">
           <button
             className={recording.active ? "active" : null}
@@ -117,17 +107,16 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
           {recording.available && <audio controls src={recording.url} />}
    
         </div>
-      ) : (
-        <button onClick={function (e) { getAccess()}}>
+      
      
        
       
-        <i className="bi bi-mic-fill"></i>
+       
         {/*} <i  ref={hideRecorder} onClick={hide(recordMenu)} className="bi bi-mic-fill"></i> */}
     
-        </button> 
+      
         
-      )}
+      
     </div>
   );
 }
