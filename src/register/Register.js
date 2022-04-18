@@ -10,6 +10,8 @@ function isValid(dataBase){
     var pass = document.getElementById("inputPassword").value;
     var verifyPass = document.getElementById("inputPassword2").value;
     var nickname = document.getElementById("inputNickname").value;
+    var image = document.getElementById("inputimg").value;
+
 
     // save div to alerts of errors and initial to be without any message
     var noUserName = document.getElementById('noUserNameAlert')
@@ -106,6 +108,19 @@ function isValid(dataBase){
         errorHtml.innerHTML = "<p><small id='noLetter' className='errorMessages'>" + message +"</small></p>"
         noLetter.append(errorHtml)
         } 
+        //check if the image is valid
+    
+    let allowedExtension = ['image/jpeg', 'image/jpg', 'image/png','image/gif','image/bmp'];
+    let type = document.getElementById('inputimg').files[0].type;
+    console.log(image);
+
+    if(allowedExtension.indexOf(type)==-1){       
+         alert('Not a image');
+         flag = false;
+         }
+    
+
+
     return flag;
 }
 
@@ -164,10 +179,7 @@ function Register({dataBase, setDataBase}) {
         }
     }
 
-    function loadFile () {
-        var image = document.getElementById('output');
-        // image.src = URL.createObjectURL(event.target.files[0]);
-    };
+   
 
   return (
       <div id="registerForm" className="offset-2">
@@ -201,7 +213,7 @@ function Register({dataBase, setDataBase}) {
               <div className="App">
                   <label htmlFor="inputAddress" className="form-label">Profile Picture</label>
                   <br></br>
-                  <input id="inputimg" type="file" />
+                  <input id="inputimg" type="file" accept="image/*" name="image" />
                   <img src={file} />
               </div>
 
