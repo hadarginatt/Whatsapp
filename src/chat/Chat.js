@@ -122,7 +122,7 @@ function showTypeArea(username, myMessages, setMessages){
                 <button className='button' onClick={() => { }}>
                     <i className="bi bi-paperclip"></i>
                 </button>*/}
-
+              
                 <button type="button" class="bi bi-paperclip" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 </button>
               
@@ -144,7 +144,7 @@ function showTypeArea(username, myMessages, setMessages){
                     </div>
                   </div>
                 </div>
-
+            
 
                 {/** recording button*/}
 
