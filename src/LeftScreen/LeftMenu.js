@@ -77,12 +77,17 @@ function closeModal(){
 
 function LeftMenu({ nameConnected, myMessages, setUserChat, setMyMessages, dataBase }) {
 
+    var img = dataBase.find((value) => {return value.username === nameConnected}).img
+
     return (
         <div className="leftmenu">
             <div className='leftmenuheader'>
                 <div class="search">
                     <button type="button" className="bi bi-person-plus sarch" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     </button>
+                    <img src={img} alt="..."
+                    style={{ width: "20%", height: "70%", borderRadius: "50%" }}
+                ></img>
                     <span className="justufy-center mb-3">{nameConnected}</span>
 
                     <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
