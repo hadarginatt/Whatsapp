@@ -14,7 +14,6 @@
 
 #mainScreen{
     float: right;
-    height: 100%;
     padding: 0px;
     margin: 0px;
     background-image: url('chatBackground.png');
@@ -37,7 +36,9 @@
 
 #screenLimit{
     position:fixed;
+    width: auto;   
 }
+
 /*
 #screen{
     /* width: 800px;
