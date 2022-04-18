@@ -90,12 +90,29 @@ function addNewAudioMessage(username, myMessages, setMessages, userAudioBlob){
 
     setMessages(newM.concat([]));
     console.log("after audio:" + JSON.stringify(myMessages))
+}
 
-    // setMessages(myMessages.concat([]))
-
-
-    //insert into the state of the data the 
-    document.getElementById("newMessage").value = "";
+function addNewImageOrVideo (username, myMessages, setMessages, input, type) {
+        // insert into the local database
+        var content = input;
+        var time = getTime();
+        var fromto = "to";
+        var newMessage = {type, content, time, fromto};
+    
+        //insert into local data the new data
+        console.log("before in adding image:" + JSON.stringify(myMessages));
+        var newUserMessages = myMessages;
+        // console.log("after:" + JSON.stringify(newUserMessages));
+        newUserMessages = newUserMessages.find((value) => { return value.user === username }).message;
+        // console.log("after after :" + JSON.stringify(newUserMessages));
+        newUserMessages.push(newMessage);
+    
+        
+        var newM = myMessages;
+        newM[username] = newUserMessages;
+    
+        setMessages(newM.concat([]));
+        console.log("after image:" + JSON.stringify(myMessages))
 }
 
 function showModal(setShowUploadModal) {
@@ -106,7 +123,8 @@ function closeModal(setShowUploadModal) {
     setShowUploadModal(false)
 }
 
-function showTypeArea(username, myMessages, setMessages, showUploadModal, setShowUploadModal,showRecorderModal, setShowRecorderModal){
+
+function showTypeArea(username, myMessages, setMessages, showUploadModal, setShowUploadModal, showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob){
    
     if (username === "" || username === "null") {
         return;
@@ -134,60 +152,38 @@ function showTypeArea(username, myMessages, setMessages, showUploadModal, setSho
 
 
 
-                <button type="button" class="bi bi-paperclip" onClick={function (e) {showModal(setShowUploadModal)}}>
+                <button type="button" className="bi bi-paperclip" onClick={function (e) {showModal(setShowUploadModal)}}>
                 </button>
-{/** 
-                <div className="modal fade" role="dialog" id="uploadImg" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-                    <div className="modal-dialog" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Upload</h5>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" data-target="#exampleModal"></button>
-                            </div>
-                            <div id="modalBody" className="modal-body">
-                                <div>...</div>
-                            </div>
-                            <div id="modalfotter" className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" className="btn btn-primary">Upload</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            
-
-
-                */}
-
+                {/** send image or video modal */}
                 <Modal show={showUploadModal}>
                     <Modal.Header>
                         <h5 className="modal-title" id="exampleModalLabel">Upload Image Or Video</h5>
                         <button onClick={function (e) {closeModal(setShowUploadModal)}} type="button" className="btn-close"></button>
                     </Modal.Header>
                     <Modal.Body>
-                        <div><input id="inputimg" type="file" accept="image/*" name="image"/></div>
-                        <div id="errorMessage"></div>
+                        <div><input id="uploadFile" type="file" name="image"/></div>
+                        <div id="emptyChoose" className="errorMessage"></div>
+                        <div id="wrongChoose" className="errorMessage"></div>
                     </Modal.Body>
                     <Modal.Footer>
-                        <button type="button" className="btn btn-primary">Upload</button>
+                        <button onClick={function(e) {uploadImgOrVideo(username, myMessages, setMessages, setShowUploadModal);}} type="button" className="btn btn-primary">Upload</button>
                     </Modal.Footer>
                 </Modal>
 
-
+                {/** Recording Modal */}
                 <Modal show={showRecorderModal}>
                     <Modal.Header>
-                        <h5 className="modal-title">Upload Image Or Video</h5>
-                       
+                        <h5 className="modal-title">Record</h5>
+                        <button onClick={function (e) {closeModal(setShowRecorderModal)}} type="button" className="btn-close"></button>
                     </Modal.Header>
                     <Modal.Body>
-                    <button className='button'>
-                    <Recorder addToDbFunc={addNewAudioMessage} username={username} myMessages={myMessages} setMessages={setMessages}/>
-                </button>
+                        <Recorder addToDbFunc={addNewAudioMessage} username={username} myMessages={myMessages}
+                        setMessages={setMessages} userAudioBlob={userAudioBlob} setUserBlob={setUserBlob}/>
                     </Modal.Body>
                     <Modal.Footer>
-                        <button type="button" className="btn btn-primary">Upload</button>
+                        <button onClick={function (e) {addNewAudioMessage(username, myMessages, setMessages, userAudioBlob);
+                            setShowRecorderModal(false);}} type="button" className="btn btn-primary">Upload</button>
                     </Modal.Footer>
                 </Modal>
 
@@ -204,23 +200,54 @@ function showTypeArea(username, myMessages, setMessages, showUploadModal, setSho
 }
 
 
+function uploadImgOrVideo (username, myMessages, setMessages, setShowUploadModal) {
+    if (isValidImgVideo()) {
+        // enter into DB
+        var input = URL.createObjectURL(document.getElementById('uploadFile').files[0])
+        let images = ['image/jpeg', 'image/jpg', 'image/png','image/gif','image/bmp'];
+        let ends = document.getElementById('uploadFile').files[0].type;
+        var type;    
+        if(images.indexOf(ends)>-1){    
+            type="image"
+        } else {
+            type = "video"
+        }
+        addNewImageOrVideo(username, myMessages, setMessages, input, type);
+        // close the modal
+        closeModal(setShowUploadModal);
+    }
+}
 
+function isValidImgVideo() {
+    var flag = true
+    var noChoose = document.getElementById("emptyChoose");
+    var invalidChoose = document.getElementById("wrongChoose");
+    noChoose.innerHTML = ""
+    invalidChoose.innerHTML = ""
 
+    // check if not empty
+    var fileName = document.getElementById("uploadFile").value;
+    if(fileName.length === 0){
+        flag = false
+        var errorHtml = document.createElement('div')
+        var message = "Please choose image or video"
+        errorHtml.innerHTML = "<p><small id='noImgOrVideo' className='errorMessages'>" + message + "</small></p>"
+        noChoose.append(errorHtml)
+    }
 
+    //check if the image or video is valid
+    let allowedExtension = ['image/jpeg', 'image/jpg', 'image/png','image/gif','image/bmp', 'image/mp4'];
+    let type = document.getElementById('uploadFile').files[0].type;
 
-
-
-// function uploadImgOrVideo () {
-//     if (isValidImgVideo) {
-
-//     } else {
-
-//     }
-// }
-
-// function isValidImgVideo() {
-
-// }
+    if(allowedExtension.indexOf(type)==-1){    
+        flag = false
+        var errorHtml = document.createElement('div')
+        var message = "wrong type of image or video"
+        errorHtml.innerHTML = "<p><small id='invalidImageOrVideo' className='errorMessages'>" + message + "</small></p>"
+        invalidChoose.append(errorHtml)
+    }
+    return flag
+}
 
 function getTime(){
     var today = new Date();
@@ -261,6 +288,9 @@ function Chat({ nameConnected, dataBase}) {
         window.location.replace("/")
     }
 
+      // state of audio recording content
+  const [userAudioBlob, setUserBlob] = useState('null');
+
 
     // state of the user name that this user wants to talk to him, saved in the parent component
 
@@ -296,7 +326,7 @@ function Chat({ nameConnected, dataBase}) {
                         {showUserProfile(user, dataBase)}
                         {showChat(user, myMessages)}
                         <div id="screenLimit">
-                        {showTypeArea(user, myMessages, setMyMessages, showUploadModal, setShowUploadModal,showRecorderModal, setShowRecorderModal)}
+                        {showTypeArea(user, myMessages, setMyMessages, showUploadModal, setShowUploadModal,showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob)}
                         </div>
                     </div>
                 </div>

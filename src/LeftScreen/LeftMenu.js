@@ -3,10 +3,12 @@ import React, { useState } from 'react'
 import UserChat from '../userchat/UserChat';
 import addUserImg from '../newUser.png'
 import newUserImg from '../newUser.png'
+import { Modal, ModalBody, ModalHeader } from 'react-bootstrap';
+
 // import 'react-bootstrap'
 
 
-function addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, dataBase) {
+function addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, dataBase, setShowModalUser) {
     console.log("adding")
     var errorMessage = document.getElementById("errorMessage")
     errorMessage.innerHTML = ""
@@ -51,66 +53,42 @@ function addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, dataB
     //change the window of the chat to be the window with this new username
     setUserChat(username)
     document.getElementById("usernameInput").value = ""
-    // success message -> change the modal to be with success message
-    // var succDivMess = document.getElementById("modalBody")
-    // succDivMess.innerHTML = "<div id='succMess'>User name was added successfuly !</div>"
-    // var succDivButton = document.getElementById("modalfotter")
-    // succDivButton.innerHTML = "<button onClick={function (e) { closeModal() }} type='button' className='btn btn-secondary' data-bs-dismiss='modal'>Close</button>"
+    setShowModalUser(false)
     
 }
 
 
-function closeModal(){
-    // set the modal's divs -> change the modal to be the original modal
-    // var succDivMess = document.getElementById("modalBody")
-    // succDivMess.innerHTML = "<input id='usernameInput' className='form-control form-control-lg' type='text' placeholder='Enter user name'></input><div id='errorMessage'></div>"
-    // var divButton = document.getElementById("modalfotter")
-    // divButton.innerHTML = "<button onClick={function (e) { closeModal() }} type='button' className='btn btn-secondary' data-bs-dismiss='modal'>Close</button><button onClick={function (e) { addNewUser(myMessages, setMyMessages, setUserChat) }} type='button' className='btn btn-primary'>Add new chat</button>"
-    var errorMessage = document.getElementById("errorMessage")
-    errorMessage.innerHTML = ""
-    document.getElementById("usernameInput").value = ""
-}
-
 // the messages that the user connected with
-
-
 function LeftMenu({ nameConnected, myMessages, setUserChat, setMyMessages, dataBase }) {
 
     var img = dataBase.find((value) => {return value.username === nameConnected}).img
+    const [showModalAddUser, setShowModalUser] = useState(false)
 
     return (
         <div className="leftmenu">
             <div className='leftmenuheader'>
-                <div class="search">
-                    <button type="button" className="bi bi-person-plus sarch" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    </button>
-                    <img src={img} alt="..."
-                    style={{ width: "20%", height: "70%", borderRadius: "50%" }}
-                ></img>
-                    <span className="justufy-center mb-3">{nameConnected}</span>
-
-                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div className="modal-dialog">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title" id="exampleModalLabel1">Add new chat</h5>
-                                    <button onClick={function (e) { closeModal() }} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" data-bs-target="#exampleModal"></button>
-                                </div>
-                                <div id="modalBody" className="modal-body">
-                                    <input id="usernameInput" className="form-control form-control-lg" type="text" placeholder="Enter user name"></input>
-                                    <div id="errorMessage"></div>
-                                </div>
-                                <div id="modalfotter" className="modal-footer">
-                                    <button onClick={function (e) { closeModal() }} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button onClick={function (e) { addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, dataBase) }} type="button" className="btn btn-primary">Add new chat</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div className="search">
+                <button type="button" className="bi bi-person-plus sarch" onClick={function(e) {setShowModalUser(true)}}>
+                </button>
+                <img src={img} alt="..." style={{ width: "20%", height: "70%", borderRadius: "50%" }}></img>
+                <span className="justufy-center mb-3">{nameConnected}</span>
 
 
-                    <div className="list-group-item">
-                    </div>
+                {/** Add New User Modal */}
+                <Modal show={showModalAddUser}>
+                    <Modal.Header>
+                        <h5 className="modal-title" id="exampleModalLabel1">Add new chat</h5>
+                        <button onClick={function (e) {setShowModalUser(false)}} type="button" className="btn-close"></button>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <input id="usernameInput" className="form-control form-control-lg" type="text" placeholder="Enter user name"></input>
+                        <div id="errorMessage"></div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                    <button onClick={function (e) { setShowModalUser(false) }} type="button" className="btn btn-secondary">Close</button>
+                    <button onClick={function (e) { addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, dataBase, setShowModalUser)}} type="button" className="btn btn-primary">Add new chat</button>
+                    </Modal.Footer>
+                </Modal>
                 </div>
             </div>
             <div className='leftmenuusers'>
@@ -125,9 +103,9 @@ function showUsers(setUserChat, myMessages, dataBase) {
         return <div id="noUsers">No chats yet.</div>
     }
     var addUser = myMessages.map((message, key) => {
-        var lastMessage= message.message[(message.message).length - 1].content
-        if (lastMessage != null && lastMessage.match("blob")){
-            lastMessage = "audio"
+        var lastMessage= message.message[(message.message).length - 1].type
+        if (lastMessage != null && lastMessage === "text"){
+            lastMessage =  message.message[(message.message).length - 1].content
         }
         var name = message.user
         var time = message.message[(message.message).length - 1].time

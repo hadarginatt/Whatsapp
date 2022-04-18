@@ -2,12 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Modal, ModalBody, ModalHeader } from 'react-bootstrap';
 
 
-export default function Recorder({ addToDbFunc, username, myMessages, setMessages }) {
-
-  // state of audio recording content
-  const [userAudioBlob, setUserBlob] = useState('null');
-
-
+export default function Recorder({ addToDbFunc, username, myMessages, setMessages, userAudioBlob, setUserBlob }) {
 
 
   const [stream, setStream] = useState({
@@ -42,6 +37,7 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
         track.onended = () => console.log("ended");
 
         mediaRecorder.onstart = function () {
+          console.log("start");
           setRecording({
             active: true,
             available: false,
@@ -57,22 +53,23 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
         var url = '';
 
         mediaRecorder.onstop = async function () {
-          console.log("stopped");
-          {/* blob*/ }
-          url = URL.createObjectURL(chunks.current[0])
-          // console.log("before" + JSON.stringify(userAudioBlob))
-          // setUserBlob(recording.url)
-          // console.log("after" + JSON.stringify(userAudioBlob))
-
-
-          chunks.current = [];
-{/** blob */ }
           setRecording({
             active: false,
             available: true,
             url
           });
-          addToDbFunc(username, myMessages, setMessages, url)
+          console.log("stopped");
+          {/* blob*/ }
+          url = URL.createObjectURL(chunks.current[0])
+          console.log("before" + JSON.stringify(userAudioBlob))
+          setUserBlob(recording.url)
+          console.log("after" + JSON.stringify(userAudioBlob))
+
+
+          chunks.current = [];
+{/** blob */ }
+          
+          // addToDbFunc(username, myMessages, setMessages, url)
         };
 
 
@@ -93,30 +90,24 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
     getAccess();
   })
 
+  function stopRecording () {
+    stream.recorder.stop();
+
+  }
+
   return (
     <div className="App">
      
         <div className="audio-container">
           <button
             className={recording.active ? "active" : null}
-            onClick={() => !recording.active && stream.recorder.start()}
-          >
-            Start Recording
-          </button>
-          <button onClick={function (e) {stream.recorder.stop();}}>Stop and send</button>
+            onClick={() => !recording.active && stream.recorder.start()}>Start Recording</button>
+          <button onClick={() => stopRecording()}>Stop recording</button>
           {recording.available && <audio controls src={recording.url} />}
    
         </div>
-      
-     
-       
-      
-       
         {/*} <i  ref={hideRecorder} onClick={hide(recordMenu)} className="bi bi-mic-fill"></i> */}
-    
-      
-        
-      
+
     </div>
   );
 }

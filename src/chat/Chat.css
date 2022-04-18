@@ -52,6 +52,9 @@
     z-index: 2000 !important;
     color:white;
 }
+.errorMessage{
+    color: red;
+}
 
 
 

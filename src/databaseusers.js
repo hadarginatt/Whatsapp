@@ -5,6 +5,7 @@ import  man4 from './man4.png'
 import  man5 from './man5.jpg'
 import  woman1 from './woman1.jpg'
 import  woman2 from './woman2.jpg'
+import img1 from './img1.jpg'
 
  var databaseusers =
  [{username : "Hadar", password : "1111", nickName: "Hadari", img: woman1, messages: 
