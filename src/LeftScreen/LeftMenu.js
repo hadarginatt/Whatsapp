@@ -2,26 +2,33 @@ import './LeftMenu.css'
 import React, { useState } from 'react'
 import UserChat from '../userchat/UserChat';
 import addUserImg from '../newUser.png'
-import databaseusers from '../databaseusers';
 import newUserImg from '../newUser.png'
 // import {Modal} from 'react-bootstrap';
 // import 'react-bootstrap'
 
 
-function addNewUser(myMessages, setMyMessages, setUserChat) {
+function addNewUser(myMessages, setMyMessages, setUserChat, dataBase) {
     console.log("adding")
     var errorMessage = document.getElementById("errorMessage")
     errorMessage.innerHTML = ""
     var userName = document.getElementById("usernameInput").value
     if (userName === "" || userName === null) {
         var errorHtml = document.createElement('div')
-        var message = "Pleae enter user name"
+        var message = "Please enter user name"
         errorHtml.innerHTML = "<p><small id='noUserName' className='errorMessages'>"  + message + "</small></p>"
         errorMessage.append(errorHtml)
         return
     }
     // adding the user to the database (to the messages of this user who connected)
     var username = document.getElementById("usernameInput").value
+    if (! dataBase.find((value) => { return value.username === username })) {
+        var errorHtml = document.createElement('div')
+        var message = "User name does not exist."
+        errorHtml.innerHTML = "<p><small id='noUserName' className='errorMessages'>"  + message + "</small></p>"
+        errorMessage.append(errorHtml)
+        return
+    }
+    
 
     // var addToDB = [{user: username, img: addUserImg, message: [{}]}]
     var addToDB = [{user: username, message: [{}]}]
@@ -52,7 +59,7 @@ function closeModal(){
 // the messages that the user connected with
 
 
-function LeftMenu({ nameConnected, myMessages, setUserChat, setMyMessages }) {
+function LeftMenu({ nameConnected, myMessages, setUserChat, setMyMessages, dataBase }) {
 
     return (
         <div className="leftmenu">
@@ -75,7 +82,7 @@ function LeftMenu({ nameConnected, myMessages, setUserChat, setMyMessages }) {
                                 </div>
                                 <div id="modalfotter" className="modal-footer">
                                     <button onClick={function (e) { closeModal() }} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button onClick={function (e) { addNewUser(myMessages, setMyMessages, setUserChat) }} type="button" className="btn btn-primary">Add new chat</button>
+                                    <button onClick={function (e) { addNewUser(myMessages, setMyMessages, setUserChat, dataBase) }} type="button" className="btn btn-primary">Add new chat</button>
                                 </div>
                             </div>
                         </div>
@@ -87,15 +94,16 @@ function LeftMenu({ nameConnected, myMessages, setUserChat, setMyMessages }) {
                 </div>
             </div>
             <div className='leftmenuusers'>
-                {showUsers(setUserChat, myMessages)}
-
-
+                {showUsers(setUserChat, myMessages, dataBase)}
             </div>
         </div>
     );
 }
 // taking the setUserChat param 
-function showUsers(setUserChat, myMessages) {
+function showUsers(setUserChat, myMessages, dataBase) {
+    if (myMessages.length == 0) {
+        return <div id="noUsers">No chats yet.</div>
+    }
     var addUser = myMessages.map((message, key) => {
         var lastMessage= message.message[(message.message).length - 1].content
         if (lastMessage != null && lastMessage.match("blob")){
@@ -103,7 +111,7 @@ function showUsers(setUserChat, myMessages) {
         }
         var name = message.user
         var time = message.message[(message.message).length - 1].time
-        var userDetails = databaseusers.find((value) => { return value.username === name })
+        var userDetails = dataBase.find((value) => { return value.username === name })
         var img = newUserImg
         if (userDetails) {
             img = userDetails.img
