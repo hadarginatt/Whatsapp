@@ -41,6 +41,20 @@
     bottom: 0px;   
 }
 
+#uploadImg{
+    background-color: white;
+}
+
+.itay {
+    z-index: 1000 !important;
+}
+#modaldialog{
+    z-index: 2000 !important;
+    color:white;
+}
+
+
+
 
 /*
 #screen{

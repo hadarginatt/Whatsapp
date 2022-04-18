@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import UserChat from '../userchat/UserChat';
 import addUserImg from '../newUser.png'
 import newUserImg from '../newUser.png'
-// import {Modal} from 'react-bootstrap';
 // import 'react-bootstrap'
 
 
@@ -94,8 +93,8 @@ function LeftMenu({ nameConnected, myMessages, setUserChat, setMyMessages, dataB
                         <div className="modal-dialog">
                             <div className="modal-content">
                                 <div className="modal-header">
-                                    <h5 className="modal-title" id="exampleModalLabel">Add new chat</h5>
-                                    <button onClick={function (e) { closeModal() }} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <h5 className="modal-title" id="exampleModalLabel1">Add new chat</h5>
+                                    <button onClick={function (e) { closeModal() }} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" data-bs-target="#exampleModal"></button>
                                 </div>
                                 <div id="modalBody" className="modal-body">
                                     <input id="usernameInput" className="form-control form-control-lg" type="text" placeholder="Enter user name"></input>
