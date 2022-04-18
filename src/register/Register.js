@@ -164,6 +164,11 @@ function Register() {
         }
     }
 
+    function loadFile () {
+        var image = document.getElementById('output');
+        // image.src = URL.createObjectURL(event.target.files[0]);
+    };
+
   return (
       <div id="registerForm" className="offset-2">
           <form className="row g-3">
@@ -214,3 +219,11 @@ function Register() {
 
 
 export default Register;
+
+
+// <div className="App">
+// <label htmlFor="inputAddress" className="form-label">Profile Picture</label>
+// <br></br>
+// <input id="inputimg" type="file" />
+// <img src={file} />
+// </div>

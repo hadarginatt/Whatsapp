@@ -8,6 +8,7 @@ import Register from './register/Register'
 import Chat from './chat/Chat'
 import users from './users.js'
 import { useState } from 'react'
+import Video from './video/Video'
 
 
 
@@ -29,6 +30,7 @@ function App({nameOfPage}) {
             <Route path="/" element={<Login setUserConnected={setUserConnected} userName={nameConnected}/>}></Route>
             <Route path="/register" element={<Register />}></Route>
             <Route path="/chat" element={<Chat nameConnected={nameConnected} />}></Route>
+            <Route path="/video" element={<Video />}></Route>
           </Routes>
         </BrowserRouter>
       </div>
