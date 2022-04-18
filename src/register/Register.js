@@ -21,6 +21,8 @@ function isValid(dataBase){
     var noDigit = document.getElementById('noDigitAlert')
     var noMatch = document.getElementById('noMatchAlert')
     var noNickName = document.getElementById('noNickNameAlert')
+    var noImg = document.getElementById('emptyImg')
+    var invalidImg = document.getElementById('invalidImg')
 
     noUserName.innerHTML = ""
     existingName.innerHTML = ""
@@ -29,6 +31,8 @@ function isValid(dataBase){
     noDigit.innerHTML = ""
     noMatch.innerHTML = ""
     noNickName.innerHTML = ""
+    noImg. innerHTML = ""
+    invalidImg.innerHTML = ""
     
    
     var flag = true;
@@ -108,18 +112,27 @@ function isValid(dataBase){
         errorHtml.innerHTML = "<p><small id='noLetter' className='errorMessages'>" + message +"</small></p>"
         noLetter.append(errorHtml)
         } 
-        //check if the image is valid
-    
+
+    //check if there is input of image
+    if(image.length === 0){
+        flag = false;
+        var errorHtml = document.createElement('div')
+        var message = "Please choose profile picture"
+        errorHtml.innerHTML = "<p><small id='noImage' className='errorMessages'>" + message + "</small></p>"
+        noImg.append(errorHtml)
+    }
+
+    //check if the image is valid
     let allowedExtension = ['image/jpeg', 'image/jpg', 'image/png','image/gif','image/bmp'];
     let type = document.getElementById('inputimg').files[0].type;
-    console.log(image);
 
-    if(allowedExtension.indexOf(type)==-1){       
-         alert('Not a image');
-         flag = false;
-         }
-    
-
+    if(allowedExtension.indexOf(type)==-1){    
+        flag = false;
+        var errorHtml = document.createElement('div')
+        var message = "wrong type of profile image"
+        errorHtml.innerHTML = "<p><small id='invalidImage' className='errorMessages'>" + message + "</small></p>"
+        invalidImg.append(errorHtml)
+    }
 
     return flag;
 }
@@ -143,7 +156,7 @@ function Register({dataBase, setDataBase}) {
             var name = document.getElementById("inputUserName").value;
             var pass = document.getElementById("inputPassword").value;
             var nickname = document.getElementById("inputNickname").value;
-            var img = document.getElementById("inputimg").value;
+            var img = URL.createObjectURL(document.getElementById('inputimg').files[0])
     
             //itay:
             // new user
@@ -213,8 +226,9 @@ function Register({dataBase, setDataBase}) {
               <div className="App">
                   <label htmlFor="inputAddress" className="form-label">Profile Picture</label>
                   <br></br>
-                  <input id="inputimg" type="file" accept="image/*" name="image" />
-                  <img src={file} />
+                  <input id="inputimg" type="file" accept="image/*" name="image"/>
+                  <div id="emptyImg" className='alerts'></div>
+                  <div id="invalidImg" className='alerts'></div>
               </div>
 
 
