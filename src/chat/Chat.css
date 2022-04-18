@@ -35,9 +35,12 @@
 }
 
 #screenLimit{
+    /*position: absolote*/
     position:fixed;
-    width: auto;   
+    width: 500px;
+    bottom: 0px;   
 }
+
 
 /*
 #screen{
