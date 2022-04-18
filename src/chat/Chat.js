@@ -148,15 +148,16 @@ function getTime(){
 }
 
 
-function showUserProfile(username){
+function showUserProfile(username, dataBase){
     if (username === "" || username === "null") {
         return;
     } else {
+        var nickName = dataBase.find((value) => {return value.username === username}).nickName
         return (
             <div className="card">
                 <div className="card-body">
                     {/**  TODO ::: Show the image of the user!!*/}
-                    {username}
+                    {nickName}
                 </div>
             </div>
         )
@@ -198,7 +199,7 @@ function Chat({ nameConnected, dataBase}) {
 
                 <div id="mainScreen" className="col-9">
                     <div className="row card">
-                        {showUserProfile(user)}
+                        {showUserProfile(user, dataBase)}
                         {showChat(user, myMessages)}
                         <div id="screenLimit">
                         {showTypeArea(user, myMessages, setMyMessages)}

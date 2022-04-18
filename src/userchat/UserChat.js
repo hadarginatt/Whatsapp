@@ -3,7 +3,7 @@ import './UserChat.css'
 import image1 from '../image1.jpeg'
 
 
-function UserChat({name, time, lastMessage, img}){
+function UserChat({nickName, time, lastMessage, img}){
     return(
         <div className='LeftMenuChat'>
             <div id="user" className="list-group-item list-group-item-action w-100">
@@ -15,7 +15,7 @@ function UserChat({name, time, lastMessage, img}){
                     ></img>
                 </span>
                 
-                <span id="name" className="mb-3">{name}</span>
+                <span id="name" className="mb-3">{nickName}</span>
                 <span><small id="time" className="text-muted">{time}</small></span>
                 
 

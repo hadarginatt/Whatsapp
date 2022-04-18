@@ -13,12 +13,12 @@ import  woman2 from './woman2.jpg'
  {user: "Itay",message: [{type : "text", content: "hello", time: "14:17", fromto: "to"}]},
  {user: "Noam",message: [{type : "text", content: "hello", time: "14:18", fromto: "to"}]},
  {user: "Ofer",message: [{type : "text", content: "hello", time: "18:50", fromto: "to"}]}]},
-  {username : "Noa", password : "2222", nickName: "Hadari", img: woman2, messages: [{user: "Itay", message: [{type : "text", content: "hello", time: "14:17", fromto: "to"}]}]},
-  {username : "Itay", password : "3333", nickName: "Hadari", img: man1, messages: [{user: "Itay", message: [{type : "text", content: "hello", time: "14:17", fromto: "to"}]}]},
-  {username : "Ofer", password : "4444", nickName: "Hadari", img: man2, messages: [{user: "Itay", message: [{type : "text", content: "hello", time: "14:17", fromto: "to"}]}]},
-  {username : "Dror", password : "4444", nickName: "Hadari", img: man3, messages: [{user: "Itay", message: [{type : "text", content: "hello", time: "14:17", fromto: "to"}]}]},
-  {username : "David", password : "4444", nickName: "Hadari", img: man4, messages: [{user: "Itay", message: [{type : "text", content: "hello", time: "14:17", fromto: "to"}]}]},
-  {username : "Noam", password : "5555", nickName: "Hadari", img: man5, messages: [{user: "Itay", message: [{type : "text", content: "hello", time: "14:17", fromto: "to"}]}]}];
+  {username : "Noa", password : "2222", nickName: "Noush", img: woman2, messages: [{user: "Itay", message: [{type : "text", content: "hello", time: "14:17", fromto: "to"}]}]},
+  {username : "Itay", password : "3333", nickName: "ItayTheBest", img: man1, messages: [{user: "Itay", message: [{type : "text", content: "hello", time: "14:17", fromto: "to"}]}]},
+  {username : "Ofer", password : "4444", nickName: "Oferush", img: man2, messages: [{user: "Itay", message: [{type : "text", content: "hello", time: "14:17", fromto: "to"}]}]},
+  {username : "Dror", password : "4444", nickName: "Drori", img: man3, messages: [{user: "Itay", message: [{type : "text", content: "hello", time: "14:17", fromto: "to"}]}]},
+  {username : "David", password : "4444", nickName: "Davidi", img: man4, messages: [{user: "Itay", message: [{type : "text", content: "hello", time: "14:17", fromto: "to"}]}]},
+  {username : "Noam", password : "5555", nickName: "Noamush", img: man5, messages: [{user: "Itay", message: [{type : "text", content: "hello", time: "14:17", fromto: "to"}]}]}];
 
 
 

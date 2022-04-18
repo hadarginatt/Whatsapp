@@ -7,7 +7,7 @@ import newUserImg from '../newUser.png'
 // import 'react-bootstrap'
 
 
-function addNewUser(myMessages, setMyMessages, setUserChat, dataBase) {
+function addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, dataBase) {
     console.log("adding")
     var errorMessage = document.getElementById("errorMessage")
     errorMessage.innerHTML = ""
@@ -19,18 +19,34 @@ function addNewUser(myMessages, setMyMessages, setUserChat, dataBase) {
         errorMessage.append(errorHtml)
         return
     }
-    // adding the user to the database (to the messages of this user who connected)
+    // check if the username is in the dataBase
     var username = document.getElementById("usernameInput").value
-    if (! dataBase.find((value) => { return value.username === username })) {
+    var userDetails = dataBase.find((value) => { return value.username === username })
+    if (! userDetails) {
         var errorHtml = document.createElement('div')
-        var message = "User name does not exist."
+        var message = "User name does not exist"
         errorHtml.innerHTML = "<p><small id='noUserName' className='errorMessages'>"  + message + "</small></p>"
         errorMessage.append(errorHtml)
         return
     }
-    
+    // check if the username is not the user name that allready connected
+    if (nameConnected === username) {
+        var errorHtml = document.createElement('div')
+        var message = "You cannot add yourself"
+        errorHtml.innerHTML = "<p><small id='noUserName' className='errorMessages'>"  + message + "</small></p>"
+        errorMessage.append(errorHtml)
+        return
+    }
+    // check if the username is alleady exist in chats
+    if (myMessages.find((value) => { return value.user === username })) {
+        var errorHtml = document.createElement('div')
+        var message = "User is allready exists in chats"
+        errorHtml.innerHTML = "<p><small id='noUserName' className='errorMessages'>"  + message + "</small></p>"
+        errorMessage.append(errorHtml)
+        return
+    }
 
-    // var addToDB = [{user: username, img: addUserImg, message: [{}]}]
+    // adding the user to the database (to the messages of this user who connected)
     var addToDB = [{user: username, message: [{}]}]
     setMyMessages(myMessages.concat(addToDB))
     //change the window of the chat to be the window with this new username
@@ -82,7 +98,7 @@ function LeftMenu({ nameConnected, myMessages, setUserChat, setMyMessages, dataB
                                 </div>
                                 <div id="modalfotter" className="modal-footer">
                                     <button onClick={function (e) { closeModal() }} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button onClick={function (e) { addNewUser(myMessages, setMyMessages, setUserChat, dataBase) }} type="button" className="btn btn-primary">Add new chat</button>
+                                    <button onClick={function (e) { addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, dataBase) }} type="button" className="btn btn-primary">Add new chat</button>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +132,8 @@ function showUsers(setUserChat, myMessages, dataBase) {
         if (userDetails) {
             img = userDetails.img
         }
-        return <div onClick={() => setUserChat(message.user)}><UserChat name={name}
+        var nickName=userDetails.nickName
+        return <div onClick={() => setUserChat(message.user)}><UserChat nickName={nickName}
         time={time} lastMessage={lastMessage} img={img} key={key} /></div>
     })
     return addUser;
