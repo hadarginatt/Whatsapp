@@ -70,7 +70,7 @@ function showMessage({type,content,time, fromto}) {
             return (
                 <div id="messageLeft">
                     {/** image */}
-                    <span id="text"><video src={content}></video></span><br></br>
+                    <span id="text"><video controls src={content}></video></span><br></br>
                     {/** time */}
                     <span id="time">{time}</span>
                 </div>
@@ -79,7 +79,7 @@ function showMessage({type,content,time, fromto}) {
             return (
                 <div id="messageRight">
                     {/** image */}
-                    <span id="text"><video src={content}></video></span><br></br>
+                    <span id="text"><video controls src={content}></video></span><br></br>
                     {/** time */}
                     <span id="time">{time}</span>
                 </div>
