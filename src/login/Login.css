@@ -3,3 +3,37 @@
     margin-top: 25%;
     margin-bottom: 25%; */
   }
+
+  #header {
+    height: 8em;
+    position: relative;
+    text-align: center;
+    align-content: center;
+}
+#namePage{
+    font-size: 80px;
+    font-family:cursive;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    
+}
+#header img{
+    max-height: 85%;
+    max-width: 180px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border-radius: 40%;
+    z-index: 1500;
+}
+
+*{
+    background-color:AliceBlue
+}

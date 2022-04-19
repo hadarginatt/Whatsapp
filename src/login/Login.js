@@ -3,6 +3,7 @@ import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import databaseusers from '../databaseusers';
 import { useState } from 'react';
 import {BrowserRouter, Routes, Route } from 'react-router-dom'
+import logo from '../chat/logo.jpeg'
 
 
 
@@ -53,26 +54,26 @@ function Login({setUserConnected, userName, dataBase}) {
     const navigate = useNavigate()
 
     return (
-        <div id="inputsLogin" className="container-fluid">
-            <div className="row col-4 offset-4 justify-content-md-center">
-                <div className="form-floating mb-3">
-                    <input type="username" className="form-control" id="userName" placeholder="Isreal Israeli"></input>
-                    <label htmlFor="floatingInput">User Name</label>
-{/** 
-                    <h1>you tried to pass to me  new user = {sharedData.state == null ? "" : sharedData.state[0].username}</h1>
-*/}
+        <div>
+            <div className="row" id="header"><img src={logo}></img><p id="namePage">Login</p></div>
+            <div id="inputsLogin" className="container-fluid">
+                <div className="row col-4 offset-4 justify-content-md-center">
+                    <div className="form-floating mb-3">
+                        <input type="username" className="form-control" id="userName" placeholder="Isreal Israeli"></input>
+                        <label htmlFor="floatingInput">User Name</label>
+                    </div>
+                    <div className="form-floating">
+                        <input type="password" className="form-control" id="password" placeholder="Password"></input>
+                        <label htmlFor="floatingPassword">Password</label>
+                    </div>
+                    <div className="form-floating">
+                        <p>Not registered? <a href="/register">Click here</a> to register</p>
+                    </div>
                 </div>
-                <div className="form-floating">
-                    <input type="password" className="form-control" id="password" placeholder="Password"></input>
-                    <label htmlFor="floatingPassword">Password</label>
-                </div>
-                <div className="form-floating">
-                    <p>Not registered? <a href="/register">Click here</a> to register</p>
-                </div>
-            </div>
 
-            <div id="liveAlertPlaceholder"></div>
-            <button onClick={() => {isValidLogin(setUserConnected, userName, navigate)}} type="button" className="btn btn-primary" id="liveAlertBtn">Login</button>
+                <div id="liveAlertPlaceholder"></div>
+                <button onClick={() => { isValidLogin(setUserConnected, userName, navigate) }} type="button" className="btn btn-primary" id="liveAlertBtn">Login</button>
+            </div>
         </div>
     );
 }

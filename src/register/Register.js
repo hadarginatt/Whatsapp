@@ -1,6 +1,7 @@
 import './Register.css'
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import logo from '../chat/logo.jpeg'
 
 
 
@@ -192,53 +193,54 @@ function Register({dataBase, setDataBase}) {
         }
     }
 
-   
-
   return (
-      <div id="registerForm" className="offset-2">
-          <form className="row g-3">
-              <div className="col-md-10">
-                  <div>
-                      <label htmlFor="inputEmail4" className="form-label">User Name</label>
-                      <input type="text" className="form-control" id="inputUserName" placeholder="Israel Israeli"></input>
-                      <div className="errorMessages"></div>
-                      <div id="noUserNameAlert" className='alerts'></div>
-                      <div id="existingNameAlert" className='alerts'></div>
+      <div>
+          <div className="row" id="header"><img src={logo}></img><p id="namePage">Register</p></div>
+          <div id="registerForm" className="offset-2">
+              <form className="row g-2">
+                  <div className="col-md-10">
+                      <div>
+                          <label htmlFor="inputEmail4" className="form-label">User Name</label>
+                          <input type="text" className="form-control" id="inputUserName" placeholder="Israel Israeli"></input>
+                          <div className="errorMessages"></div>
+                          <div id="noUserNameAlert" className='alerts'></div>
+                          <div id="existingNameAlert" className='alerts'></div>
+                      </div>
                   </div>
-              </div>
-              <div className="col-md-5">
-                  <label htmlFor="inputPassword4" className="form-label">Password</label>
-                  <input type="password" className="form-control" id="inputPassword" placeholder="Put at least 6 chars, at least 1 digit, at least 1 letter"></input>
-                  <div id="lessLettersAlert" className='alerts'></div>
-                  <div id="noLetterAlert" className='alerts'></div>
-                  <div id="noDigitAlert" className='alerts'></div>
-              </div>
-              <div className="col-md-5">
-                  <label htmlFor="inputPassword5" className="form-label">Verify Password</label>
-                  <input type="password" className="form-control" id="inputPassword2" placeholder="Enter the same password.."></input>
-                  <div id="noMatchAlert" className='alerts'></div>
-              </div>
-              <div className="col-md-10">
-                  <label htmlFor="inputAddress" className="form-label">Nickname</label>
-                  <input type="text" className="form-control" id="inputNickname" placeholder="Israel Israeli"></input>
-                  <div id="noNickNameAlert" className='alerts'></div>
-              </div>
-              <div className="App">
-                  <label htmlFor="inputAddress" className="form-label">Profile Picture</label>
-                  <br></br>
-                  <input id="inputimg" type="file" accept="image/*" name="image"/>
-                  <div id="emptyImg" className='alerts'></div>
-                  <div id="invalidImg" className='alerts'></div>
-              </div>
+                  <div className="col-md-5">
+                      <label htmlFor="inputPassword4" className="form-label">Password</label>
+                      <input type="password" className="form-control" id="inputPassword" placeholder="Put at least 6 chars, at least 1 digit, at least 1 letter"></input>
+                      <div id="lessLettersAlert" className='alerts'></div>
+                      <div id="noLetterAlert" className='alerts'></div>
+                      <div id="noDigitAlert" className='alerts'></div>
+                  </div>
+                  <div className="col-md-5">
+                      <label htmlFor="inputPassword5" className="form-label">Verify Password</label>
+                      <input type="password" className="form-control" id="inputPassword2" placeholder="Enter the same password.."></input>
+                      <div id="noMatchAlert" className='alerts'></div>
+                  </div>
+                  <div className="col-md-10">
+                      <label htmlFor="inputAddress" className="form-label">Nickname</label>
+                      <input type="text" className="form-control" id="inputNickname" placeholder="Israel Israeli Is The BEST"></input>
+                      <div id="noNickNameAlert" className='alerts'></div>
+                  </div>
+                  <div className="App">
+                      <label htmlFor="inputAddress" className="form-label">Profile Picture</label>
+                      <br></br>
+                      <input id="inputimg" type="file" accept="image/*" name="image" />
+                      <div id="emptyImg" className='alerts'></div>
+                      <div id="invalidImg" className='alerts'></div>
+                  </div>
 
 
-              <div className="col form-floating">
-                  <p>Already registered? <a href='/'>Click here</a> to Login</p>
-              </div>
-              <div className="col-12" id="buttenSignIn">
-                  <button onClick={function (e) { Upload() }} type="button" className="btn btn-primary">Sign in</button>
-              </div>
-          </form>
+                  <div className="col form-floating  offset-3">
+                      <p>Already registered? <a href='/'>Click here</a> to Login</p>
+                  </div>
+                  <div className="col-12" id="buttenSignIn">
+                      <button onClick={function (e) { Upload() }} type="button" className="btn btn-primary">Sign in</button>
+                  </div>
+              </form>
+          </div>
       </div>
   );
 }
