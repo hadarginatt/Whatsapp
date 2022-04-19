@@ -199,25 +199,7 @@ function showTypeArea(username, myMessages, setMessages, showUploadModal, setSho
     }
 }
 
-{/**
-function uploadImgOrVideo (username, myMessages, setMessages, setShowUploadModal) {
-    if (isValidImgVideo()) {
-        // enter into DB
-        var input = URL.createObjectURL(document.getElementById('uploadFile').files[0])
-        let images = ['image/jpeg', 'image/jpg', 'image/png','image/gif','image/bmp'];
-        let ends = document.getElementById('uploadFile').files[0].type;
-        var type;    
-        if(images.indexOf(ends)>-1){    
-            type="image"
-        } else {
-            type = "video"
-        }
-        addNewImageOrVideo(username, myMessages, setMessages, input, type);
-        // close the modal
-        closeModal(setShowUploadModal);
-    }
-}
- */}
+
 
 function uploadImgOrVideo (username, myMessages, setMessages, setShowUploadModal) {
     if (isValidImgVideo()) {
@@ -237,42 +219,12 @@ function uploadImgOrVideo (username, myMessages, setMessages, setShowUploadModal
     }
 }
 
-{/**
 
-function isValidImgVideo() {
-    var flag = true
-    var noChoose = document.getElementById("emptyChoose");
-    var invalidChoose = document.getElementById("wrongChoose");
-    noChoose.innerHTML = ""
-    invalidChoose.innerHTML = ""
-
-    // check if not empty
-    var fileName = document.getElementById("uploadFile").value;
-    if(fileName.length === 0){
-        flag = false
-        var errorHtml = document.createElement('div')
-        var message = "Please choose image or video"
-        errorHtml.innerHTML = "<p><small id='noImgOrVideo' className='errorMessages'>" + message + "</small></p>"
-        noChoose.append(errorHtml)
-    }
-
-    //check if the image or video is valid
-    let allowedExtension = ['image/jpeg', 'image/jpg', 'image/png','image/gif','image/bmp', 'image/mp4'];
-    let type = document.getElementById('uploadFile').files[0].type;
-
-    if(allowedExtension.indexOf(type)==-1){    
-        flag = false
-        var errorHtml = document.createElement('div')
-        var message = "wrong type of image or video"
-        errorHtml.innerHTML = "<p><small id='invalidImageOrVideo' className='errorMessages'>" + message + "</small></p>"
-        invalidChoose.append(errorHtml)
-    }
-    return flag
-}
-
- */}
  
 function isValidImgVideo() {
+    var flagIsValid = true;
+
+//is empty flag
     var flag = true
     var noChoose = document.getElementById("emptyChoose");
     var invalidChoose = document.getElementById("wrongChoose");
@@ -281,73 +233,52 @@ function isValidImgVideo() {
 
     // check if not empty
     var fileName = document.getElementById("uploadFile").value;
+
+
+if(fileName.length === 0){
+    flag = false
+    var errorHtml = document.createElement('div')
+    var message = "Please choose image or video"
+    errorHtml.innerHTML = "<p><small id='noImgOrVideo' className='errorMessages'>" + message + "</small></p>"
+    noChoose.append(errorHtml)
+    return flag;
+}
+ 
+
 //addition for logic
 var indexEnd =fileName.lastIndexOf(".") + 1;
 var endOfFile = fileName.substr(indexEnd, fileName.length).toLowerCase();
-let allowedExtension = ['image/jpeg', 'image/jpg', 'image/png','image/gif','image/bmp', 'image/mp4'];
+console.log(fileName);
+//image validatoin
+let allowedExtension = ['image/jpeg', 'image/jpg', 'image/png','image/gif','image/bmp'];
 let type = document.getElementById('uploadFile').files[0].type;
 
-    if(fileName.length === 0){
-        flag = false
-        var errorHtml = document.createElement('div')
-        var message = "Please choose image or video"
-        errorHtml.innerHTML = "<p><small id='noImgOrVideo' className='errorMessages'>" + message + "</small></p>"
-        noChoose.append(errorHtml)
-        return false;
-    }
- 
+
 // new logic for video vaidation
  if(allowedExtension.indexOf(type)==-1){
-    flag = false;
-    var errorHtml = document.createElement('div')
-    var message = "wrong type of image or video"
-    errorHtml.innerHTML = "<p><small id='invalidImageOrVideo' className='errorMessages'>" + message + "</small></p>"
-    invalidChoose.append(errorHtml)
+    flagIsValid = false;
     
  }
  else if(allowedExtension.indexOf(type)!=-1){
-     return true;
+    flagIsValid = true;
+     return flagIsValid;
  }
 
 if( endOfFile == "avi" ||  endOfFile=="mvk" ||  endOfFile=="mp4") {
-  return true;
+    flagIsValid = true;
+    return flagIsValid;
 }
-else{
-   flag = false;
+
+   flagIsValid= false;
    var errorHtml = document.createElement('div')
    var message = "wrong type of image or video"
    errorHtml.innerHTML = "<p><small id='invalidImageOrVideo' className='errorMessages'>" + message + "</small></p>"
-   invalidChoose.append(errorHtml)
+   invalidChoose.append(errorHtml);
+   return flagIsValid;
+
 }
-  
-return flag;
-}
 
 
-
-////
-
-
-
-
-
-
-
-    //check if the image or video is valid
-    {/**
-    let allowedExtension = ['image/jpeg', 'image/jpg', 'image/png','image/gif','image/bmp', 'image/mp4'];
-    let type = document.getElementById('uploadFile').files[0].type;
-
-    if(allowedExtension.indexOf(type)==-1){    
-        flag = false
-        var errorHtml = document.createElement('div')
-        var message = "wrong type of image or video"
-        errorHtml.innerHTML = "<p><small id='invalidImageOrVideo' className='errorMessages'>" + message + "</small></p>"
-        invalidChoose.append(errorHtml)
-    }
-    return flag
-}
- */}
 
 function getTime(){
     var today = new Date();
