@@ -65,13 +65,13 @@ function LeftMenu({ nameConnected, myMessages, setUserChat, setMyMessages, dataB
     const [showModalAddUser, setShowModalUser] = useState(false)
 
     return (
-        <div className="leftmenu">
+        <div id="leftmenu" className="leftmenu">
             <div className='leftmenuheader'>
                 <div className="search">
                 <button type="button" className="bi bi-person-plus sarch" onClick={function(e) {setShowModalUser(true)}}>
                 </button>
-                <img src={img} alt="..." style={{ width: "20%", height: "70%", borderRadius: "50%" }}></img>
-                <span className="justufy-center mb-3">{nameConnected}</span>
+                <img id="userImg" src={img} alt="..." style={{ width: "20%", height: "70%", borderRadius: "50%" }}></img>
+                <span id="nameConnected" className=" mb-3">{nameConnected}</span>
 
 
                 {/** Add New User Modal */}
