@@ -56,7 +56,11 @@ body{
 }
 
 #screenLimit{
-    background-image: url('chatBackground.png');
+  
+    background-color:rgb(155, 233, 233);
+ 
+  
+    
 }
 
 #chat{
@@ -113,3 +117,29 @@ body{
     transform: translate(-50%, -50%);
     border-radius: 40%;
 }
+#sendMessage{
+    margin-top: 7px;
+    border-radius: none;
+    border: none;
+    background-color:rgb(155, 233, 233); 
+    size: 100px;
+}
+
+#addFileMessage{
+    border-radius: none;
+    border: none;
+    background-color:rgb(155, 233, 233); 
+}
+
+#recordButton{
+    border-radius: none;
+    border: none;
+    background-color:rgb(155, 233, 233); 
+}
+
+#inputArea{
+    border-radius: 80%;
+}
+
+
+
