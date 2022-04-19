@@ -10,9 +10,6 @@ import logo from '../chat/logo.jpeg'
 
 
 
-
-
-
 function showChat(username, myMessages){
     if (username === "" || username === "null") {
         // show only logo

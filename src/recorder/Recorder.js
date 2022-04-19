@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Modal, ModalBody, ModalHeader } from 'react-bootstrap';
 
 
 export default function Recorder({ addToDbFunc, username, myMessages, setMessages, userAudioBlob, setUserBlob }) {

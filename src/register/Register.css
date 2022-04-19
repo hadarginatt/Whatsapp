@@ -5,9 +5,6 @@ body{
     vertical-align: middle;
     width:150px;
 }
-/* .form-control{
-    width:400px;
-} */
 
 .alerts{
     color: red;
@@ -41,7 +38,3 @@ body{
     transform: translate(-50%, -50%);
     border-radius: 40%;
 }
-
-/* *{
-    background-color:AliceBlue
-} */
