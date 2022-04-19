@@ -12,16 +12,19 @@
 
 }
 
+
+
+
 #mainScreen{
     float: right;
     padding: 0px;
-    margin: 0px;
+    margin: auto;
     background-image: url('chatBackground.png');
     height: 500px;
     width: 500px;
 }
 #leftMenu{
-    padding: 0px;
+    margin: auto;
 }
 
 #startImg{
@@ -55,6 +58,36 @@
 .errorMessage{
     color: red;
 }
+#header {
+    height: 10em;
+    position: relative;
+    text-align: center;
+    align-content: center;
+}
+#namePage{
+    font-size: 100px;
+    font-family:cursive;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    
+}
+#header img{
+    max-height: 85%;
+    max-width: 200px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 32%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border-radius: 40%;
+    z-index: 1500;
+}
+
 
 
 

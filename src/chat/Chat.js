@@ -6,6 +6,8 @@ import Message from '../message/Message'
 import { useLocation } from 'react-router-dom';
 import Recorder from '../recorder/Recorder'
 import { Modal, ModalBody, ModalHeader } from 'react-bootstrap';
+import logo from '../chat/logo.jpeg'
+
 
 
 
@@ -342,7 +344,7 @@ function Chat({ nameConnected, dataBase}) {
 
     return (
         <div>
-            <div id="header"><img></img>Chat</div>
+        <div className="row" id="header"><img src={logo}></img><p id="namePage">Chats</p></div>
             <div className="container-fluid" id="screen">
                 <div id="chats" className="row">
                     {/**side screen */}
