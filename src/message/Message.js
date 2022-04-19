@@ -10,7 +10,7 @@ function showMessage({type,content,time, fromto}) {
     if (type === "text") {
         if(fromto === "to") {
             return (
-                <div id="messageLeft">
+                <div class="messageLeft text">
                     {/** text */}
                     <span id="text">{content}</span><br></br>
                     {/** time */}
@@ -19,7 +19,7 @@ function showMessage({type,content,time, fromto}) {
             )
         } else {
             return (
-                <div id="messageRight">
+                <div class="messageRight text">
                     {/** text */}
                     <span id="text">{content}</span><br></br>
                     {/** time */}
@@ -31,18 +31,18 @@ function showMessage({type,content,time, fromto}) {
     } else if (type === "audio") {
         if(fromto === "to") {
             return (
-                <div id="messageLeft">
+                <div class="messageLeft audio">
                     {/** audio */}
-                    <span id="text"><audio controls src={content}></audio></span><br></br>
+                    <span><audio id="audio" controls src={content}></audio></span><br></br>
                     {/** time */}
                     <span id="time">{time}</span>
                 </div>
             )
         } else {
             return (
-                <div id="messageRight">
+                <div class="messageRight audio">
                     {/** audio */}
-                    <span id="text"><audio controls src={content}></audio></span><br></br>
+                    <span><audio id="audio" controls src={content}></audio></span><br></br>
                     {/** time */}
                     <span id="time">{time}</span>
                 </div>
@@ -51,18 +51,18 @@ function showMessage({type,content,time, fromto}) {
     } else if (type === "image") {
         if(fromto === "to") {
             return (
-                <div id="messageLeft">
+                <div class="messageLeft image">
                     {/** image */}
-                    <span id="text"><img src={content}></img></span><br></br>
+                    <span><img id="image" src={content}></img></span><br></br>
                     {/** time */}
                     <span id="time">{time}</span>
                 </div>
             )
         } else {
             return (
-                <div id="messageRight">
+                <div class="messageRight image">
                     {/** image */}
-                    <span id="text"><img src={content}></img></span><br></br>
+                    <span><img id="image" src={content}></img></span><br></br>
                     {/** time */}
                     <span id="time">{time}</span>
                 </div>
@@ -71,18 +71,18 @@ function showMessage({type,content,time, fromto}) {
     } else if (type === "video") {
         if(fromto === "to") {
             return (
-                <div id="messageLeft">
+                <div class="messageLeft video">
                     {/** image */}
-                    <span id="text"><video controls src={content}></video></span><br></br>
+                    <span><video id="video" controls src={content}></video></span><br></br>
                     {/** time */}
                     <span id="time">{time}</span>
                 </div>
             )
         } else {
             return (
-                <div id="messageRight">
+                <div class="messageRight video">
                     {/** image */}
-                    <span id="text"><video controls src={content}></video></span><br></br>
+                    <span><video id="video" controls src={content}></video></span><br></br>
                     {/** time */}
                     <span id="time">{time}</span>
                 </div>

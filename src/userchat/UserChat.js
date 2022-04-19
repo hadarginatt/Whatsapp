@@ -1,6 +1,5 @@
 import React from 'react'
 import './UserChat.css'
-import image1 from '../image1.jpeg'
 
 
 function UserChat({nickName, time, lastMessage, img}){

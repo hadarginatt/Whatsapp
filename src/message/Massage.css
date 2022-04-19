@@ -1,4 +1,4 @@
-#messageLeft{
+.messageLeft{
     position: relative;
     float:Left;
     font-size: 16px;
@@ -16,7 +16,7 @@
     padding: 1px;
 }
 
-#messageRight{
+.messageRight{
     position: relative;
     float:Right;
     font-size: 16px;
@@ -25,4 +25,27 @@
     width: fit-content;
     background-color: #ffffff;
     margin: 5px;
+}
+
+.text {
+    max-width: 80%;
+}
+
+
+.video {
+    width: 220px;
+    height: 150px;
+}
+#video{
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.image {
+    max-width: inherit;
+    max-height: inherit;
+}
+#image{
+    max-width: 200px;
+    max-height: 200px;
 }
