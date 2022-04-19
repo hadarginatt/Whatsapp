@@ -50,23 +50,23 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
           chunks.current.push(e.data);
         };
 
-        var url = '';
+        // var url = '';
 
         mediaRecorder.onstop = async function () {
+          console.log("stopped");
+          const url = URL.createObjectURL(chunks.current[0])
+          chunks.current = [];
           setRecording({
             active: false,
             available: true,
             url
           });
-          console.log("stopped");
           {/* blob*/ }
-          url = URL.createObjectURL(chunks.current[0])
           console.log("before" + JSON.stringify(userAudioBlob))
-          setUserBlob(recording.url)
+          setUserBlob(url)
           console.log("after" + JSON.stringify(userAudioBlob))
 
 
-          chunks.current = [];
 {/** blob */ }
           
           // addToDbFunc(username, myMessages, setMessages, url)
@@ -90,24 +90,22 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
     getAccess();
   })
 
-  function stopRecording () {
-    stream.recorder.stop();
-
-  }
-
   return (
     <div className="App">
-     
+      {stream.access ? (
         <div className="audio-container">
           <button
             className={recording.active ? "active" : null}
-            onClick={() => !recording.active && stream.recorder.start()}>Start Recording</button>
-          <button onClick={() => stopRecording()}>Stop recording</button>
+            onClick={() => !recording.active && stream.recorder.start()}
+          >
+            Start Recording
+          </button>
+          <button onClick={function (e) { stream.recorder.stop(); }}>Stop and send</button>
           {recording.available && <audio controls src={recording.url} />}
-   
-        </div>
-        {/*} <i  ref={hideRecorder} onClick={hide(recordMenu)} className="bi bi-mic-fill"></i> */}
 
-    </div>
-  );
+        </div>
+      ) : (<button onClick={function (e) { getAccess() }}></button>)} </div>
+  )
 }
+
+
