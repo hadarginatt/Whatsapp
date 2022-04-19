@@ -282,8 +282,8 @@ function isValidImgVideo() {
     // check if not empty
     var fileName = document.getElementById("uploadFile").value;
 //addition for logic
-var idxDot =fileName.lastIndexOf(".") + 1;
-var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+var indexEnd =fileName.lastIndexOf(".") + 1;
+var endOfFile = fileName.substr(indexEnd, fileName.length).toLowerCase();
 let allowedExtension = ['image/jpeg', 'image/jpg', 'image/png','image/gif','image/bmp', 'image/mp4'];
 let type = document.getElementById('uploadFile').files[0].type;
 
@@ -293,21 +293,23 @@ let type = document.getElementById('uploadFile').files[0].type;
         var message = "Please choose image or video"
         errorHtml.innerHTML = "<p><small id='noImgOrVideo' className='errorMessages'>" + message + "</small></p>"
         noChoose.append(errorHtml)
+        return false;
     }
-   
+ 
 // new logic for video vaidation
  if(allowedExtension.indexOf(type)==-1){
-    flag = false
+    flag = false;
     var errorHtml = document.createElement('div')
     var message = "wrong type of image or video"
     errorHtml.innerHTML = "<p><small id='invalidImageOrVideo' className='errorMessages'>" + message + "</small></p>"
     invalidChoose.append(errorHtml)
+    
  }
- if(allowedExtension.indexOf(type)!=-1){
+ else if(allowedExtension.indexOf(type)!=-1){
      return true;
  }
 
-if(extFile=="mp4" || extFile=="mvk" || extFile == "avi") {
+if( endOfFile == "avi" ||  endOfFile=="mvk" ||  endOfFile=="mp4") {
   return true;
 }
 else{
@@ -317,7 +319,8 @@ else{
    errorHtml.innerHTML = "<p><small id='invalidImageOrVideo' className='errorMessages'>" + message + "</small></p>"
    invalidChoose.append(errorHtml)
 }
-return flag
+  
+return flag;
 }
 
 
