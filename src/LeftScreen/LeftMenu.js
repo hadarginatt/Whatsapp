@@ -5,7 +5,8 @@ import newUserImg from '../newUser.png'
 import { Modal} from 'react-bootstrap';
 
 
-
+{/**the function adds a new user to the left menu.
+the new user is based on the hardcoded database only */}
 function addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, dataBase, setShowModalUser) {
     console.log("adding")
     var errorMessage = document.getElementById("errorMessage")
@@ -95,7 +96,7 @@ function LeftMenu({ nameConnected, myMessages, setUserChat, setMyMessages, dataB
         </div>
     );
 }
-// taking the setUserChat parameter.
+// taking the setUserChat parameters.
 function showUsers(setUserChat, myMessages, dataBase) {
     if (myMessages.length == 0) {
         return <div id="noUsers">No chats yet.</div>
