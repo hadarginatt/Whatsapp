@@ -14,9 +14,8 @@ import logo from '../chat/logo.jpeg'
 function showChat(username, myMessages){
     if (username === "" || username === "null") {
         // show only logo
-        return (<img id="startImg" src={logo2} className="card-img-top" alt="..."></img>)
+        return;
     } else {
-
         var messagesFromUser = myMessages.find((value) => { return value.user === username }).message;
         // console.log("from showScreen2:" + JSON.stringify(messagesFromUser))
 
@@ -353,20 +352,36 @@ function Chat({ nameConnected, dataBase}) {
                     </div>
 
                     {/**main screen */}
-
                     <div id="mainScreen" className="col-9">
-                        {showUserProfile(user, dataBase)}
-                        <div id="chat" className="row card">
-                            {showChat(user, myMessages)}
-                        </div>
-                        <div id="screenLimit">
-                            {showTypeArea(user, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob)}
-                        </div>
+                    {mainScreen(user, dataBase, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal,
+                        setShowRecorderModal, userAudioBlob, setUserBlob)}
                     </div>
                 </div>
             </div>
         </div>
     );
+
+}
+
+
+function mainScreen(user, dataBase, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal,
+    setShowRecorderModal, userAudioBlob, setUserBlob) {
+    if (user === "" || user === "null") {
+        // show only logo
+        return (<img id="startImg" src={logo2} className="card-img-top" alt="..."></img>)
+    } else {
+        return (
+            <div >
+                {showUserProfile(user, dataBase)}
+                <div id="chat" className="row card">
+                    {showChat(user, myMessages)}
+                </div>
+                <div id="screenLimit">
+                    {showTypeArea(user, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob)}
+                </div>
+            </div>
+        )
+    }
 
 }
 

@@ -4,7 +4,7 @@ body{
   }
   
 .card{
-    background-color: white;
+    background-color:rgb(155, 233, 233);
     margin: 0px;
     max-height: 381px;
 }
@@ -15,6 +15,7 @@ body{
 
 #imgUserChat{
     height: 60px;
+    border-radius: 50%;
 }
 
 #userNameChat{
