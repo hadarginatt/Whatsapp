@@ -6,6 +6,7 @@ import Message from '../message/Message'
 import { useLocation } from 'react-router-dom';
 import Recorder from '../recorder/Recorder'
 import { Modal, ModalBody, ModalHeader } from 'react-bootstrap';
+import logo2 from '../chat/logo2.jpeg'
 import logo from '../chat/logo.jpeg'
 
 
@@ -13,7 +14,7 @@ import logo from '../chat/logo.jpeg'
 function showChat(username, myMessages){
     if (username === "" || username === "null") {
         // show only logo
-        return (<img id="startImg" src={Logo} className="card-img-top" alt="..."></img>)
+        return (<img id="startImg" src={logo2} className="card-img-top" alt="..."></img>)
     } else {
 
         var messagesFromUser = myMessages.find((value) => { return value.user === username }).message;
@@ -300,10 +301,11 @@ function showUserProfile(username, dataBase){
         return;
     } else {
         var nickName = dataBase.find((value) => {return value.username === username}).nickName
+        var img = dataBase.find((value) => {return value.username === username}).img
         return (
-            <div className="card">
+            <div id="userNameChat" className="card">
                 <div className="card-body">
-                    {/**  TODO ::: Show the image of the user!!*/}
+                    <img id="imgUserChat" src={img}></img>
                     {nickName}
                 </div>
             </div>
