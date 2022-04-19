@@ -1,16 +1,20 @@
 .leftmenu{
     flex: 20;
     /* overflow-y: scroll; */
-    border-right: 1px solid lightgrey;
+   
 }
 
 .leftmenuheader{
     display: flex;
-    /* justify-content: space-between; */
-    /* padding: 3px; */
+     justify-content: space-around !important; 
+     padding: 30px; 
     width: 100%;
+    font-size: large !important;
+
+   
     
 }
+
 .leftmenuusers{
     display: flex;
     /* align-items: center;
@@ -33,7 +37,11 @@
     color: green
 }
 
-
+.LeftMenuChat {
+   
+    cursor: pointer;
+    border-radius: 1px;
+}
 /* .search{
     padding-left: 3px;
 } */

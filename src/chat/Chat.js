@@ -350,7 +350,6 @@ function Chat({ nameConnected, dataBase}) {
                     {/**side screen */}
                     {/**the property param for the child */}
                     <div id="leftMenu" className='col-3'>
-                        <div>{nameConnected}</div>
                         <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages} dataBase={dataBase} />
                     </div>
 

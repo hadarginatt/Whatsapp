@@ -1,4 +1,9 @@
 
+
+body{
+    background-color:AliceBlue;
+  }
+  
 .messages{
     background-image: url('chatBackground.png'); 
 }
@@ -48,9 +53,7 @@
     background-color: white;
 }
 
-.itay {
-    z-index: 1000 !important;
-}
+
 #modaldialog{
     z-index: 2000 !important;
     color:white;
@@ -87,8 +90,14 @@
     border-radius: 40%;
 }
 
-
-
+/*
+.row {
+    --bs-gutter-x: -62.5rem;
+    
+    
+    
+    
+}
 
 
 /*
