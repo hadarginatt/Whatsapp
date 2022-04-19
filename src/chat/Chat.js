@@ -129,7 +129,8 @@ function showTypeArea(username, myMessages, setMessages, showUploadModal, setSho
         return;
     } else {
         return (
-            <div className="input-group mb-3">
+           
+            <div id="inputArea" className="input-group mb-3">
                 <div className="input-group-prepend">
 
                     <button onClick={function (e) { sendNewMessage(username, myMessages, setMessages) }} id="sendMessage">
@@ -151,7 +152,7 @@ function showTypeArea(username, myMessages, setMessages, showUploadModal, setSho
 
 
 
-                <button type="button" className="bi bi-paperclip" onClick={function (e) {showModal(setShowUploadModal)}}>
+                <button id="addFileMessage"type="button" className="bi bi-paperclip" onClick={function (e) {showModal(setShowUploadModal)}}>
                 </button>
 
                 {/** send image or video modal */}
@@ -191,7 +192,7 @@ function showTypeArea(username, myMessages, setMessages, showUploadModal, setSho
 
                 {/** recording button*/}
                
-                <button onClick={function (e) { setShowRecorderModal(true)}}>  <i className="bi bi-mic-fill"></i> </button>
+                <button  id="recordButton" onClick={function (e) { setShowRecorderModal(true)}}>  <i className="bi bi-mic-fill"></i> </button>
                 
             </div>
         )
