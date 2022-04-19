@@ -72,7 +72,7 @@ function showMessage({type,content,time, fromto}) {
         if(fromto === "to") {
             return (
                 <div class="messageLeft video">
-                    {/** image */}
+                    {/** video */}
                     <span><video id="video" controls src={content}></video></span><br></br>
                     {/** time */}
                     <span id="time">{time}</span>
@@ -81,7 +81,7 @@ function showMessage({type,content,time, fromto}) {
         } else {
             return (
                 <div class="messageRight video">
-                    {/** image */}
+                    {/** video */}
                     <span><video id="video" controls src={content}></video></span><br></br>
                     {/** time */}
                     <span id="time">{time}</span>

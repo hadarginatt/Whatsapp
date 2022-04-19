@@ -28,6 +28,7 @@ function isValid(dataBase) {
     var noNickName = document.getElementById('noNickNameAlert')
     var noImg = document.getElementById('emptyImg')
     var invalidImg = document.getElementById('invalidImg')
+    var lengthNockName = document.getElementById('lengthAlert')
 
     noUserName.innerHTML = ""
     existingName.innerHTML = ""
@@ -38,6 +39,7 @@ function isValid(dataBase) {
     noNickName.innerHTML = ""
     noImg.innerHTML = ""
     invalidImg.innerHTML = ""
+    lengthNockName.innerHTML = ""
 
     // the flag will indicate if the parameters in the input are valid.
     var flag = true;
@@ -67,6 +69,15 @@ function isValid(dataBase) {
         var message = "Please enter nickname"
         errorHtml.innerHTML = "<p><small id='noNickName' className='errorMessages'>" + message + "</small></p>"
         noNickName.append(errorHtml)
+    }
+
+    //check nickname is less than 10 chars
+    if (nickname.length > 10) {
+        flag = false;
+        var errorHtml = document.createElement('div')
+        var message = "Nickname should consist no longer than 10 letters"
+        errorHtml.innerHTML = "<p><small id='noNickName' className='errorMessages'>" + message + "</small></p>"
+        lengthNockName.append(errorHtml)
     }
 
     //check if password and verify password is equal.
@@ -201,6 +212,7 @@ function Register({ dataBase, setDataBase }) {
                         <label htmlFor="inputAddress" className="form-label">Nickname</label>
                         <input type="text" className="form-control" id="inputNickname" placeholder="Israel Israeli Is The BEST"></input>
                         <div id="noNickNameAlert" className='alerts'></div>
+                        <div id="lengthAlert" className='alerts'></div>
                     </div>
                     <div className="App">
                         <label htmlFor="inputAddress" className="form-label">Profile Picture</label>

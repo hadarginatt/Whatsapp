@@ -61,6 +61,7 @@ function addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, dataB
 function LeftMenu({ nameConnected, myMessages, setUserChat, setMyMessages, dataBase }) {
 
     var img = dataBase.find((value) => { return value.username === nameConnected }).img
+    var nickname = dataBase.find((value) => { return value.username === nameConnected }).nickName
     const [showModalAddUser, setShowModalUser] = useState(false)
 
     return (
@@ -70,7 +71,7 @@ function LeftMenu({ nameConnected, myMessages, setUserChat, setMyMessages, dataB
                     <button id="buttomType" type="button" className="bi bi-person-plus sarch" onClick={function (e) { setShowModalUser(true) }}>
                     </button>
                     <img id="userImg" src={img} alt="..." style={{ width: "20%", height: "70%", borderRadius: "50%" }}></img>
-                    <span id="nameConnected" className=" mb-3">{nameConnected}</span>
+                    <span id="nameConnected" className=" mb-3">{nickname}</span>
 
 
                     {/** Add New User Modal */}
