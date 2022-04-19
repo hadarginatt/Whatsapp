@@ -2,7 +2,10 @@
 import React, { useState } from 'react'
 import './Massage.css'
 
-
+{/*
+displays the messges on the chats screen, and display the parameters according to the
+sender (the user or the other chat member) , the message type and the current time.
+**/}
 function showMessage({type,content,time, fromto}) {
     if (type === "text") {
         if(fromto === "to") {
