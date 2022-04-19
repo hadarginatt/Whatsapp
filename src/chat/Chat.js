@@ -341,23 +341,26 @@ function Chat({ nameConnected, dataBase}) {
     console.log("messages:" + JSON.stringify(myMessages))
 
     return (
-        <div className="container-fluid" id="screen">
-            <div id="chats" className="row">
-                {/**side screen */}
-                {/**the property param for the child */}
-                <div id="leftMenu" className='col-3'>
-                    <div>{nameConnected}</div>
-                    <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages} dataBase={dataBase}/>
-                </div>
+        <div>
+            <div id="header"><img></img>Chat</div>
+            <div className="container-fluid" id="screen">
+                <div id="chats" className="row">
+                    {/**side screen */}
+                    {/**the property param for the child */}
+                    <div id="leftMenu" className='col-3'>
+                        <div>{nameConnected}</div>
+                        <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages} dataBase={dataBase} />
+                    </div>
 
-                {/**main screen */}
+                    {/**main screen */}
 
-                <div id="mainScreen" className="col-9">
-                    <div className="row card">
-                        {showUserProfile(user, dataBase)}
-                        {showChat(user, myMessages)}
-                        <div id="screenLimit">
-                        {showTypeArea(user, myMessages, setMyMessages, showUploadModal, setShowUploadModal,showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob)}
+                    <div id="mainScreen" className="col-9">
+                        <div className="row card">
+                            {showUserProfile(user, dataBase)}
+                            {showChat(user, myMessages)}
+                            <div id="screenLimit">
+                                {showTypeArea(user, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob)}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -12,7 +12,7 @@ import databaseusers from './databaseusers'
 
 
 
-function App({nameOfPage}) {
+function App() {
 
   var [nameConnected, setnameConnected] = useState('null')
   const setUserConnected = (newName) => {
@@ -22,10 +22,7 @@ function App({nameOfPage}) {
   var [dataBase, setDataBase] = useState(databaseusers)
 
   return (
-
     <div className="home">
-      <div className="nameOfPage">HadarNoaChat</div>
-      <div>{nameConnected} is connected</div>
       <div className="mainScreen">
         <BrowserRouter>
           <Routes>
