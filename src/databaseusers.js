@@ -1,5 +1,5 @@
 import  man1 from './man1.png'
-import  man2 from './man2new.jpg'
+import  man2 from './man2.jpg'
 import  man3 from './man3.png'
 import  man4 from './man4.png'
 import  man5 from './man5.jpg'

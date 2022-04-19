@@ -1,15 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 
-
+{/*function for the recording messages**/ }
 export default function Recorder({ addToDbFunc, username, myMessages, setMessages, userAudioBlob, setUserBlob }) {
 
-
+  {/* state of the stream**/ }
   const [stream, setStream] = useState({
     access: false,
     recorder: null,
     error: ""
   });
-
+  {/* recorder state**/ }
   const [recording, setRecording] = useState({
     active: false,
     available: false,
@@ -17,7 +17,7 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
   });
 
   const chunks = useRef([]);
-
+  {/* getting the accsses for the recording**/ }
   function getAccess() {
     navigator.mediaDevices
       .getUserMedia({ audio: true })
@@ -34,7 +34,7 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
 
         const track = mediaRecorder.stream.getTracks()[0];
         track.onended = () => console.log("ended");
-
+        {/* starting the recording**/ }
         mediaRecorder.onstart = function () {
           console.log("start");
           setRecording({
@@ -50,7 +50,7 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
         };
 
         // var url = '';
-
+{/* stopping the recording**/ }
         mediaRecorder.onstop = async function () {
           console.log("stopped");
           const url = URL.createObjectURL(chunks.current[0])
@@ -60,14 +60,10 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
             available: true,
             url
           });
-          {/* blob*/ }
+          {/* blob for the state of the url value*/ }
           console.log("before" + JSON.stringify(userAudioBlob))
           setUserBlob(url)
           console.log("after" + JSON.stringify(userAudioBlob))
-
-
-{/** blob */ }
-          
           // addToDbFunc(username, myMessages, setMessages, url)
         };
 
@@ -85,7 +81,7 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
       });
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getAccess();
   })
 
