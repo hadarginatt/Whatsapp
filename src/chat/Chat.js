@@ -21,7 +21,7 @@ function showChat(username, myMessages){
         // console.log("from showScreen2:" + JSON.stringify(messagesFromUser))
 
         var showMessage = messagesFromUser.map((message, key) => {
-            return <div className="messages"><Message type={message.type} content={message.content} time={message.time} fromto={message.fromto} key={key} /></div>
+            return <Message type={message.type} content={message.content} time={message.time} fromto={message.fromto} key={key} />
         })
         
         return showMessage;
@@ -355,12 +355,12 @@ function Chat({ nameConnected, dataBase}) {
                     {/**main screen */}
 
                     <div id="mainScreen" className="col-9">
-                        <div className="row card">
-                            {showUserProfile(user, dataBase)}
+                        {showUserProfile(user, dataBase)}
+                        <div id="chat" className="row card">
                             {showChat(user, myMessages)}
-                            <div id="screenLimit">
-                                {showTypeArea(user, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob)}
-                            </div>
+                        </div>
+                        <div id="screenLimit">
+                            {showTypeArea(user, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob)}
                         </div>
                     </div>
                 </div>

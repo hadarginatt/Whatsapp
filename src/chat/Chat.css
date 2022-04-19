@@ -3,9 +3,6 @@ body{
     font-family: cursive;
   }
   
-.messages{
-    background-image: url('chatBackground.png'); 
-}
 .card{
     background-color: white;
     margin: 0px;
@@ -35,12 +32,12 @@ body{
 #chats{
     position: relative;
     align-content: center;
+    
 }
 
 
 #mainScreen{
     padding: 0px;
-    background-image: url('chatBackground.png');
     height: 380px;
     width: 70%;
 }
@@ -54,14 +51,25 @@ body{
 #screen{
     padding: 0px;
     height: 100px;
+    
 }
 
 #screenLimit{
-    /*position: absolote*/
-    position:fixed;
-    width: 500px;
-    bottom: 0px;   
+    background-image: url('chatBackground.png');
 }
+
+#chat{
+    display: flex;
+    height: 278px;
+    min-height: 278px;
+    max-height: 278px;
+    overflow-y:auto;
+    background-image: url('chatBackground.png');
+    flex: 1;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
 
 #uploadImg{
     background-color: white;
@@ -75,6 +83,7 @@ body{
 .errorMessage{
     color: red;
 }
+
 #header {
     height: 10em;
     position: relative;
