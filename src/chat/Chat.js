@@ -345,15 +345,15 @@ function Chat({ nameConnected, dataBase}) {
         <div>
         <div className="row" id="header"><img src={logo}></img><p id="namePage">Chats</p></div>
             <div className="container-fluid" id="screen">
-                <div id="chats" className="row">
+                <div id="chats" className="row row-lg-12 row-md-12 row-sm-12">
                     {/**side screen */}
                     {/**the property param for the child */}
-                    <div id="leftMenu" className='col-3'>
+                    <div id="leftMenu" className='col-xxl-3 col-xl-3 col-md-3 col-sm-3'>
                         <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages} dataBase={dataBase} />
                     </div>
 
                     {/**main screen */}
-                    <div id="mainScreen" className="col-9">
+                    <div id="mainScreen" className="col-xxl-9 col-xxl-9 col-xl-9 col-md-8 col-sm-9">
                     {mainScreen(user, dataBase, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal,
                         setShowRecorderModal, userAudioBlob, setUserBlob)}
                     </div>

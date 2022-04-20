@@ -66,10 +66,14 @@
 #addUserButton{
     border-radius: 15px;
     border: none;
-    background-color:rgb(155, 233, 233); 
+    background-color:rgb(155, 233, 233);
+    float: right;
+    padding-right: 5px; 
+    padding-top: 14px;
    
 }
 #addUserButton:hover{
     border-radius: 15px;
     border: none;
+    float: right;
 }

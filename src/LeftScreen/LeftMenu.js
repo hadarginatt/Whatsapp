@@ -68,7 +68,7 @@ function LeftMenu({ nameConnected, myMessages, setUserChat, setMyMessages, dataB
         <div id="leftmenu" className="leftmenu">
             <div className='leftmenuheader'>
                 <div className="search">
-                    <button id="addUserButton" type="button" className="bi bi-person-plus sarch" onClick={function (e) { setShowModalUser(true) }}>
+                    <button id="addUserButton" type="button" className="btn-lg bi bi-person-plus sarch" onClick={function (e) { setShowModalUser(true) }}>
                     </button>
                     <img id="userImg" src={img} alt="..." style={{ width: "20%", height: "70%", borderRadius: "50%" }}></img>
                     <span id="nameConnected" className=" mb-3">{nickname}</span>
