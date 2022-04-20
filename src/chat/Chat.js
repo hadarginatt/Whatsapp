@@ -69,14 +69,14 @@ function addNewAudioMessage(username, myMessages, setMessages, userAudioBlob) {
     var newMessage = { type, content, time, fromto };
 
     //insert into local data the new data.
-    console.log("before in adding audio:" + JSON.stringify(myMessages));
+    //console.log("before in adding audio:" + JSON.stringify(myMessages));
     var newUserMessages = myMessages;
     newUserMessages = newUserMessages.find((value) => { return value.user === username }).message;
     newUserMessages.push(newMessage);
     var newM = myMessages;
     newM[username] = newUserMessages;
     setMessages(newM.concat([]));
-    console.log("after audio:" + JSON.stringify(myMessages))
+   // console.log("after audio:" + JSON.stringify(myMessages))
 }
 
 {/**function for adding a new image or video messagae. 
@@ -89,14 +89,14 @@ function addNewImageOrVideo(username, myMessages, setMessages, input, type) {
     var newMessage = { type, content, time, fromto };
 
     //insert into local data the new data.
-    console.log("before in adding image:" + JSON.stringify(myMessages));
+    //console.log("before in adding image:" + JSON.stringify(myMessages));
     var newUserMessages = myMessages;
     newUserMessages = newUserMessages.find((value) => { return value.user === username }).message;
     newUserMessages.push(newMessage);
     var newM = myMessages;
     newM[username] = newUserMessages;
     setMessages(newM.concat([]));
-    console.log("after image:" + JSON.stringify(myMessages))
+    //console.log("after image:" + JSON.stringify(myMessages))
 }
 {/**function for the opening modal operation and file attachment. 
  */}
@@ -218,7 +218,7 @@ function isValidImgVideo() {
 
     var indexEnd = fileName.lastIndexOf(".") + 1;
     var endOfFile = fileName.substr(indexEnd, fileName.length).toLowerCase();
-    console.log(fileName);
+    //console.log(fileName);
     //image validatoin.
     let allowedExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
     let type = document.getElementById('uploadFile').files[0].type;
@@ -307,7 +307,7 @@ function Chat({ nameConnected, dataBase }) {
 
     //save the messages of my account.
     const [myMessages, setMyMessages] = useState(dataBase.find((value) => { return value.username === nameConnected }).messages);
-    console.log("messages:" + JSON.stringify(myMessages))
+    //console.log("messages:" + JSON.stringify(myMessages))
 
     return (
         <div>

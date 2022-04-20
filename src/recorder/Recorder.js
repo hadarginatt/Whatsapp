@@ -61,9 +61,9 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
             url
           });
           {/* blob for the state of the url value*/ }
-          console.log("before" + JSON.stringify(userAudioBlob))
+          //console.log("before" + JSON.stringify(userAudioBlob))
           setUserBlob(url)
-          console.log("after" + JSON.stringify(userAudioBlob))
+          //console.log("after" + JSON.stringify(userAudioBlob))
           // addToDbFunc(username, myMessages, setMessages, url)
         };
 

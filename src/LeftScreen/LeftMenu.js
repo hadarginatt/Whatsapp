@@ -8,7 +8,7 @@ import { Modal} from 'react-bootstrap';
 {/**the function adds a new user to the left menu.
 the new user is based on the hardcoded database only */}
 function addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, dataBase, setShowModalUser) {
-    console.log("adding")
+   // console.log("adding")
     var errorMessage = document.getElementById("errorMessage")
     errorMessage.innerHTML = ""
     var userName = document.getElementById("usernameInput").value
