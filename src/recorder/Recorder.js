@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import './Recorder.css'
 
-{/*function for the recording messages**/ }
+{/*function for the recording messages,
+ enables to record and verify the record prior to the sending **/ }
 export default function Recorder({ setUserBlob }) {
 
   const [stream, setStream] = useState({
@@ -17,7 +18,7 @@ export default function Recorder({ setUserBlob }) {
   });
 
   const chunks = useRef([]);
-  {/* getting the accsses for the recording**/ }
+  {/* getting the control for the recording**/ }
   function getControl() {
     navigator.mediaDevices
       .getUserMedia({ audio: true })
@@ -49,7 +50,7 @@ export default function Recorder({ setUserBlob }) {
           chunks.current.push(e.data);
         };
 
-        // var url = '';
+        
         {/* stopping the recording**/ }
         mediaRecorder.onstop = function () {
           console.log("stopped");
@@ -86,12 +87,14 @@ export default function Recorder({ setUserBlob }) {
     <div className="Recorder">
 
         <div className="audio-container">
+         {/* button for the start of the recording*/ }
           <button
             className={recording.active ? "active" : null}
             onClick={() => !recording.active && stream.recorder.start()}
           >
             Start Recording
           </button>
+          {/* button for the stop of the recording*/ }
           <button id="stopButton" onClick={function (e) { stream.recorder.stop(); }}>Stop Recording</button>
           {recording.available && <audio controls src={recording.url} />}
 
