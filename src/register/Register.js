@@ -215,9 +215,11 @@ function Register({ dataBase, setDataBase }) {
                         <div id="lengthAlert" className='alerts'></div>
                     </div>
                     <div className="App">
-                        <label htmlFor="inputAddress" className="form-label">Profile Picture</label>
-                        <br></br>
-                        <input id="inputimg" type="file" accept="image/*" name="image" />
+                        <label>
+                        <label htmlFor="inputAddress" className="form-label">Press To Add Profile Picture</label>
+                        <input hidden={true} id="inputimg" type="file" accept="image/*" name="image" />
+                        <i id="uploadImage" class="bi bi-image"></i>
+                        </label>
                         <div id="emptyImg" className='alerts'></div>
                         <div id="invalidImg" className='alerts'></div>
                     </div>

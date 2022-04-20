@@ -60,7 +60,16 @@ function sendNewMessage(username, myMessages, setMessages) {
 }
 {/**function for adding a new recording messagae. 
  */}
-function addNewAudioMessage(username, myMessages, setMessages, userAudioBlob) {
+function addNewAudioMessage(username, myMessages, setMessages, userAudioBlob, setUserBlob, setShowRecorderModal) {
+    var alertMessage = document.getElementById('alert');
+    alertMessage.innerHTML = ""
+    if (userAudioBlob === "null") {
+        var errorHtml = document.createElement('div')
+        var message = "Please record first"
+        errorHtml.innerHTML = "<p><small id='noBlob' className='errorMessage'>" + message + "</small></p>"
+        alertMessage.append(errorHtml)
+        return
+    }
     // insert into the local database.
     var type = "audio";
     var content = userAudioBlob;
@@ -69,14 +78,18 @@ function addNewAudioMessage(username, myMessages, setMessages, userAudioBlob) {
     var newMessage = { type, content, time, fromto };
 
     //insert into local data the new data.
-    //console.log("before in adding audio:" + JSON.stringify(myMessages));
     var newUserMessages = myMessages;
     newUserMessages = newUserMessages.find((value) => { return value.user === username }).message;
     newUserMessages.push(newMessage);
     var newM = myMessages;
     newM[username] = newUserMessages;
     setMessages(newM.concat([]));
-    // console.log("after audio:" + JSON.stringify(myMessages))
+
+    //set the audio blob to null
+    setUserBlob("null");
+
+    //close modal
+    setShowRecorderModal(false);
 }
 
 {/**function for adding a new image or video messagae. 
@@ -136,8 +149,11 @@ function showTypeArea(username, myMessages, setMessages, showUploadModal, setSho
                         <button onClick={function (e) { closeModal(setShowUploadModal) }} type="button" className="btn-close"></button>
                     </Modal.Header>
                     <Modal.Body>
-
-                        <div><input id="uploadFile" type="file" name="image" /></div>
+                        <label>
+                        <label htmlFor="inputAddress" className="form-label">Press to choose</label>
+                        <input hidden={true} id="uploadFile" type="file" name="image" />
+                        <i id="uploadImage" class="bi bi-upload"></i>
+                        </label>
                         <div id="emptyChoose" className="errorMessage"></div>
                         <div id="wrongChoose" className="errorMessage"></div>
                     </Modal.Body>
@@ -154,11 +170,11 @@ function showTypeArea(username, myMessages, setMessages, showUploadModal, setSho
                     </Modal.Header>
                     <Modal.Body>
                         <Recorder setUserBlob={setUserBlob} />
+                        <div id="alert"></div>
                     </Modal.Body>
                     <Modal.Footer>
                         <button onClick={function (e) {
-                            addNewAudioMessage(username, myMessages, setMessages, userAudioBlob);
-                            setShowRecorderModal(false);
+                            addNewAudioMessage(username, myMessages, setMessages, userAudioBlob, setUserBlob, setShowRecorderModal);
                         }} type="button" className="btn btn-primary">Upload</button>
                     </Modal.Footer>
                 </Modal>
