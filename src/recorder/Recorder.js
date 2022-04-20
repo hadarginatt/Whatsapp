@@ -3,13 +3,12 @@ import React, { useState, useRef, useEffect } from "react";
 {/*function for the recording messages**/ }
 export default function Recorder({ addToDbFunc, username, myMessages, setMessages, userAudioBlob, setUserBlob }) {
 
-  {/* state of the stream**/ }
   const [stream, setStream] = useState({
     access: false,
     recorder: null,
     error: ""
   });
-  {/* recorder state**/ }
+
   const [recording, setRecording] = useState({
     active: false,
     available: false,
@@ -51,7 +50,7 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
 
         // var url = '';
 {/* stopping the recording**/ }
-        mediaRecorder.onstop = async function () {
+        mediaRecorder.onstop = function () {
           console.log("stopped");
           const url = URL.createObjectURL(chunks.current[0])
           chunks.current = [];
@@ -83,11 +82,12 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
 
   useEffect(() => {
     getAccess();
-  })
+  }, [])
+
 
   return (
     <div className="App">
-      {stream.access ? (
+
         <div className="audio-container">
           <button
             className={recording.active ? "active" : null}
@@ -99,7 +99,7 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
           {recording.available && <audio controls src={recording.url} />}
 
         </div>
-      ) : (<button onClick={function (e) { getAccess() }}></button>)} </div>
+      </div>
   )
 }
 
