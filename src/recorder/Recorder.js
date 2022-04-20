@@ -18,7 +18,7 @@ export default function Recorder({ setUserBlob }) {
 
   const chunks = useRef([]);
   {/* getting the accsses for the recording**/ }
-  function getAccess() {
+  function getControl() {
     navigator.mediaDevices
       .getUserMedia({ audio: true })
       .then((mic) => {
@@ -65,7 +65,6 @@ export default function Recorder({ setUserBlob }) {
         };
 
 
-
         setStream({
           ...stream,
           access: true,
@@ -79,12 +78,12 @@ export default function Recorder({ setUserBlob }) {
   }
 
   useEffect(() => {
-    getAccess();
+    getControl();
   }, [])
 
 
   return (
-    <div className="App">
+    <div className="Recorder">
 
         <div className="audio-container">
           <button
