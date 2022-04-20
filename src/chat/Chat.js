@@ -153,8 +153,7 @@ function showTypeArea(username, myMessages, setMessages, showUploadModal, setSho
                         <button onClick={function (e) { closeModal(setShowRecorderModal) }} type="button" className="btn-close"></button>
                     </Modal.Header>
                     <Modal.Body>
-                        <Recorder addToDbFunc={addNewAudioMessage} username={username} myMessages={myMessages}
-                            setMessages={setMessages} userAudioBlob={userAudioBlob} setUserBlob={setUserBlob} />
+                        <Recorder setUserBlob={setUserBlob} />
                     </Modal.Body>
                     <Modal.Footer>
                         <button onClick={function (e) {

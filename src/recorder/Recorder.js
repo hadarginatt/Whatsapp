@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
+import './Recorder.css'
 
 {/*function for the recording messages**/ }
-export default function Recorder({ addToDbFunc, username, myMessages, setMessages, userAudioBlob, setUserBlob }) {
+export default function Recorder({ setUserBlob }) {
 
   const [stream, setStream] = useState({
     access: false,
@@ -49,7 +50,7 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
         };
 
         // var url = '';
-{/* stopping the recording**/ }
+        {/* stopping the recording**/ }
         mediaRecorder.onstop = function () {
           console.log("stopped");
           const url = URL.createObjectURL(chunks.current[0])
@@ -60,10 +61,7 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
             url
           });
           {/* blob for the state of the url value*/ }
-          //console.log("before" + JSON.stringify(userAudioBlob))
           setUserBlob(url)
-          //console.log("after" + JSON.stringify(userAudioBlob))
-          // addToDbFunc(username, myMessages, setMessages, url)
         };
 
 
@@ -95,7 +93,7 @@ export default function Recorder({ addToDbFunc, username, myMessages, setMessage
           >
             Start Recording
           </button>
-          <button onClick={function (e) { stream.recorder.stop(); }}>Stop and send</button>
+          <button id="stopButton" onClick={function (e) { stream.recorder.stop(); }}>Stop Recording</button>
           {recording.available && <audio controls src={recording.url} />}
 
         </div>
