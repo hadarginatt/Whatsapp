@@ -32,8 +32,7 @@ body{
 }
 #chats{
     position: relative;
-    align-content: center;
-    
+    align-content: center;    
 }
 
 
@@ -51,16 +50,12 @@ body{
 
 #screen{
     padding: 0px;
-    height: 100px;
-    
+    height: 100px;    
 }
 
 #screenLimit{
   
-    background-color:rgb(155, 233, 233);
- 
-  
-    
+    background-color:rgb(155, 233, 233);   
 }
 
 #chat{
