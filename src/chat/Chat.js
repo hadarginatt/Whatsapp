@@ -1,5 +1,5 @@
 import './Chat.css'
-import LeftMenu from '../LeftScreen/LeftMenu'
+import LeftMenu from '../LeftMenu/LeftMenu'
 import React, { useState } from 'react'
 import Message from '../message/Message'
 import Recorder from '../recorder/Recorder'
@@ -331,7 +331,7 @@ function Chat({ nameConnected, dataBase }) {
                 <div id="chats" className="row row-lg-12 row-md-12 row-sm-12">
                     {/**side screen */}
                     {/**the property param for the child */}
-                    <div id="leftMenu" className='col-xxl-3 col-xl-3 col-md-3 col-sm-3'>
+                    <div id="leftMenuchat" className='col-xxl-3 col-xl-3 col-md-3 col-sm-3'>
                         <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages} dataBase={dataBase} />
                     </div>
 

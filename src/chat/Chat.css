@@ -42,10 +42,12 @@ body{
     height: 380px;
     width: 70%;
 }
-#leftMenu{
+#leftMenuchat{
     margin-left: 30px;
-    max-height: 380px;
-    min-height: 380px;
+    /* max-height: 380px;
+    min-height: 380px; */
+    max-height: 10%;
+    min-height: 10%;
     position: relative;
 }
 
@@ -61,8 +63,10 @@ body{
 #chat{
     display: flex;
     height: 278px;
-    min-height: 278px;
-    max-height: 278px;
+    /* min-height: 278px;
+    max-height: 278px; */
+    min-height: 70%;
+    max-height: 70%;
     overflow-y:auto;
     background-image: url('chatBackground.png');
     flex: 1;
