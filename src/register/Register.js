@@ -184,7 +184,7 @@ function Register({ dataBase, setDataBase }) {
 
     return (
         <div>
-            <div className="row" id="header"><img src={logo}></img><p id="namePage">Register</p></div>
+            <div className="row" id="headerRegister"><img src={logo}></img><p id="namePageRegister">Register</p></div>
             <div id="registerForm" className="offset-2">
                 <form className="row g-2">
                     <div className="col-md-10">

@@ -10,13 +10,13 @@ body{
     color: red;
 }
 
-#header {
-    height: 8em;
+#headerRegister {
+    height: 10em;
     position: relative;
     text-align: center;
     align-content: center;
 }
-#namePage{
+#namePageRegister{
     font-size: 80px;
     font-family:cursive;
     margin: 0;
@@ -27,7 +27,7 @@ body{
     transform: translate(-50%, -50%);
     
 }
-#header img{
+#headerRegister img{
     max-height: 85%;
     max-width: 180px;
     margin: 0;
