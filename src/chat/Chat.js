@@ -136,6 +136,7 @@ function showTypeArea(username, myMessages, setMessages, showUploadModal, setSho
                         <button onClick={function (e) { closeModal(setShowUploadModal) }} type="button" className="btn-close"></button>
                     </Modal.Header>
                     <Modal.Body>
+                        
                         <div><input id="uploadFile" type="file" name="image" /></div>
                         <div id="emptyChoose" className="errorMessage"></div>
                         <div id="wrongChoose" className="errorMessage"></div>
