@@ -6,7 +6,7 @@ body{
 .card{
     background-color:rgb(155, 233, 233);
     margin: 0px;
-    max-height: 381px;
+    /* max-height: 381px; */
     border-radius: 0px;
 }
 
@@ -41,6 +41,7 @@ body{
     padding: 0px;
     height: 380px;
     width: 70%;
+    /* height: 82%; */
 }
 #leftMenuchat{
     margin-left: 30px;
