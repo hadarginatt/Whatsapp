@@ -76,7 +76,7 @@ function addNewAudioMessage(username, myMessages, setMessages, userAudioBlob) {
     var newM = myMessages;
     newM[username] = newUserMessages;
     setMessages(newM.concat([]));
-   // console.log("after audio:" + JSON.stringify(myMessages))
+    // console.log("after audio:" + JSON.stringify(myMessages))
 }
 
 {/**function for adding a new image or video messagae. 
@@ -136,7 +136,7 @@ function showTypeArea(username, myMessages, setMessages, showUploadModal, setSho
                         <button onClick={function (e) { closeModal(setShowUploadModal) }} type="button" className="btn-close"></button>
                     </Modal.Header>
                     <Modal.Body>
-                        
+
                         <div><input id="uploadFile" type="file" name="image" /></div>
                         <div id="emptyChoose" className="errorMessage"></div>
                         <div id="wrongChoose" className="errorMessage"></div>
@@ -262,7 +262,6 @@ function getTime() {
     if (minutes < 10) {
         minutes = "0" + minutes;
     }
-
     var time = hours + ":" + minutes;
     return time;
 }

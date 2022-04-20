@@ -10,7 +10,7 @@ function showMessage({type,content,time, fromto}) {
     if (type === "text") {
         if(fromto === "to") {
             return (
-                <div class="messageLeft text">
+                <div className="messageLeft text">
                     {/** text */}
                     <span id="text">{content}</span><br></br>
                     {/** time */}
@@ -19,7 +19,7 @@ function showMessage({type,content,time, fromto}) {
             )
         } else {
             return (
-                <div class="messageRight text">
+                <div className="messageRight text">
                     {/** text */}
                     <span id="text">{content}</span><br></br>
                     {/** time */}
@@ -31,7 +31,7 @@ function showMessage({type,content,time, fromto}) {
     } else if (type === "audio") {
         if(fromto === "to") {
             return (
-                <div class="messageLeft audio">
+                <div className="messageLeft audio">
                     {/** audio */}
                     <span><audio id="audio" controls src={content}></audio></span><br></br>
                     {/** time */}
@@ -40,7 +40,7 @@ function showMessage({type,content,time, fromto}) {
             )
         } else {
             return (
-                <div class="messageRight audio">
+                <div className="messageRight audio">
                     {/** audio */}
                     <span><audio id="audio" controls src={content}></audio></span><br></br>
                     {/** time */}
@@ -60,7 +60,7 @@ function showMessage({type,content,time, fromto}) {
             )
         } else {
             return (
-                <div class="messageRight image">
+                <div className="messageRight image">
                     {/** image */}
                     <span><img id="image" src={content}></img></span><br></br>
                     {/** time */}
@@ -71,7 +71,7 @@ function showMessage({type,content,time, fromto}) {
     } else if (type === "video") {
         if(fromto === "to") {
             return (
-                <div class="messageLeft video">
+                <div className="messageLeft video">
                     {/** video */}
                     <span><video id="video" controls src={content}></video></span><br></br>
                     {/** time */}
@@ -80,7 +80,7 @@ function showMessage({type,content,time, fromto}) {
             )
         } else {
             return (
-                <div class="messageRight video">
+                <div className="messageRight video">
                     {/** video */}
                     <span><video id="video" controls src={content}></video></span><br></br>
                     {/** time */}

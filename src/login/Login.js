@@ -14,21 +14,21 @@ function isValidLogin(setUserConnected, userName, navigate) {
     alertPlaceholder.innerHTML = ""
 
     //in case of empty fields username or password popup alert message.
-    if (name == "" || name == null || pass == "" || pass == null) {        
+    if (name == "" || name == null || pass == "" || pass == null) {
         var wrapper = document.createElement('div')
         var type = 'warning'
         var message = 'Oops!! Empty fields! Please enter user name and password.'
         wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
         alertPlaceholder.append(wrapper)
 
-    //in case all login parameters are valid. 
+        //in case all login parameters are valid. 
     } else if (databaseusers.find((value) => { return value.username === name && value.password === pass })) {
         // change the state of the name to connected.
         setUserConnected(name);
         // go to the chat page.
-        navigate('/chat', {state: userName})
+        navigate('/chat', { state: userName })
 
-    //in case that username or password are invalid.
+        //in case that username or password are invalid.
     } else {
         var wrapper = document.createElement('div')
         var type = 'warning'
@@ -41,9 +41,9 @@ function isValidLogin(setUserConnected, userName, navigate) {
 
 
 {/**
-returns the component for dispaly.
+returns the Login page and fields for input for dispaly.
  */}
-function Login({setUserConnected, userName, dataBase}) {
+function Login({ setUserConnected, userName, dataBase }) {
     // the way to acces the location sharedData.
     const sharedData = useLocation();
     const navigate = useNavigate()
@@ -62,11 +62,11 @@ function Login({setUserConnected, userName, dataBase}) {
                         <label htmlFor="floatingPassword">Password</label>
                     </div>
                     <div className="form-floating">
-                    {/** switch to the register page in case of a new user login */}
+                        {/** switch to the register page in case of a new user login */}
                         <p>Not registered? <a href="/register">Click here</a> to register</p>
                     </div>
                     <div id="liveAlertPlaceholder"></div>
-                     {/**checks if the login is valid*/}
+                    {/**checks if the login is valid*/}
                     <button onClick={() => { isValidLogin(setUserConnected, userName, navigate) }} type="button"
                         className="btn btn-primary" id="liveAlertBtn">Login</button>
                 </div>

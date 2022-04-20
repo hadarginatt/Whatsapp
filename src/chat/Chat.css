@@ -53,8 +53,7 @@ body{
     height: 100px;    
 }
 
-#screenLimit{
-  
+#screenLimit{  
     background-color:rgb(155, 233, 233);   
 }
 
@@ -74,7 +73,6 @@ body{
 #uploadImg{
     background-color: white;
 }
-
 
 #modaldialog{
     z-index: 2000 !important;
