@@ -115,7 +115,7 @@ function showUsers(setUserChat, myMessages, dataBase) {
             img = userDetails.img
         }
         var nickName = userDetails.nickName
-        return <div onClick={() => setUserChat(message.user)}><UserChat nickName={nickName}
+        return <div onClick={() => setUserChat(message.user)} key={key}><UserChat nickName={nickName}
             time={time} lastMessage={lastMessage} img={img} key={key} /></div>
     })
     return addUser;
