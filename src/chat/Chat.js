@@ -166,7 +166,7 @@ function showTypeArea(username, myMessages, setMessages, showUploadModal, setSho
                 <Modal show={showRecorderModal}>
                     <Modal.Header>
                         <h5 className="modal-title">Record</h5>
-                        <button onClick={function (e) { closeModal(setShowRecorderModal) }} type="button" className="btn-close"></button>
+                        <button onClick={function (e) { closeModal(setShowRecorderModal); setUserBlob("null"); }} type="button" className="btn-close"></button>
                     </Modal.Header>
                     <Modal.Body>
                         <Recorder setUserBlob={setUserBlob} />
