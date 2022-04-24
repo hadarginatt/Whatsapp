@@ -1,5 +1,4 @@
 .leftmenu{
-    /* flex: 20; */
     width: 100%;
     height: 100%;
 }
@@ -15,23 +14,22 @@
     align-items: center;
     margin-left: 0%;
     border: 1px solid rgba(0,0,0,.125);
-    font-size: 3vw;
     height: 16.5%;
-    /* height: 12vh; */
     padding-bottom: 1%;
+    
 }
 
 #userImg{
-    width: 20%;
-    height: 100%;
-    border-Radius: 50%;
-    /* padding-left: 3%; */
+    height: 10vh;
+    border-radius: 50%;
 }
 
 #nameConnected{
     padding-left: 2%;
     font-weight: bold;
     font-family:cursive;
+    font-size: 6vh;
+    padding-top: 50%;
 }
 
 .leftmenuusers{
@@ -41,8 +39,8 @@
     max-width: 100%;
     min-width: 100%;
     flex: 1;
-    min-height: auto;
-    max-height: auto;
+    min-height: 83.5%;
+    max-height: 83.5%;
     flex-direction: column;
     flex-wrap: nowrap;
     overflow-y: auto;
@@ -66,12 +64,12 @@
 }
 
 #addUserButton{
+    height: 10vh;
+    border-radius: 50%;
     border: none;
     background-color:rgb(155, 233, 233);
     float: right;
     padding-right: 5%; 
-    padding-top: 5%;
-   
 }
 #addUserButton:hover{
     border: none;

@@ -68,10 +68,10 @@ function LeftMenu({ nameConnected, myMessages, setUserChat, setMyMessages, dataB
         <div id="leftmenu" className="leftmenu d-flex card flex-column">
             <div className='leftmenuheader row d-flex flex-row card'>
 
-                <div className="search">
+                <div>
                     <button id="addUserButton" type="button" className="col btn-lg bi bi-person-plus sarch" onClick={function (e) { setShowModalUser(true) }}>
                     </button>
-                    <img id="userImg" className="col" src={img} alt="..." style={{ width: "20%", height: "70%", borderRadius: "50%" }}></img>
+                    <img id="userImg" className="col" src={img} alt="..."></img>
                     <span id="nameConnected" className="col mb-3">{nickname}</span>
                 </div>
 
@@ -111,6 +111,7 @@ function showUsers(setUserChat, myMessages, dataBase) {
         var lastMessage = message.message[(message.message).length - 1].type
         if (lastMessage != null && lastMessage === "text") {
             lastMessage = message.message[(message.message).length - 1].content
+            // if the message is longer than 20, slice it
             if (lastMessage.length > 20)
             lastMessage = lastMessage.slice(0, 20) + "..."
         }
