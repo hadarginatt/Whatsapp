@@ -4,13 +4,13 @@
    Noa Eitan , Id: 316222777
    Hadar Ginatt , Id: 207542663
     
-   # Imports for the project:
+   # Relevant Packages:
         *react-dom
         *react-router-dom
         *Bootstrap
         *React-Bootstrap
         
-   # General instructions:
+   # General Instructions:
    
    Welcome to our Whatsapp Web!
    Before you start, please read the following instructions:
