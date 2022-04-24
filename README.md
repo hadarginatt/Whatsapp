@@ -10,7 +10,7 @@
         *Bootstrap
         *React-Bootstrap
         
-   # General instructions:
+   # General Instructions:
    
    Welcome to our Whatsapp Web!
    Before you start, please read the following instructions:
