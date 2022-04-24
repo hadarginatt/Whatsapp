@@ -20,11 +20,13 @@ function showChat(username, myMessages, setMyMessages, showUploadModal, setShowU
         return;
         // show the relevant chat.
     } else {
+    
         var showMessage = showInitMessage(username, myMessages)
-        // showMessage += '<div id="screenLimit" className="row d-flex card flex-row">';
-        // showMessage += showTypeArea(username, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob);
-        // showMessage += '</div>';
-
+        {/** 
+        showMessage += '<div id="screenLimit" className="row d-flex card flex-row">';
+        showMessage += showTypeArea(username, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob);
+        showMessage += '</div>';
+*/}
 
         // var divtypeArea = document.createElement('div');
         // var typeArea = showTypeArea(username, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob);
@@ -376,7 +378,7 @@ function mainScreen(user, dataBase, myMessages, setMyMessages, showUploadModal, 
         return (<img id="startImg" src={logo2} className="card-img-top" alt="..."></img>)
     } else {
         return (
-            <div className="col">
+            <div id="asaf" className="col">
                 {showUserProfile(user, dataBase)}
 
                 
