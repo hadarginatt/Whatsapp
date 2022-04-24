@@ -90,9 +90,7 @@ export default function Recorder({ setUserBlob }) {
          {/* button for the start of the recording*/ }
           <button
             className={recording.active ? "active" : null}
-            onClick={() => !recording.active && stream.recorder.start()}
-          >
-            Start Recording
+            onClick={() => !recording.active && stream.recorder.start()}>Start Recording
           </button>
           {/* button for the stop of the recording*/ }
           <button id="stopButton" onClick={function (e) { stream.recorder.stop(); }}>Stop Recording</button>

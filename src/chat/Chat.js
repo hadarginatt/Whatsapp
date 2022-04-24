@@ -1,6 +1,6 @@
 import './Chat.css'
 import LeftMenu from '../LeftMenu/LeftMenu'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Message from '../message/Message'
 import Recorder from '../recorder/Recorder'
 import { Modal, ModalBody, ModalHeader } from 'react-bootstrap';
@@ -14,36 +14,20 @@ else- representing the relavant chat in the main screen.
  */}
 
  
-function showChat(username, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob) {
+function showChat(username, myMessages) {
     if (username === "" || username === "null") {
         // show only logo.
         return;
         // show the relevant chat.
     } else {
-    
-        var showMessage = showInitMessage(username, myMessages)
-        {/** 
-        showMessage += '<div id="screenLimit" className="row d-flex card flex-row">';
-        showMessage += showTypeArea(username, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob);
-        showMessage += '</div>';
-*/}
-
-        // var divtypeArea = document.createElement('div');
-        // var typeArea = showTypeArea(username, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob);
-        // divtypeArea.innerHTML = '<div id="screenLimit" className="row d-flex card flex-row">' + typeArea + '</div>';
-        // showMessage += (divtypeArea);
-                
-        return showMessage;
-    }
-}
-
-function showInitMessage(username, myMessages) {
     var messagesFromUser = myMessages.find((value) => { return value.user === username }).message;
     var showMessage = messagesFromUser.map((message, key) => {
         return <Message type={message.type} content={message.content} time={message.time} fromto={message.fromto} key={key} />
     })
     return showMessage;
+    }
 }
+
 
 {/**function for adding the new message to the local data base. 
  */}
@@ -336,6 +320,8 @@ function Chat({ nameConnected, dataBase }) {
     const [showUploadModal, setShowUploadModal] = useState(false);
     var [showRecorderModal, setShowRecorderModal] = useState(false);
 
+    // const goDown = useRef();
+    // useEffect (() => { goDown.current.scroolIntoView()})
 
     //save the messages of my account.
     const [myMessages, setMyMessages] = useState(dataBase.find((value) => { return value.username === nameConnected }).messages);
@@ -348,19 +334,15 @@ function Chat({ nameConnected, dataBase }) {
                 <div id="chats" className="row card flex-row">
                     {/**side screen */}
                     {/**the property param for the child */}
-                    <div id="leftMenuchat" className='col-3' style={{background: "blue"}}>
-
+                    <div id="leftMenuchat" className='col-3'>
                         <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages} dataBase={dataBase} />
-
                         </div>
-
                     {/**main screen */}
                      
-                    <div id="mainScreen" className="col d-flex card flex-column" style={{background: "green"}}>
+                    <div id="mainScreen" className="col d-flex card flex-column">
  
                     {mainScreen(user, dataBase, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal,
                             setShowRecorderModal, userAudioBlob, setUserBlob)}
-
                     </div>
                     
                 </div>
@@ -378,13 +360,19 @@ function mainScreen(user, dataBase, myMessages, setMyMessages, showUploadModal, 
         return (<img id="startImg" src={logo2} className="card-img-top" alt="..."></img>)
     } else {
         return (
-            <div id="asaf" className="col">
+            <div id="boo" className="col">
+
                 {showUserProfile(user, dataBase)}
 
                 
                 <div id="chat" className="row d-flex flex-column card">
-                    {showChat(user, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal,
-                        setShowRecorderModal, userAudioBlob, setUserBlob)}
+                    {showChat(user, myMessages)}
+                        
+                </div>
+
+                <div id="screenLimit" className="row d-flex card flex-row">
+                {showTypeArea(user, myMessages, setMyMessages, showUploadModal, setShowUploadModal,
+                    showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob)}
                 </div>
             
 

@@ -9,10 +9,11 @@
     margin: 5px;
 }
 #time{
-    font-size: 8px;
+    font-size: 1.3vh;
     padding: 1px;
 }
 #text{
+    font-size: 3vh;
     padding: 1px;
 }
 
