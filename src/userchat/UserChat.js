@@ -9,12 +9,10 @@ function UserChat({nickName, time, lastMessage, img}){
                 <div className="d-flex w-100 justify-content-between">
                 </div>
                 <span className="profileImage">
-                    <img src={img} alt="..."
-                        style={{ width: "20%", height: "80%", borderRadius: "50%" }}
-                    ></img>
+                    <img className="profileImage" src={img} alt="..."></img>
                 </span>
                 
-                <span id="name" className="mb-3">{nickName}</span>
+                <span id="name">{nickName}</span>
                 <span><small id="time" className="text-muted">{time}</small></span>
                 <p><small id="lastMessage" className="text-muted">{lastMessage}</small></p>
             </div>
