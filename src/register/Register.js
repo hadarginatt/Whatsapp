@@ -181,8 +181,7 @@ function Register({ dataBase, setDataBase }) {
             shareDataBaseUsers('/', { state: dataBase });
         }
     }
-    // <div className="row" id="headerRegister"><img src={logo}></img><p id="namePageRegister">Register</p></div>
-
+    
     return (
         <div>
         <div className="row flex-row" id="headerRegister"><p id="namePageRegister">Register</p></div>

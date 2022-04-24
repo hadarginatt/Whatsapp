@@ -1,7 +1,6 @@
 import './Login.css'
 import { useLocation, useNavigate } from 'react-router-dom';
 import databaseusers from '../databaseusers';
-import logo from '../chat/logo.jpeg'
 
 
 {/**
@@ -39,7 +38,6 @@ function isValidLogin(setUserConnected, userName, navigate) {
 }
 
 
-
 {/**
 returns the Login page and fields for input for dispaly.
  */}
@@ -47,8 +45,6 @@ function Login({ setUserConnected, userName, dataBase }) {
     // the way to acces the location sharedData.
     const sharedData = useLocation();
     const navigate = useNavigate()
-
-
 
     return (
         <div id="page">

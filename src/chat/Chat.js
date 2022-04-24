@@ -5,7 +5,6 @@ import Message from '../message/Message'
 import Recorder from '../recorder/Recorder'
 import { Modal, ModalBody, ModalHeader } from 'react-bootstrap';
 import logo2 from '../chat/logo2.jpeg'
-import logo from '../chat/logo.jpeg'
 
 
 {/**function for the chat visibiliy in the enter to the page -
@@ -236,7 +235,6 @@ function isValidImgVideo() {
 
     var indexEnd = fileName.lastIndexOf(".") + 1;
     var endOfFile = fileName.substr(indexEnd, fileName.length).toLowerCase();
-    //console.log(fileName);
     //image validatoin.
     let allowedExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
     let type = document.getElementById('uploadFile').files[0].type;
@@ -321,12 +319,9 @@ function Chat({ nameConnected, dataBase }) {
     const [showUploadModal, setShowUploadModal] = useState(false);
     var [showRecorderModal, setShowRecorderModal] = useState(false);
 
-    // const goDown = useRef();
-    // useEffect (() => { goDown.current.scroolIntoView()})
 
     //save the messages of my account.
     const [myMessages, setMyMessages] = useState(dataBase.find((value) => { return value.username === nameConnected }).messages);
-    //console.log("messages:" + JSON.stringify(myMessages))
 
     return (
         <div>
@@ -339,13 +334,10 @@ function Chat({ nameConnected, dataBase }) {
                         <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages} dataBase={dataBase} />
                         </div>
                     {/**main screen */}
-                     
                     <div id="mainScreen" className="col d-flex card flex-column">
- 
                     {mainScreen(user, dataBase, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal,
                             setShowRecorderModal, userAudioBlob, setUserBlob)}
                     </div>
-                    
                 </div>
             </div>
         </div>
