@@ -1,12 +1,12 @@
 body{
     background-color:AliceBlue;
     font-family: cursive;
+    /* overflow-y: hidden; */
   }
   
 .card{
     background-color:rgb(155, 233, 233);
     margin: 0px;
-    /* max-height: 381px; */
     border-radius: 0px;
 }
 
@@ -20,11 +20,16 @@ body{
 }
 
 #userNameChat{
-    font-size: 20px;
+    font-size: 2vw;
+    position: relative;
+    /* height: 12vh; */
+    height: 16.5%;
 }
 
 #startImg {
-    height: 380px;
+    position: relative;
+    height: 100%;
+    border-radius: 0%;
 }
 
 #sendMessage:hover{
@@ -32,47 +37,62 @@ body{
 
 }
 #chats{
-    position: relative;
-    align-content: center;    
+    display: flex;
+    position: absolute;  
+    background-color: red;
+    width: 90%;
+    height: 70%;
+    margin-left: 5%;
 }
-
 
 #mainScreen{
     padding: 0px;
-    height: 380px;
-    width: 70%;
-    /* height: 82%; */
+    min-height: 100%;
+    max-height: 100%;
+    width: 65%;
 }
 #leftMenuchat{
-    margin-left: 30px;
-    /* max-height: 380px;
-    min-height: 380px; */
-    max-height: 10%;
-    min-height: 10%;
-    position: relative;
-}
-
-#screen{
-    padding: 0px;
-    height: 100px;    
+    padding-left: 0px;
+    width: 35%;
+    height: 100%;
 }
 
 #screenLimit{  
     background-color:rgb(155, 233, 233);   
+    min-height: 10.4%;
+    max-height: 10.4%;
+    /* height: 7vh; */
 }
 
 #chat{
-    display: flex;
-    height: 278px;
-    /* min-height: 278px;
-    max-height: 278px; */
-    min-height: 70%;
-    max-height: 70%;
-    overflow-y:auto;
+    position: relative;
+    display: flex !important;
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 73.1%;
+    min-height: 73.1%;
+    /* min-height: auto;
+    max-height: auto; */
+    /* max-height: 50.5vh;
+    min-height: 50.5vh; */
+    flex-direction: column !important;
+    flex-wrap: nowrap;
+    overflow-y:scroll; 
     background-image: url('chatBackground.png');
     flex: 1;
+    /* margin-left: 0%;
+    position: relative;
+    display: flex;
+    max-width: 100%;
+    min-width: 100%;
+    flex: 1;
+    min-height: auto;
+    max-height: auto;
     flex-direction: column;
     flex-wrap: nowrap;
+    overflow-y: auto;
+    font-family: cursive; */
+    
 }
 
 
@@ -99,7 +119,7 @@ body{
     align-content: center;
 }
 #namePage{
-    font-size: 100px;
+    font-size:8em;
     font-family:cursive;
     margin: 0;
     position: absolute;
@@ -121,7 +141,8 @@ body{
     border-radius: 40%;
 }
 #sendMessage{
-    margin-top: 7px;
+    margin-top: 22%;
+    margin-left: -15%;
     border-radius: none;
     border: none;
     background-color:rgb(155, 233, 233); 
@@ -138,10 +159,6 @@ body{
     border-radius: none;
     border: none;
     background-color:rgb(155, 233, 233); 
-}
-
-#inputArea{
-    border-radius: 80%;
 }
 
 

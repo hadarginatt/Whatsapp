@@ -6,6 +6,7 @@
     background-color: gainsboro;
     cursor: pointer;
     border-radius: 1px;
+    margin-left: -4%;
 }
 .profileImage{
     width: 50%;

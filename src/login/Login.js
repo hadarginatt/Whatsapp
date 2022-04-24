@@ -50,7 +50,10 @@ function Login({ setUserConnected, userName, dataBase }) {
 
     return (
         <div id="page">
-            <div className="row" id="header"><img src={logo}></img><p id="namePage">Login</p></div>
+            <div className="row" id="header">
+                <div style={{background: "red"}} className="col-3"><img src={logo}></img></div>
+                <div style={{background: "blue"}} className="col"><p id="namePage">Login</p></div>
+            </div>
             <div id="inputsLogin" className="container-fluid">
                 <div className="row col-4 offset-4 ">
                     <div className="form-floating mb-3">

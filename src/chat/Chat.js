@@ -12,20 +12,35 @@ import logo from '../chat/logo.jpeg'
 if the user did not press on any chat yet - logo is displayed.
 else- representing the relavant chat in the main screen. 
  */}
-function showChat(username, myMessages) {
+
+ 
+function showChat(username, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob) {
     if (username === "" || username === "null") {
         // show only logo.
         return;
         // show the relevant chat.
     } else {
-        var messagesFromUser = myMessages.find((value) => { return value.user === username }).message;
+        var showMessage = showInitMessage(username, myMessages)
+        // showMessage += '<div id="screenLimit" className="row d-flex card flex-row">';
+        // showMessage += showTypeArea(username, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob);
+        // showMessage += '</div>';
 
-        var showMessage = messagesFromUser.map((message, key) => {
-            return <Message type={message.type} content={message.content} time={message.time} fromto={message.fromto} key={key} />
-        })
 
+        // var divtypeArea = document.createElement('div');
+        // var typeArea = showTypeArea(username, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob);
+        // divtypeArea.innerHTML = '<div id="screenLimit" className="row d-flex card flex-row">' + typeArea + '</div>';
+        // showMessage += (divtypeArea);
+                
         return showMessage;
     }
+}
+
+function showInitMessage(username, myMessages) {
+    var messagesFromUser = myMessages.find((value) => { return value.user === username }).message;
+    var showMessage = messagesFromUser.map((message, key) => {
+        return <Message type={message.type} content={message.content} time={message.time} fromto={message.fromto} key={key} />
+    })
+    return showMessage;
 }
 
 {/**function for adding the new message to the local data base. 
@@ -289,7 +304,7 @@ function showUserProfile(username, dataBase) {
         var nickName = dataBase.find((value) => { return value.username === username }).nickName
         var img = dataBase.find((value) => { return value.username === username }).img
         return (
-            <div id="userNameChat" className="card">
+            <div id="userNameChat" className="row card d-flex flex-row">
                 <div className="card-body">
                     <img id="imgUserChat" src={img}></img>
                     {nickName}
@@ -328,18 +343,24 @@ function Chat({ nameConnected, dataBase }) {
         <div>
             <div className="row" id="header"><img src={logo}></img><p id="namePage">Chats</p></div>
             <div className="container-fluid" id="screen">
-                <div id="chats" className="row row-lg-12 row-md-12 row-sm-12">
+                <div id="chats" className="row card flex-row">
                     {/**side screen */}
                     {/**the property param for the child */}
-                    <div id="leftMenuchat" className='col-xxl-3 col-xl-3 col-md-3 col-sm-3'>
+                    <div id="leftMenuchat" className='col-3' style={{background: "blue"}}>
+
                         <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages} dataBase={dataBase} />
-                    </div>
+
+                        </div>
 
                     {/**main screen */}
-                    <div id="mainScreen" className="col-xxl-9 col-xxl-9 col-xl-9 col-md-8 col-sm-9">
-                        {mainScreen(user, dataBase, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal,
+                     
+                    <div id="mainScreen" className="col d-flex card flex-column" style={{background: "green"}}>
+ 
+                    {mainScreen(user, dataBase, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal,
                             setShowRecorderModal, userAudioBlob, setUserBlob)}
+
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -355,14 +376,16 @@ function mainScreen(user, dataBase, myMessages, setMyMessages, showUploadModal, 
         return (<img id="startImg" src={logo2} className="card-img-top" alt="..."></img>)
     } else {
         return (
-            <div >
+            <div className="col">
                 {showUserProfile(user, dataBase)}
-                <div id="chat" className="row card">
-                    {showChat(user, myMessages)}
+
+                
+                <div id="chat" className="row d-flex flex-column card">
+                    {showChat(user, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal,
+                        setShowRecorderModal, userAudioBlob, setUserBlob)}
                 </div>
-                <div id="screenLimit">
-                    {showTypeArea(user, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal, setShowRecorderModal, userAudioBlob, setUserBlob)}
-                </div>
+            
+
             </div>
         )
     }
