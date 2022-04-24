@@ -3,11 +3,7 @@
  # Students:
    Noa Eitan , Id: 316222777
    Hadar Ginatt , Id: 207542663
-   
-   # Installations Required:
-        *npm
-        *Node.js
-  
+    
    # Imports for the project:
         *react-dom
         *react-router-dom
@@ -19,9 +15,9 @@
    Welcome to our Whatsapp Web!
    Before you start, please read the following instructions:
    
-   1. In the project directory - please run the command ** npm start**
+   1. In the project directory - please run the command **npm start**.
    
-   2. In the Login page - Enter the name **Hadar** and the Password **123456a** and connect to the Chat page.
+   2. In the Home page (Login page) - Enter the name **Hadar** and the Password **123456a** and connect to the Chat page.
       if you would like to check a different user -  see the details in  databaseusers.js.
    3. If not registered yet - click the link below (Click here) and follow the input inserting instructions for validity and security checks.
    4. In the Chat page - You can start to chat with your friends (from the Hard-coded data base that you can find at the file databaseusers.js).
