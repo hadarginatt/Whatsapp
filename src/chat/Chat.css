@@ -120,32 +120,20 @@ body{
 }
 
 #header {
-    height: 10em;
+    height: 15vh;
     position: relative;
     text-align: center;
     align-content: center;
 }
 #namePage{
-    font-size:8em;
+    font-size:15vh;
     font-family:cursive;
     margin: 0;
     position: absolute;
     top: 50%;
-    left: 55%;
+    left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    
-}
-#header img{
-    max-height: 85%;
-    max-width: 180px;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 35%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    border-radius: 40%;
 }
 #sendMessage{
     margin-top: 22%;
@@ -157,12 +145,15 @@ body{
 }
 
 #addFileMessage{
+    margin-top: 0%;
     border-radius: none;
     border: none;
     background-color:rgb(155, 233, 233); 
+    max-height: 100%;
 }
 
 #recordButton{
+    margin-top: 0%;
     border-radius: none;
     border: none;
     background-color:rgb(155, 233, 233); 

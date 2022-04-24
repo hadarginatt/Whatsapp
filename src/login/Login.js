@@ -48,12 +48,11 @@ function Login({ setUserConnected, userName, dataBase }) {
     const sharedData = useLocation();
     const navigate = useNavigate()
 
+
+
     return (
         <div id="page">
-            <div className="row" id="header">
-                <div style={{background: "red"}} className="col-3"><img src={logo}></img></div>
-                <div style={{background: "blue"}} className="col"><p id="namePage">Login</p></div>
-            </div>
+        <div className="row flex-row" id="headerLogin"><p id="namePageLogin">Login</p></div>
             <div id="inputsLogin" className="container-fluid">
                 <div className="row col-4 offset-4 ">
                     <div className="form-floating mb-3">

@@ -140,7 +140,8 @@ function showTypeArea(username, myMessages, setMessages, showUploadModal, setSho
                     </button>
                 </div>
                 <input type="username" className="form-control" id="newMessage" placeholder="New Message..."></input>
-                <button id="addFileMessage" type="button" className="bi bi-paperclip" onClick={function (e) { showModal(setShowUploadModal) }}>
+                <button id="addFileMessage" onClick={function (e) { showModal(setShowUploadModal) }}>
+                    <i className="bi bi-paperclip"></i>
                 </button>
 
                 {/** send image or video modal */}
@@ -329,7 +330,7 @@ function Chat({ nameConnected, dataBase }) {
 
     return (
         <div>
-            <div className="row" id="header"><img src={logo}></img><p id="namePage">Chats</p></div>
+            <div className="row flex-row" id="header"><p id="namePage">Chats</p></div>
             <div className="container-fluid" id="screen">
                 <div id="chats" className="row card flex-row">
                     {/**side screen */}

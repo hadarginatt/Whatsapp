@@ -17,7 +17,7 @@ import video1 from './video1.mp4'
 
  var databaseusers =
  [{username : "Hadar", password : "123456a", nickName: "Hadari", img: woman1, messages: 
- [{user: "Itay",message: [{type : "text", content: "hye!", time: "15:00", fromto: "from"}, {type : "text", content: "did you see my cat?", time: "15:01", fromto: "from"},{type : "text", content: "did you see my cat?", time: "15:01", fromto: "from"},{type : "text", content: "did you see my cat?", time: "15:01", fromto: "from"},{type : "text", content: "did you see my cat?", time: "15:01", fromto: "from"},{type : "text", content: "did you see my cat?", time: "15:01", fromto: "from"},{type : "text", content: "did you see my cat?", time: "15:01", fromto: "from"}, {type : "image", content: cat, time: "15:01", fromto: "from"}]},
+ [{user: "Itay",message: [{type : "text", content: "hye!", time: "15:00", fromto: "from"}, {type : "text", content: "did you see my cat?", time: "15:01", fromto: "from"}, {type : "image", content: cat, time: "15:01", fromto: "from"}]},
  {user: "David",message: [{type : "text", content: "how are you doing?", time: "14:16", fromto: "from"}]},
  {user: "Noa",message: [{type : "audio", content: record1, time: "12:17", fromto: "to"}, {type : "audio", content: record2, time: "12:19", fromto: "from"}]},
  {user: "Noam",message: [{type : "audio", content: record, time: "10:20", fromto: "to"}]},
