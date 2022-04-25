@@ -7,7 +7,6 @@ displays the messges on the chats screen, and display the parameters according t
 sender (the user or the other chat member) , the message type and the current time.
 **/}
 function showMessage({type, content, time, date, fromto}) {
-    console.log(date)
     if (type === "text") {
         if(fromto === "to") {
             return (

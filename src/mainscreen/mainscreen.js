@@ -323,7 +323,6 @@ function addNewImageOrVideo(username, myMessages, setMessages, input, type) {
     var newMessage = { type, content, time, date, fromto };
 
     //insert into local data the new data.
-    //console.log("before in adding image:" + JSON.stringify(myMessages));
     var newUserMessages = myMessages;
     newUserMessages = newUserMessages.find((value) => { return value.user === username }).message;
     newUserMessages.push(newMessage);
