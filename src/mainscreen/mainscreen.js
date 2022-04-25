@@ -3,20 +3,11 @@ import Message from '../message/Message'
 import Recorder from '../recorder/Recorder'
 import { Modal, ModalBody, ModalHeader } from 'react-bootstrap';
 import logo2 from '../chat/logo2.jpeg'
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 
-function MainScreen({ user, dataBase, myMessages, setMyMessages, showUploadModal, setShowUploadModal, showRecorderModal,
-    setShowRecorderModal, userAudioBlob, setUserBlob }) {
+function MainScreen({ user, dataBase, myMessages, setMyMessages }) {
     
-    // const goDown = useRef()
-    // useEffect(() => {
-    //     console.log(goDown)
-    //     console.log(goDown.current)
-    //     // goDown.current.scrollIntoView({behavior: "smooth"});
-    //     let goDown = document.getElementById('goDown');
-
-    // })
     useEffect(() => {
         if (user != "" && user != "null") {
             var x = document.getElementById('chat')
@@ -24,6 +15,12 @@ function MainScreen({ user, dataBase, myMessages, setMyMessages, showUploadModal
         }
         
     });
+
+        //state of audio recording content.
+        const [userAudioBlob, setUserBlob] = useState('null');
+
+        const [showUploadModal, setShowUploadModal] = useState(false);
+        var [showRecorderModal, setShowRecorderModal] = useState(false);
     
     if (user === "" || user === "null") {
         // show only logo
@@ -336,7 +333,8 @@ function addNewImageOrVideo(username, myMessages, setMessages, input, type) {
 }
 
 
-//represents the current time when sending a new message.
+{/**represents the current time when sending a new message.
+ */}
 function getTime() {
     var today = new Date();
     var hours = today.getHours()
@@ -351,7 +349,8 @@ function getTime() {
     return time;
 }
 
-//represents the current date when sending a new message.
+{/**represents the current date when sending a new message.
+ */}
 function getDate() {
     var today = new Date();
     var day = today.getDate()
