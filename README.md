@@ -5,7 +5,6 @@
    Hadar Ginatt , Id: 207542663
     
    # Relevant Packages:
-        *react-dom
         *react-router-dom
         *Bootstrap
         *React-Bootstrap
