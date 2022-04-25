@@ -1,0 +1,115 @@
+body{
+    background-color:AliceBlue;
+    font-family: cursive;
+  }
+  
+.card{
+    background-color:rgb(155, 233, 233);
+    margin: 0px;
+    border-radius: 0px;
+}
+
+.card-body{
+    padding: 1px;
+}
+
+#imgUserChat{
+    height: 10vh;
+    border-radius: 50%;
+}
+
+#userNameChat{
+    font-size: 2vw;
+    font-size: 6vh;
+    align-content: flex-start;
+    position: relative;
+    height: 16.5%;
+}
+
+#startImg {
+    position: relative;
+    height: 100%;
+    border-radius: 0%;
+}
+
+#sendMessage:hover{
+    cursor: pointer;
+}
+
+
+#main{
+    padding-left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+#inputArea{
+    width: 100%;
+    height: 100%;
+}
+
+#screenLimit{  
+    background-color:rgb(155, 233, 233);   
+    position: relative;
+    min-height: 10.4%;
+    max-height: 10.4%;
+}
+
+#chat{
+    position: relative;
+    display: flex !important;
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 73.1%;
+    min-height: 73.1%;
+    flex-direction: column !important;
+    flex-wrap: nowrap;
+    overflow-y:scroll; 
+    background-image: url('chatBackground.png');
+    flex: 1;
+    border: 0%;
+}
+
+#uploadImg{
+    background-color: white;
+}
+
+#modaldialog{
+    z-index: 2000 !important;
+    color:white;
+}
+.errorMessage{
+    color: red;
+}
+
+#alert{
+    color: red;
+}
+
+#sendMessage{
+    margin-top: 22%;
+    margin-left: -15%;
+    border-radius: none;
+    border: none;
+    background-color:rgb(155, 233, 233); 
+
+}
+
+#addFileMessage{
+    margin-top: 0%;
+    border-radius: none;
+    border: none;
+    background-color:rgb(155, 233, 233); 
+    max-height: 100%;
+}
+
+#recordButton{
+    margin-top: 0%;
+    border-radius: none;
+    border: none;
+    background-color:rgb(155, 233, 233); 
+}
+
+
+
+
