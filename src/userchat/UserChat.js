@@ -3,6 +3,10 @@ import './UserChat.css'
 
 {/**settings for the userchat visibility and time and sequence of messages logic */}
 function UserChat({nickName, time, date, lastMessage, img}){
+    var showDate = ""
+    if (time != undefined && date != undefined) {
+        showDate = time + " | " + date
+    }
     return(
         <div className='LeftMenuChat'>
             <div id="user" className="list-group-item list-group-item-action w-100">
@@ -13,7 +17,7 @@ function UserChat({nickName, time, date, lastMessage, img}){
                 </span>
                 
                 <span id="name">{nickName}</span>
-                <span><small id="time" className="text-muted">{time} | {date}</small></span>
+                <span><small id="time" className="text-muted">{showDate}</small></span>
                 <p><small id="lastMessage" className="text-muted">{lastMessage}</small></p>
             </div>
         </div>

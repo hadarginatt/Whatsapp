@@ -50,3 +50,11 @@
     max-width: 200px;
     max-height: 200px;
 }
+
+#audio{
+    max-width: 100%;
+}
+
+.audio{
+    max-width: 50%;
+}
