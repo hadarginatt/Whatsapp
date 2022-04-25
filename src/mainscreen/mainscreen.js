@@ -1,4 +1,4 @@
-import './MainScreen.css'
+import './mainscreen.css'
 import Message from '../message/Message'
 import Recorder from '../recorder/Recorder'
 import { Modal, ModalBody, ModalHeader } from 'react-bootstrap';

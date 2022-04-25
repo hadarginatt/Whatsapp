@@ -1,7 +1,7 @@
 import './Chat.css'
 import LeftMenu from '../LeftMenu/LeftMenu'
 import React, { useState } from 'react'
-import MainScreen from '../mainscreen/MainScreen'
+import MainScreen from '../mainscreen/mainscreen'
 
 
 function Chat({ nameConnected, dataBase }) {
