@@ -6,15 +6,15 @@
     
    # Relevant Packages:
         *react-router-dom
-        *Bootstrap
         *React-Bootstrap
+        *jquery
         
    # General Instructions:
    
    Welcome to our Whatsapp Web!
    Before you start, please read the following instructions:
    
-   1. In the project directory - please run the command **npm start**.
+   1. In the project directory - please run the command **npm install** and then **npm start**.
    
    2. In the Home page (Login page) - Enter the name **Hadar** and the Password **123456a** and connect to the Chat page.
       if you would like to check a different user -  see the details in  databaseusers.js.
