@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 
 function MainScreen({ user, dataBase, myMessages, setMyMessages }) {
     
+    // set the scroll of the chat to be always at the last message
     useEffect(() => {
         if (user != "" && user != "null") {
             var x = document.getElementById('chat')
@@ -16,12 +17,12 @@ function MainScreen({ user, dataBase, myMessages, setMyMessages }) {
         
     });
 
-        //state of audio recording content.
-        const [userAudioBlob, setUserBlob] = useState('null');
+    //state of audio recording content.
+    const [userAudioBlob, setUserBlob] = useState('null');
 
-        const [showUploadModal, setShowUploadModal] = useState(false);
-        var [showRecorderModal, setShowRecorderModal] = useState(false);
-    
+    const [showUploadModal, setShowUploadModal] = useState(false);
+    var [showRecorderModal, setShowRecorderModal] = useState(false);
+
     if (user === "" || user === "null") {
         // show only logo
         return (<img id="startImg" src={logo2} className="card-img-top" alt="..."></img>)
