@@ -117,6 +117,7 @@ function showUsers(setUserChat, myMessages, dataBase) {
         }
         var name = message.user
         var time = message.message[(message.message).length - 1].time
+        var date = message.message[(message.message).length - 1].date
         var userDetails = dataBase.find((value) => { return value.username === name })
         var img = newUserImg
         if (userDetails) {
@@ -124,7 +125,7 @@ function showUsers(setUserChat, myMessages, dataBase) {
         }
         var nickName = userDetails.nickName
         return <div onClick={() => setUserChat(message.user)} key={key}><UserChat nickName={nickName}
-            time={time} lastMessage={lastMessage} img={img} key={key} /></div>
+            time={time} date={date} lastMessage={lastMessage} img={img} key={key} /></div>
     })
     return addUser;
 }

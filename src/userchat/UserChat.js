@@ -2,7 +2,7 @@ import React from 'react'
 import './UserChat.css'
 
 {/**settings for the userchat visibility and time and sequence of messages logic */}
-function UserChat({nickName, time, lastMessage, img}){
+function UserChat({nickName, time, date, lastMessage, img}){
     return(
         <div className='LeftMenuChat'>
             <div id="user" className="list-group-item list-group-item-action w-100">
@@ -13,7 +13,7 @@ function UserChat({nickName, time, lastMessage, img}){
                 </span>
                 
                 <span id="name">{nickName}</span>
-                <span><small id="time" className="text-muted">{time}</small></span>
+                <span><small id="time" className="text-muted">{time} | {date}</small></span>
                 <p><small id="lastMessage" className="text-muted">{lastMessage}</small></p>
             </div>
         </div>

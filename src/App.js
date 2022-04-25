@@ -26,7 +26,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Login setUserConnected={setUserConnected} userName={nameConnected} dataBase={dataBase} />}></Route>
-            <Route path="/register" element={<Register dataBase={dataBase} setDataBase={setDataBase} />}></Route>
+            <Route path="/register" element={<Register setUserConnected={setUserConnected} dataBase={dataBase} setDataBase={setDataBase} />}></Route>
             <Route path="/chat" element={<Chat nameConnected={nameConnected} dataBase={dataBase} />}></Route>
           </Routes>
         </BrowserRouter>

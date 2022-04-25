@@ -19,8 +19,9 @@
 }
 #time{
     float: right;
-    font-size: 1vh;
+    font-size: 1.2vh;
 }
+
 #name{
     margin: auto;
     padding-left: 1%;

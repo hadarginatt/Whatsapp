@@ -6,7 +6,8 @@ import './Massage.css'
 displays the messges on the chats screen, and display the parameters according to the
 sender (the user or the other chat member) , the message type and the current time.
 **/}
-function showMessage({type,content,time, fromto}) {
+function showMessage({type, content, time, date, fromto}) {
+    console.log(date)
     if (type === "text") {
         if(fromto === "to") {
             return (
@@ -14,7 +15,7 @@ function showMessage({type,content,time, fromto}) {
                     {/** text */}
                     <span id="text">{content}</span><br></br>
                     {/** time */}
-                    <span id="time">{time}</span>
+                    <span id="time">{time} | {date}</span>
                 </div>
             )
         } else {
@@ -23,7 +24,7 @@ function showMessage({type,content,time, fromto}) {
                     {/** text */}
                     <span id="text">{content}</span><br></br>
                     {/** time */}
-                    <span id="time">{time}</span>
+                    <span id="time">{time} | {date}</span>
                 </div>
             )
         }
@@ -35,7 +36,7 @@ function showMessage({type,content,time, fromto}) {
                     {/** audio */}
                     <span><audio id="audio" controls src={content}></audio></span><br></br>
                     {/** time */}
-                    <span id="time">{time}</span>
+                    <span id="time">{time} | {date}</span>
                 </div>
             )
         } else {
@@ -44,7 +45,7 @@ function showMessage({type,content,time, fromto}) {
                     {/** audio */}
                     <span><audio id="audio" controls src={content}></audio></span><br></br>
                     {/** time */}
-                    <span id="time">{time}</span>
+                    <span id="time">{time} | {date}</span>
                 </div>
             )
         }
@@ -55,7 +56,7 @@ function showMessage({type,content,time, fromto}) {
                     {/** image */}
                     <span><img id="image" src={content}></img></span><br></br>
                     {/** time */}
-                    <span id="time">{time}</span>
+                    <span id="time">{time} | {date}</span>
                 </div>
             )
         } else {
@@ -64,7 +65,7 @@ function showMessage({type,content,time, fromto}) {
                     {/** image */}
                     <span><img id="image" src={content}></img></span><br></br>
                     {/** time */}
-                    <span id="time">{time}</span>
+                    <span id="time">{time} | {date}</span>
                 </div>
             )
         }
@@ -75,7 +76,7 @@ function showMessage({type,content,time, fromto}) {
                     {/** video */}
                     <span><video id="video" controls src={content}></video></span><br></br>
                     {/** time */}
-                    <span id="time">{time}</span>
+                    <span id="time">{time} | {date}</span>
                 </div>
             )
         } else {
@@ -84,17 +85,17 @@ function showMessage({type,content,time, fromto}) {
                     {/** video */}
                     <span><video id="video" controls src={content}></video></span><br></br>
                     {/** time */}
-                    <span id="time">{time}</span>
+                    <span id="time">{time} | {date}</span>
                 </div>
             )
         }
     }
 }
 
-function Message({type,content,time, fromto}) {    
+function Message({type, content, time, date, fromto}) {    
     return (
         (<div>
-            {showMessage({type,content,time, fromto})}
+            {showMessage({type, content, time, date, fromto})}
         </div>) 
     );
 }

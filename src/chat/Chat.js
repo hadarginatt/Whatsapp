@@ -21,7 +21,7 @@ function showChat(username, myMessages) {
     } else {
     var messagesFromUser = myMessages.find((value) => { return value.user === username }).message;
     var showMessage = messagesFromUser.map((message, key) => {
-        return <Message type={message.type} content={message.content} time={message.time} fromto={message.fromto} key={key} />
+        return <Message type={message.type} content={message.content} time={message.time} date={message.date} fromto={message.fromto} key={key} />
     })
     return showMessage;
     }
@@ -43,8 +43,9 @@ function sendNewMessage(username, myMessages, setMessages) {
         // insert into the local database.
         var type = "text";
         var time = getTime();
+        var date = getDate();
         var fromto = "to";
-        var newMessage = { type, content, time, fromto };
+        var newMessage = { type, content, time, date, fromto };
 
         //insert into local data the new data.
 
@@ -74,8 +75,9 @@ function addNewAudioMessage(username, myMessages, setMessages, userAudioBlob, se
     var type = "audio";
     var content = userAudioBlob;
     var time = getTime();
+    var date = getDate();
     var fromto = "to";
-    var newMessage = { type, content, time, fromto };
+    var newMessage = { type, content, time, date, fromto };
 
     //insert into local data the new data.
     var newUserMessages = myMessages;
@@ -98,8 +100,9 @@ function addNewImageOrVideo(username, myMessages, setMessages, input, type) {
     // insert into the local database.
     var content = input;
     var time = getTime();
+    var date = getDate();
     var fromto = "to";
-    var newMessage = { type, content, time, fromto };
+    var newMessage = { type, content, time, date, fromto };
 
     //insert into local data the new data.
     //console.log("before in adding image:" + JSON.stringify(myMessages));
@@ -279,6 +282,22 @@ function getTime() {
     }
     var time = hours + ":" + minutes;
     return time;
+}
+
+//represents the current date when sending a new message.
+function getDate() {
+    var today = new Date();
+    var day = today.getDate()
+    if (day < 10) {
+        day = "0" + day
+    }
+    var month = today.getMonth() + 1
+    if (month < 10) {
+        month = "0" + month;
+    }
+    var date = day + "/" + month + "/" + today.getFullYear();
+
+    return date;
 }
 
 

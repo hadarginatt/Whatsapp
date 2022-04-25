@@ -157,7 +157,7 @@ function isValid(dataBase) {
 {/**
 returns the component for dispaly and update the database with the new user.
  */}
-function Register({ dataBase, setDataBase }) {
+function Register({ setUserConnected, dataBase, setDataBase }) {
 
     const [file, setFile] = useState();
     //created a path to the location by navigae. 
@@ -176,9 +176,11 @@ function Register({ dataBase, setDataBase }) {
             //update the new user in the database.
             dataBase.push({ username: name, password: pass, nickName: nickname, img: img, messages: [] })
             setDataBase(dataBase.concat([]))
+            // set the name of the user of connected
+            setUserConnected(name);
 
-            //change the  locations state of login (now is null).
-            shareDataBaseUsers('/', { state: dataBase });
+            //change the locations state of login (now is null).
+            shareDataBaseUsers('/chat', { state: dataBase });
         }
     }
     
