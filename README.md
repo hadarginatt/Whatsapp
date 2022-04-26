@@ -4,12 +4,18 @@
    Noa Eitan , Id: 316222777
    Hadar Ginatt , Id: 207542663
     
-   # Relevant Packages:              
+   # Relevant Packages:
+   
    react@12.1.4
+   
    bootstrap@5.1.3
+   
    jquery@3.6.0
+   
    react-bootstrap@2.2.3
+   
    react-dom@18.0.0
+   
    react-router-dom@6.3.0
 
         
