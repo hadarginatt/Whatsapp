@@ -16,14 +16,14 @@ function App() {
     setnameConnected(newName)
   }
 {/** the state of the database for refreshment of the data*/}
-  var [dataBase, setDataBase] = useState(databaseusers)
+  var [dataBase, setDataBase] = useState([])
 
   useEffect(async () => {
-    const res = await fetch('http://localhost:5022/api/contactsController/GetUsers');
-    const data = await res.json;
+    const res = await fetch('http://localhost:5022/api/contacts/GetUsers');
+    const data = await res.json();
     setDataBase(data);
     console.log(data);
-  })
+  }, []);
 
 
   return (
