@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './login/Login'
 import Register from './register/Register'
 import Chat from './chat/Chat'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import databaseusers from './databaseusers'
 
 
@@ -17,6 +17,13 @@ function App() {
   }
 {/** the state of the database for refreshment of the data*/}
   var [dataBase, setDataBase] = useState(databaseusers)
+
+  useEffect(async () => {
+    const res = await fetch('http://localhost:5022/api/contactsController/GetUsers');
+    const data = await res.json;
+    setDataBase(data);
+    console.log(data);
+  })
 
 
   return (
