@@ -128,7 +128,7 @@ function showUsers(nameConnected, setUserChat, contacts) {
         var date = contact.lastdate;
         var img = newUserImg
         var nickname = contact.name;
-        return <div onClick={() => {setUserChat(contact.name); updateMessages(nameConnected); updateContacts(nameConnected);}}
+        return <div onClick={() => {setUserChat(contact.id); updateMessages(nameConnected); updateContacts(nameConnected);}}
         key={key}><UserChat nickName={nickname} time={time} date={date} lastMessage={lastMessage}
         img={img} key={key} /></div>
     })

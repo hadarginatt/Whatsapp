@@ -28,8 +28,11 @@ export function getChats() {
 }
 
 export function getContacts() {
-    console.log("return:" ,localDB.contacts);
     return localDB.contacts;
+}
+
+export function getNickNameContact(name) {
+    return localDB.contacts.find((value) => value.id === name).name;
 }
 
 
