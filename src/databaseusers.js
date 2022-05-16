@@ -1,3 +1,8 @@
+import axios from 'axios';
+
+
+
+
 var localDB = {
     UserDetails : {
         username: '',
@@ -54,5 +59,29 @@ export const updateContacts = async function(nameConnected, setContacts) {
             setContacts(localDB.contacts);
         })
 }
+
+
+export const addUserToDB = async (setDataBase, username, password, nickname, server) => {
+    
+    // add other server
+    var myResponse = await axios.post(
+        'http://localhost:5022/api/contacts/AddUser',
+        {username : username, password: password, nickname : nickname, server: server },
+        { withCredentials: true},
+    )
+    // const data = myResponse.data
+    //const data = await fetchContacts();
+    //setDataBase(data);
+    //console.log(data);
+   
+}
+
+
+export const getDB = async function(setDataBase) {
+    const res = await fetch('http://localhost:5022/api/contacts/GetUsers');
+    const data = await res.json();
+    setDataBase(data);
+    console.log(data);  
+    }
 
 

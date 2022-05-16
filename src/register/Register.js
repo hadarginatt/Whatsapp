@@ -2,6 +2,46 @@ import './Register.css'
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import logo from '../chat/logo.jpeg'
+import axios from 'axios';
+import {addUserToDB, getDB} from '../databaseusers'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// //username, password, nickname, server
+//  const addUserToDB = async function(setDataBase,username, password, nickname, server) {
+//     let body= JSON.stringify({username: username, password: password, nickname: nickname, server: server})
+
+//     const res = fetch('http://localhost:5022/api/contacts/AddUser', 
+//         {
+//             method: "POST",
+//             headers: { 'Content-Type': 'application/json' },
+//             mode: "no-cors",
+//             body: body
+//         }
+//     ).then(response => response.json())
+//     .then(data => {
+//         console.log(data);
+//     });
+    //const data = await res.json();
+    //setDataBase(data);
+   // console.log(data);  
+//}
+
+
+
 
 {/**
 the function checks that all the parameters of the registration process are valid.
@@ -9,7 +49,17 @@ in case that one of the parameters invalid - asks the user to change the relevan
 in addition - checks if the user is not signed in already.
  */}
 
-function isValid(dataBase) {
+function isValid(dataBase, setDataBase) {
+
+    //fetch  setdatabase
+    // check if there a person already
+     getDB(setDataBase);
+     
+
+
+
+
+
     // save the data from the input form.
     var name = document.getElementById("inputUserName").value;
     var pass = document.getElementById("inputPassword").value;
@@ -168,14 +218,30 @@ function Register({ setUserConnected, dataBase, setDataBase }) {
     }
 
     function Upload() {
-        if (isValid(dataBase)) {
+        if (isValid(dataBase, setDataBase)) {
+
+            
             var name = document.getElementById("inputUserName").value;
             var pass = document.getElementById("inputPassword").value;
             var nickname = document.getElementById("inputNickname").value;
             var img = URL.createObjectURL(document.getElementById('inputimg').files[0])
+            //var img = "URL.createObjectURL(document.getElementById('inputimg').files[0])"
+
             //update the new user in the database.
-            dataBase.push({ username: name, password: pass, nickName: nickname, img: img, messages: [] })
-            setDataBase(dataBase.concat([]))
+
+            //if the user not 
+            
+
+            //username, password, nickname, server
+           
+            var server = "http://localhost:5022/"
+            addUserToDB(setDataBase,name, pass, nickname,server);
+
+            // delete this two line 
+            // add user to the api - add user method from the api
+            // activate get user from the api
+            //dataBase.push({ username: name, password: pass, nickName: nickname, img: img, messages: [] })
+            //setDataBase(dataBase.concat([]))
             // set the name of the user of connected
             setUserConnected(name);
 
