@@ -5,7 +5,6 @@ import Login from './login/Login'
 import Register from './register/Register'
 import Chat from './chat/Chat'
 import { useEffect, useState } from 'react'
-import databaseusers from './databaseusers'
 
 
 
@@ -34,7 +33,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Login setUserConnected={setUserConnected} userName={nameConnected} dataBase={dataBase} />}></Route>
             <Route path="/register" element={<Register setUserConnected={setUserConnected} dataBase={dataBase} setDataBase={setDataBase} />}></Route>
-            <Route path="/chat" element={<Chat nameConnected={nameConnected} dataBase={dataBase} />}></Route>
+            <Route path="/chat" element={<Chat nameConnected={nameConnected} dataBase={dataBase} setDataBase={setDataBase}/>}></Route>
           </Routes>
         </BrowserRouter>
       </div>

@@ -1,16 +1,20 @@
 import './Login.css'
 import { useLocation, useNavigate } from 'react-router-dom';
-import databaseusers from '../databaseusers';
 
 
 {/**
 the function checks that all user parameters inserted correctly in the Login form.
  */}
-function isValidLogin(setUserConnected, userName, navigate) {
+async function isValidLogin(setUserConnected, userName, navigate) {
     var name = document.getElementById("userName").value;
     var pass = document.getElementById("password").value;
     var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
     alertPlaceholder.innerHTML = ""
+
+    // get the user that registerd to this server
+    const res = await fetch('http://localhost:5022/api/contacts/GetUsers');
+    const data = await res.json();
+    console.log(data);
 
     //in case of empty fields username or password popup alert message.
     if (name == "" || name == null || pass == "" || pass == null) {
@@ -21,7 +25,7 @@ function isValidLogin(setUserConnected, userName, navigate) {
         alertPlaceholder.append(wrapper)
 
         //in case all login parameters are valid. 
-    } else if (databaseusers.find((value) => { return value.username === name && value.password === pass })) {
+    } else if (data.find((value) => { return value.username === name && value.password === pass })) {
         // change the state of the name to connected.
         setUserConnected(name);
         // go to the chat page.
@@ -41,7 +45,7 @@ function isValidLogin(setUserConnected, userName, navigate) {
 {/**
 returns the Login page and fields for input for dispaly.
  */}
-function Login({ setUserConnected, userName, dataBase }) {
+function Login({ setUserConnected, userName }) {
     // the way to acces the location sharedData.
     const sharedData = useLocation();
     const navigate = useNavigate()
@@ -65,7 +69,7 @@ function Login({ setUserConnected, userName, dataBase }) {
                     </div>
                     <div id="liveAlertPlaceholder"></div>
                     {/**checks if the login is valid*/}
-                    <button onClick={() => { isValidLogin(setUserConnected, userName, navigate) }} type="button"
+                    <button onClick={async () => { await isValidLogin(setUserConnected, userName, navigate) }} type="button"
                         className="btn btn-primary" id="liveAlertBtn">Login</button>
                 </div>
             </div>

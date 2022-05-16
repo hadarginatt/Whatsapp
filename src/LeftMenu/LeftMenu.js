@@ -1,8 +1,11 @@
 import './LeftMenu.css'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import UserChat from '../userchat/UserChat';
 import newUserImg from '../newUser.png'
 import { Modal} from 'react-bootstrap';
+import {updateMessages, updateContacts, getNickName, getChats, getContacts} from '../databaseusers'
+
+
 
 
 {/**the function adds a new user to the left menu.
@@ -56,83 +59,85 @@ function addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, dataB
 
 }
 
-
 // the messages that the user connected with.
-function LeftMenu({ nameConnected, myMessages, setUserChat, setMyMessages, dataBase }) {
+function LeftMenu({ nameConnected, setUserChat, myMessages, setMyMessages, dataBase, setDataBase }) {
 
-    var img = dataBase.find((value) => { return value.username === nameConnected }).img
-    var nickname = dataBase.find((value) => { return value.username === nameConnected }).nickName
+    const [contacts, setContacts] = useState([])
+    useEffect(async () => {
+        updateContacts(nameConnected, setContacts)
+        updateMessages(nameConnected, setMyMessages)
+    }, []);
+    
+    // DO A METHOD API THAT GIVE ME THE NICKNAME
     const [showModalAddUser, setShowModalUser] = useState(false)
 
     return (
-        <div id="leftmenu" className="leftmenu d-flex card flex-column">
-            <div className='leftmenuheader row d-flex flex-row card'>
 
+        <div id="leftmenu" className="leftmenu d-flex card flex-column">
+
+            <div className='leftmenuheader row d-flex flex-row card'>
                 <div>
                     <button id="addUserButton" type="button" className="col btn-lg bi bi-person-plus sarch" onClick={function (e) { setShowModalUser(true) }}>
                     </button>
-                    <img id="userImg" className="col" src={img} alt="..."></img>
-                    <span id="nameConnected" className="col mb-3">{nickname}</span>
+
+                    <img id="userImg" className="col" src={newUserImg} alt="..."></img>
+
+                    <span id="nameConnected" className="col mb-3">{getNickName()}</span>
                 </div>
 
-                    {/** Add New User Modal */}
 
-                    <Modal show={showModalAddUser}>
-                        <Modal.Header>
-                            <h5 className="modal-title" id="exampleModalLabel1">Add new chat</h5>
-                            <button onClick={function (e) { setShowModalUser(false) }} type="button" className="btn-close"></button>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <input id="usernameInput" className="form-control form-control-lg" type="text" placeholder="Enter user name"></input>
-                            <div id="errorMessage"></div>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <button onClick={function (e) { setShowModalUser(false) }} type="button" className="btn btn-secondary">Close</button>
-                            <button onClick={function (e) { addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, dataBase, setShowModalUser) }} type="button" className="btn btn-primary">Add new chat</button>
-                        </Modal.Footer>
-                    </Modal>
- 
+                {/** Add New User Modal */}
+
+                <Modal show={showModalAddUser}>
+                    <Modal.Header>
+                        <h5 className="modal-title" id="exampleModalLabel1">Add new chat</h5>
+                        <button onClick={function (e) { setShowModalUser(false) }} type="button" className="btn-close"></button>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <input id="usernameInput" className="form-control form-control-lg" type="text" placeholder="Enter user name"></input>
+                        <div id="errorMessage"></div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <button onClick={function (e) { setShowModalUser(false) }} type="button" className="btn btn-secondary">Close</button>
+                        <button onClick={function (e) { addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, dataBase, setShowModalUser) }} type="button" className="btn btn-primary">Add new chat</button>
+                    </Modal.Footer>
+                </Modal>
             </div>
-            
- 
             <div className='leftmenuusers row d-flex flex-column'>
-                {showUsers(setUserChat, myMessages, dataBase)}
+                {showUsers(nameConnected, setUserChat, contacts)}
             </div>
-
         </div>
     );
 }
-// taking the setUserChat parameters.
-function showUsers(setUserChat, myMessages, dataBase) {
-    if (myMessages.length == 0) {
+
+
+function showUsers(nameConnected, setUserChat, contacts) {
+    console.log(contacts);
+    if (contacts.length === 0) {
         return <div id="noUsers">No chats yet.</div>
     }
-    var addUser = myMessages.map((message, key) => {
-        var lastMessage = message.message[(message.message).length - 1].type
-        if (lastMessage != null && lastMessage === "text") {
-            lastMessage = message.message[(message.message).length - 1].content
-            // if the message is longer than 20, slice it
-            if (lastMessage.length > 20)
-            lastMessage = lastMessage.slice(0, 20) + "..."
-        }
-        var name = message.user
-        var time = message.message[(message.message).length - 1].time
-        var date = message.message[(message.message).length - 1].date
-        var userDetails = dataBase.find((value) => { return value.username === name })
+    var addUser = contacts.map((contact, key) => {
+        console.log("contact:", contact);
+        var lastMessage = contact.last;
+        var name = contact.id;
+        // SPLIT DATE AND TIME
+        var time = contact.lastdate;
+        var date = contact.lastdate;
         var img = newUserImg
-        if (userDetails) {
-            img = userDetails.img
-        }
-        var nickName = userDetails.nickName
-        return <div onClick={() => setUserChat(message.user)} key={key}><UserChat nickName={nickName}
-            time={time} date={date} lastMessage={lastMessage} img={img} key={key} /></div>
+        var nickname = contact.name;
+        return <div onClick={() => {setUserChat(contact.name); updateMessages(nameConnected); updateContacts(nameConnected);}}
+        key={key}><UserChat nickName={nickname} time={time} date={date} lastMessage={lastMessage}
+        img={img} key={key} /></div>
     })
     return addUser;
 }
 
 
-
-
 export default LeftMenu;
+
+
+
+
+
 
 
