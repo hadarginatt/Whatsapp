@@ -7,19 +7,6 @@ import {addUserToDB, getDB} from '../databaseusers'
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // //username, password, nickname, server
 //  const addUserToDB = async function(setDataBase,username, password, nickname, server) {
 //     let body= JSON.stringify({username: username, password: password, nickname: nickname, server: server})

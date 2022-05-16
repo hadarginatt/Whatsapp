@@ -36,9 +36,8 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
                         <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages}/>
                         </div>
                     <div id="mainScreen" className="col d-flex card flex-column">
-                    {/** 
-                    <MainScreen user={user} dataBase={dataBase} myMessages={myMessages} setMyMessages={setMyMessages} />
-                    */}
+
+                    <MainScreen nameConnected={nameConnected} user={user} dataBase={dataBase} myMessages={myMessages} setMyMessages={setMyMessages} />
                     </div>
                 </div>
             </div>

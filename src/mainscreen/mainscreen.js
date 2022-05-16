@@ -4,23 +4,23 @@ import Recorder from '../recorder/Recorder'
 import { Modal, ModalBody, ModalHeader } from 'react-bootstrap';
 import logo2 from '../chat/logo2.jpeg'
 import { useEffect, useRef, useState } from 'react';
-import {updateMessages, getNickName, getNameConnected} from '../databaseusers'
+import {updateMessages, getNickName, getNameConnected, localDB} from '../databaseusers'
 
 
-function MainScreen({ user, dataBase, myMessages, setMyMessages }) {
+function MainScreen({ nameConnected, user, dataBase, myMessages, setMyMessages }) {
     
     useEffect(async () => {
-        updateMessages(getNameConnected(), setMyMessages)
+        updateMessages(nameConnected, setMyMessages)
     }, []);
 
     // set the scroll of the chat to be always at the last message
-    useEffect(() => {
-        if (user != "" && user != "null") {
-            var x = document.getElementById('chat')
-            x.scrollTop = x.scrollHeight;
-        }
+    // useEffect(() => {
+    //     if (user != "" && user != "null") {
+    //         var x = document.getElementById('chat')
+    //         x.scrollTop = x.scrollHeight;
+    //     }
         
-    });
+    // });
 
     if (user === "" || user === "null") {
         // show only logo
@@ -29,12 +29,15 @@ function MainScreen({ user, dataBase, myMessages, setMyMessages }) {
         return (
             <div id="main" className="col">
                 {showUserProfile(user)}
+                
                 <div id="chat" className="row d-flex flex-column card">
                 {showChat(user, myMessages)}
                 </div>
+                {/** 
                 <div id="screenLimit" className="row d-flex card flex-row">
                 {showTypeArea(user, myMessages, setMyMessages)}
                 </div>
+                */}
             </div>
         )
     }
@@ -46,13 +49,14 @@ function showUserProfile(username) {
     if (username === "" || username === "null") {
         return;
     } else {
-        var nickName = getNickName();
+        //var nickName = localDB.concats.find((value) => value.id === username).name;
         // var img = dataBase.find((value) => { return value.username === username }).img
         return (
             <div id="userNameChat" className="row card d-flex flex-row">
                 <div className="card-body">{/** 
-                    <img id="imgUserChat" src={img}></img>*/}
+                    <img id="imgUserChat" src={img}></img>
                     {nickName}
+                    */}
                 </div>
             </div>
         )
@@ -72,7 +76,9 @@ function showChat(username, myMessages) {
         return;
         // show the relevant chat.
     } else {
-    var messagesFromUser = myMessages.find((value) => { return value.user === username }).message;
+    console.log("from showChat:", myMessages);
+    console.log(username);
+    var messagesFromUser = myMessages.find((value) => { return value.username === username }).messages;
     var showMessage = messagesFromUser.map((message, key) => {
         return <Message content={message.content} created={message.created} sent={message.sent} key={key} />
     })
