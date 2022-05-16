@@ -6,7 +6,7 @@ import { Modal} from 'react-bootstrap';
 import {updateMessages, updateContacts, getNickName} from '../databaseusers'
 
 
-
+//post - send the 
 
 {/**the function adds a new user to the left menu.
 the new user is based on the hardcoded database only */}
