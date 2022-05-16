@@ -3,14 +3,16 @@ import React, { useState, useEffect } from 'react'
 import UserChat from '../userchat/UserChat';
 import newUserImg from '../newUser.png'
 import { Modal} from 'react-bootstrap';
-import {updateMessages, updateContacts, getNickName, getChats, getContacts} from '../databaseusers'
+import {updateMessages, updateContacts, getNickName} from '../databaseusers'
 
 
 
 
 {/**the function adds a new user to the left menu.
 the new user is based on the hardcoded database only */}
-function addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, dataBase, setShowModalUser) {
+function addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, setShowModalUser) {
+    //DELETE
+    var dataBase;
    // console.log("adding")
     var errorMessage = document.getElementById("errorMessage")
     errorMessage.innerHTML = ""
@@ -22,16 +24,16 @@ function addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, dataB
         errorMessage.append(errorHtml)
         return
     }
-    // check if the username is in the dataBase.
+    // // check if the username is in the dataBase.
     var username = document.getElementById("usernameInput").value
     var userDetails = dataBase.find((value) => { return value.username === username })
-    if (!userDetails) {
-        var errorHtml = document.createElement('div')
-        var message = "User name does not exist"
-        errorHtml.innerHTML = "<p><small id='noUserName' className='errorMessages'>" + message + "</small></p>"
-        errorMessage.append(errorHtml)
-        return
-    }
+    // if (!userDetails) {
+    //     var errorHtml = document.createElement('div')
+    //     var message = "User name does not exist"
+    //     errorHtml.innerHTML = "<p><small id='noUserName' className='errorMessages'>" + message + "</small></p>"
+    //     errorMessage.append(errorHtml)
+    //     return
+    // }
     // check if the username is not the user name that allready connected.
     if (nameConnected === username) {
         var errorHtml = document.createElement('div')
@@ -40,27 +42,27 @@ function addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, dataB
         errorMessage.append(errorHtml)
         return
     }
-    // check if the username is alleady exist in chats.
-    if (myMessages.find((value) => { return value.user === username })) {
-        var errorHtml = document.createElement('div')
-        var message = "User is allready exists in chats"
-        errorHtml.innerHTML = "<p><small id='noUserName' className='errorMessages'>" + message + "</small></p>"
-        errorMessage.append(errorHtml)
-        return
-    }
+    // // check if the username is alleady exist in chats.
+    // if (myMessages.find((value) => { return value.user === username })) {
+    //     var errorHtml = document.createElement('div')
+    //     var message = "User is allready exists in chats"
+    //     errorHtml.innerHTML = "<p><small id='noUserName' className='errorMessages'>" + message + "</small></p>"
+    //     errorMessage.append(errorHtml)
+    //     return
+    // }
 
-    // adding the user to the database (to the messages of this user who connected).
-    var addToDB = [{ user: username, message: [{}] }]
-    setMyMessages(myMessages.concat(addToDB))
-    //change the window of the chat to be the window with this new username.
-    setUserChat(username)
-    document.getElementById("usernameInput").value = ""
-    setShowModalUser(false)
+    // // adding the user to the database (to the messages of this user who connected).
+    // var addToDB = [{ user: username, message: [{}] }]
+    // setMyMessages(myMessages.concat(addToDB))
+    // //change the window of the chat to be the window with this new username.
+    // setUserChat(username)
+    // document.getElementById("usernameInput").value = ""
+    // setShowModalUser(false)
 
 }
 
 // the messages that the user connected with.
-function LeftMenu({ nameConnected, setUserChat, myMessages, setMyMessages, dataBase, setDataBase }) {
+function LeftMenu({ nameConnected, setUserChat, myMessages, setMyMessages}) {
 
     const [contacts, setContacts] = useState([])
     useEffect(async () => {
@@ -99,7 +101,8 @@ function LeftMenu({ nameConnected, setUserChat, myMessages, setMyMessages, dataB
                     </Modal.Body>
                     <Modal.Footer>
                         <button onClick={function (e) { setShowModalUser(false) }} type="button" className="btn btn-secondary">Close</button>
-                        <button onClick={function (e) { addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, dataBase, setShowModalUser) }} type="button" className="btn btn-primary">Add new chat</button>
+                        <button onClick={function (e) { addNewUser(nameConnected, myMessages, setMyMessages, setUserChat, setShowModalUser) }}
+                        type="button" className="btn btn-primary">Add new chat</button>
                     </Modal.Footer>
                 </Modal>
             </div>

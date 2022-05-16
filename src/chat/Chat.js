@@ -2,7 +2,7 @@ import './Chat.css'
 import LeftMenu from '../LeftMenu/LeftMenu'
 import React, { useState, useEffect } from 'react'
 import MainScreen from '../mainscreen/mainscreen'
-import {updateMessages, updateContacts} from '../databaseusers'
+import {updateMessages} from '../databaseusers'
 
 
 function Chat({ nameConnected, dataBase , setDataBase}) {
@@ -21,7 +21,6 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
     //save the messages of my account.
     const [myMessages, setMyMessages] = useState([]);
     useEffect(async () => {
-        updateContacts(nameConnected, null)
         updateMessages(nameConnected, setMyMessages)
     }, []);
 
@@ -34,13 +33,11 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
                     {/**side screen */}
                     {/**the property param for the child */}
                     <div id="leftMenuchat" className='col-3'>
-                        <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages} dataBase={dataBase} setDataBase={setDataBase} />
+                        <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages}/>
                         </div>
-                    {/**main screen 
                     <div id="mainScreen" className="col d-flex card flex-column">
                     <MainScreen user={user} dataBase={dataBase} myMessages={myMessages} setMyMessages={setMyMessages} />
                     </div>
-                    */}
                 </div>
             </div>
         </div>
