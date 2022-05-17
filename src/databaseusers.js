@@ -94,7 +94,7 @@ export const getDB = async function(setDataBase) {
     
         // add other server
         var myResponse = await axios.post(
-            'http://localhost:5022/api/contacts/AddNewContact/' + nameConnected,
+            'http://localhost:5022/api/contacts/' + nameConnected,
             {username:username, password: "", nickname: nickname, server: server},
             { withCredentials: true},
         )

@@ -46,13 +46,13 @@ async function addNewUser(setContacts, nameConnected, myMessages, setMyMessages,
         return
     }
     // // check if the username is alleady exist in chats.
-    if (myMessages.find((value) => { return value.username === username && value.server === server})) {
-        var errorHtml = document.createElement('div')
-        var message = "User is allready exists in chats"
-        errorHtml.innerHTML = "<p><small id='noUserName' className='errorMessages'>" + message + "</small></p>"
-        errorMessage.append(errorHtml)
-        return
-    }
+    // if (myMessages.find((value) => { return value.username === username && value.server === server})) {
+    //     var errorHtml = document.createElement('div')
+    //     var message = "User is allready exists in chats"
+    //     errorHtml.innerHTML = "<p><small id='noUserName' className='errorMessages'>" + message + "</small></p>"
+    //     errorMessage.append(errorHtml)
+    //     return
+    // }
 
     // adding the user to the database (to the messages of this user who connected).
     //var addToDB = [{ user: username, message: [{}] }]
