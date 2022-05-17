@@ -10,7 +10,7 @@ import {updateMessages, updateContacts, getNickName, addUserToChat} from '../dat
 
 {/**the function adds a new user to the left menu.
 the new user is based on the hardcoded database only */}
-function addNewUser(setContacts, nameConnected, myMessages, setMyMessages, setUserChat, setShowModalUser) {
+function addNewUser(setContacts, nameConnected, myMessages, setMyMessages, setUserChat, setShowModalUser, setNickNameUserChat) {
     //DELETE
     var dataBase;
    // console.log("adding")
@@ -58,15 +58,14 @@ function addNewUser(setContacts, nameConnected, myMessages, setMyMessages, setUs
     //var addToDB = [{ user: username, message: [{}] }]
     //setMyMessages(myMessages.concat(addToDB))
     //change the window of the chat to be the window with this new username.
-    setUserChat(username)
+    
+    addUserToChat(nameConnected, setContacts, setMyMessages, username, "", nickName, server, setNickNameUserChat, setUserChat);
     document.getElementById("usernameInput").value = ""
     setShowModalUser(false)
-
-    addUserToChat(nameConnected, setContacts, setMyMessages, username, "", nickName, server);
 }
 
 // the messages that the user connected with.
-function LeftMenu({ nameConnected, setUserChat, myMessages, setMyMessages}) {
+function LeftMenu({ nameConnected, setUserChat, myMessages, setMyMessages, setNickNameUserChat}) {
 
     const [contacts, setContacts] = useState([])
     useEffect(async () => {
@@ -107,20 +106,19 @@ function LeftMenu({ nameConnected, setUserChat, myMessages, setMyMessages}) {
                     </Modal.Body>
                     <Modal.Footer>
                         <button onClick={function (e) { setShowModalUser(false) }} type="button" className="btn btn-secondary">Close</button>
-                        <button onClick={function (e) { addNewUser(setContacts, nameConnected, myMessages, setMyMessages, setUserChat, setShowModalUser) }}
+                        <button onClick={function (e) { addNewUser(setContacts, nameConnected, myMessages, setMyMessages, setUserChat, setShowModalUser, setNickNameUserChat) }}
                         type="button" className="btn btn-primary">Add new chat</button>
                     </Modal.Footer>
                 </Modal>
             </div>
             <div className='leftmenuusers row d-flex flex-column'>
-                {showUsers(nameConnected, setUserChat, contacts)}
+                {showUsers(nameConnected, setUserChat, contacts, setContacts, setMyMessages, setNickNameUserChat)}
             </div>
         </div>
     );
 }
 
-
-function showUsers(nameConnected, setUserChat, contacts) {
+function showUsers(nameConnected, setUserChat, contacts, setContacts, setMyMessages, setNickNameUserChat) {
     console.log(contacts);
     if (contacts.length === 0) {
         return <div id="noUsers">No chats yet.</div>
@@ -134,7 +132,7 @@ function showUsers(nameConnected, setUserChat, contacts) {
         var date = contact.lastdate;
         var img = newUserImg
         var nickname = contact.name;
-        return <div onClick={() => {setUserChat(contact.id); updateMessages(nameConnected); updateContacts(nameConnected);}}
+        return <div onClick={() => {setUserChat(contact.id); setNickNameUserChat(contact.name); updateMessages(nameConnected, setMyMessages); updateContacts(nameConnected, setContacts);}}
         key={key}><UserChat nickName={nickname} time={time} date={date} lastMessage={lastMessage}
         img={img} key={key} /></div>
     })

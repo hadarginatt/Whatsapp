@@ -72,6 +72,7 @@ export const addUserToDB = async (setDataBase, username, password, nickname, ser
         {username : username, password: password, nickname : nickname, server: server },
         { withCredentials: true},
     )
+    
     // const data = myResponse.data
     //const data = await fetchContacts();
     //setDataBase(data);
@@ -89,7 +90,7 @@ export const getDB = async function(setDataBase) {
 
 
 
-    export const addUserToChat = async (nameConnected, setContacts, setMyMessages, username, password, nickname, server) => {
+    export const addUserToChat = async (nameConnected, setContacts, setMyMessages, username, password, nickname, server, setNickNameUserChat, setUserChat) => {
     
         // add other server
         var myResponse = await axios.post(
@@ -97,9 +98,13 @@ export const getDB = async function(setDataBase) {
             {username:username, password: "", nickname: nickname, server: server},
             { withCredentials: true},
         )
+        .then(() => {updateMessages(nameConnected, setMyMessages)})
+            .then(() => {updateContacts(nameConnected, setContacts);})
+            .then(() => {setNickNameUserChat(nickname);})
+            .then(() => {setUserChat(username);})
         //const data = myResponse.data
         //const data = await fetchContacts();
-        updateMessages(nameConnected, setMyMessages);
-        updateContacts(nameConnected, setContacts);
+        //console.log("nick at: add user", nickname);
+        
     }
 

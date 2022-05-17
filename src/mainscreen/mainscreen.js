@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import {updateMessages, getNickName, getNameConnected, getNickNameContact} from '../databaseusers'
 
 
-function MainScreen({ nameConnected, user, dataBase, myMessages, setMyMessages }) {
+function MainScreen({ nameConnected, user, dataBase, myMessages, setMyMessages, nickNameUserChat }) {
     
     useEffect(async () => {
         updateMessages(nameConnected, setMyMessages)
@@ -28,7 +28,7 @@ function MainScreen({ nameConnected, user, dataBase, myMessages, setMyMessages }
     } else {
         return (
             <div id="main" className="col">
-                {showUserProfile(user)}
+                {showUserProfile(user, nickNameUserChat)}
                 
                 <div id="chat" className="row d-flex flex-column card">
                 {showChat(user, myMessages)}
@@ -45,17 +45,16 @@ function MainScreen({ nameConnected, user, dataBase, myMessages, setMyMessages }
 
 
 
-function showUserProfile(username) {
+function showUserProfile(username, nickNameUserChat) {
     if (username === "" || username === "null") {
         return;
     } else {
-        var nickName = getNickNameContact(username);
         // var img = dataBase.find((value) => { return value.username === username }).img
         return (
             <div id="userNameChat" className="row card d-flex flex-row">
                 <div className="card-body">{/** 
                     <img id="imgUserChat" src={img}></img>*/}
-                    {nickName}
+                    {nickNameUserChat}
                     
                 </div>
             </div>
@@ -76,9 +75,13 @@ function showChat(username, myMessages) {
         return;
         // show the relevant chat.
     } else {
-    console.log("from showChat:", myMessages);
     console.log(username);
-    var messagesFromUser = myMessages.find((value) => { return value.username === username }).messages;
+    var messagesFromUser = myMessages.find((value) => { return value.username === username });
+    console.log("from show chat:", messagesFromUser);
+    if (messagesFromUser === undefined) {
+        return;
+    }
+    messagesFromUser = messagesFromUser.messages;
     var showMessage = messagesFromUser.map((message, key) => {
         return <Message content={message.content} created={message.created} sent={message.sent} key={key} />
     })
