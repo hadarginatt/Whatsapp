@@ -98,10 +98,18 @@ export const getDB = async function(setDataBase) {
             {username:username, password: "", nickname: nickname, server: server},
             { withCredentials: true},
         )
-        .then(() => {updateMessages(nameConnected, setMyMessages)})
-            .then(() => {updateContacts(nameConnected, setContacts);})
-            .then(() => {setNickNameUserChat(nickname);})
-            .then(() => {setUserChat(username);})
+        .then((myResponse) => {
+            if (myResponse.status == 200) {
+                updateMessages(nameConnected, setMyMessages);
+                updateContacts(nameConnected, setContacts);
+                setNickNameUserChat(nickname);
+                setUserChat(username);
+                return true;
+            }
+            else {
+                return false;
+            }})
+            
         //const data = myResponse.data
         //const data = await fetchContacts();
         //console.log("nick at: add user", nickname);

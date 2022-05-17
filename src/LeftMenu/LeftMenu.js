@@ -10,7 +10,7 @@ import {updateMessages, updateContacts, getNickName, addUserToChat} from '../dat
 
 {/**the function adds a new user to the left menu.
 the new user is based on the hardcoded database only */}
-function addNewUser(setContacts, nameConnected, myMessages, setMyMessages, setUserChat, setShowModalUser, setNickNameUserChat) {
+async function addNewUser(setContacts, nameConnected, myMessages, setMyMessages, setUserChat, setShowModalUser, setNickNameUserChat) {
     //DELETE
     var dataBase;
    // console.log("adding")
@@ -59,7 +59,24 @@ function addNewUser(setContacts, nameConnected, myMessages, setMyMessages, setUs
     //setMyMessages(myMessages.concat(addToDB))
     //change the window of the chat to be the window with this new username.
     
-    addUserToChat(nameConnected, setContacts, setMyMessages, username, "", nickName, server, setNickNameUserChat, setUserChat);
+    var result = await addUserToChat(nameConnected, setContacts, setMyMessages, username, "", nickName, server, setNickNameUserChat, setUserChat)
+    // the adding was not successfull
+    // .then((result) => {
+
+    //     } else{
+
+    //     }
+
+    // })
+    if (result === false) {
+        console.log("NOT INNNNNNNNNNNNNn");
+        var errorHtml = document.createElement('div')
+        var message = "Oops. the user is not valid"
+        errorHtml.innerHTML = "<p><small id='notValidUser' className='errorMessages'>" + message + "</small></p>"
+        errorMessage.append(errorHtml)
+        return;
+    }
+    console.log("end");
     document.getElementById("usernameInput").value = ""
     setShowModalUser(false)
 }
