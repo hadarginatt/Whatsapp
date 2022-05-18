@@ -150,3 +150,19 @@ export const getDB = async function(setDataBase) {
         
     // }
 
+    export const checkIfUserInDB = async (setDataBase, username, password, nickname, server) => {
+    
+        // add other server
+        var myResponse = await axios.post(
+            'http://localhost:5022/api/contacts/AddUser',
+            {username : username, password: password, nickname : nickname, server: server },
+            { withCredentials: true},
+        )
+        
+        // const data = myResponse.data
+        //const data = await fetchContacts();
+        //setDataBase(data);
+        //console.log(data);
+       
+    }
+
