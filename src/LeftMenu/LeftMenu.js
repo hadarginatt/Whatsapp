@@ -10,7 +10,7 @@ import {updateMessages, updateContacts, getNickName, addUserToChat} from '../dat
 
 {/**the function adds a new user to the left menu.
 the new user is based on the hardcoded database only */}
-async function addNewUser(setContacts, nameConnected, myMessages, setMyMessages, setUserChat, setShowModalUser, setNickNameUserChat) {
+async function addNewUser(setContacts, nameConnected, myMessages, setMyMessages, setUserChat, setShowModalUser, setNickNameUserChat, connection) {
     //DELETE
     var dataBase;
    // console.log("adding")
@@ -27,16 +27,7 @@ async function addNewUser(setContacts, nameConnected, myMessages, setMyMessages,
         errorMessage.append(errorHtml)
         return
     }
-    // // check if the username is in the dataBase.
     var username = document.getElementById("usernameInput").value
-    // var userDetails = dataBase.find((value) => { return value.username === username })
-    // if (!userDetails) {
-    //     var errorHtml = document.createElement('div')
-    //     var message = "User name does not exist"
-    //     errorHtml.innerHTML = "<p><small id='noUserName' className='errorMessages'>" + message + "</small></p>"
-    //     errorMessage.append(errorHtml)
-    //     return
-    // }
     // check if the username is not the user name that allready connected.
     if (nameConnected === username) {
         var errorHtml = document.createElement('div')
@@ -45,29 +36,8 @@ async function addNewUser(setContacts, nameConnected, myMessages, setMyMessages,
         errorMessage.append(errorHtml)
         return
     }
-    // // check if the username is alleady exist in chats.
-    // if (myMessages.find((value) => { return value.username === username && value.server === server})) {
-    //     var errorHtml = document.createElement('div')
-    //     var message = "User is allready exists in chats"
-    //     errorHtml.innerHTML = "<p><small id='noUserName' className='errorMessages'>" + message + "</small></p>"
-    //     errorMessage.append(errorHtml)
-    //     return
-    // }
-
-    // adding the user to the database (to the messages of this user who connected).
-    //var addToDB = [{ user: username, message: [{}] }]
-    //setMyMessages(myMessages.concat(addToDB))
-    //change the window of the chat to be the window with this new username.
     
-    var result = await addUserToChat(nameConnected, setContacts, setMyMessages, username, "", nickName, server, setNickNameUserChat, setUserChat)
-    // the adding was not successfull
-    // .then((result) => {
-
-    //     } else{
-
-    //     }
-
-    // })
+    var result = await addUserToChat(nameConnected, setContacts, setMyMessages, username, "", nickName, server, setNickNameUserChat, setUserChat, connection)
     if (result === false) {
         console.log("NOT INNNNNNNNNNNNNn");
         var errorHtml = document.createElement('div')
@@ -82,8 +52,7 @@ async function addNewUser(setContacts, nameConnected, myMessages, setMyMessages,
 }
 
 // the messages that the user connected with.
-function LeftMenu({ nameConnected, setUserChat, myMessages, setMyMessages, setNickNameUserChat, contacts, setContacts}) {
-
+function LeftMenu({ nameConnected, setUserChat, myMessages, setMyMessages, setNickNameUserChat, contacts, setContacts, connection}) {
     
     useEffect(async () => {
         updateContacts(nameConnected, setContacts)
@@ -123,7 +92,7 @@ function LeftMenu({ nameConnected, setUserChat, myMessages, setMyMessages, setNi
                     </Modal.Body>
                     <Modal.Footer>
                         <button onClick={function (e) { setShowModalUser(false) }} type="button" className="btn btn-secondary">Close</button>
-                        <button onClick={function (e) { addNewUser(setContacts, nameConnected, myMessages, setMyMessages, setUserChat, setShowModalUser, setNickNameUserChat) }}
+                        <button onClick={function (e) { addNewUser(setContacts, nameConnected, myMessages, setMyMessages, setUserChat, setShowModalUser, setNickNameUserChat, connection) }}
                         type="button" className="btn btn-primary">Add new chat</button>
                     </Modal.Footer>
                 </Modal>

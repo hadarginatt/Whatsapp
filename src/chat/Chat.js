@@ -66,7 +66,7 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
                     {/**side screen */}
                     {/**the property param for the child */}
                     <div id="leftMenuchat" className='col-3'>
-                        <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages} setNickNameUserChat={setNickNameUserChat} contacts={contacts} setContacts={setContacts}/>
+                        <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages} setNickNameUserChat={setNickNameUserChat} contacts={contacts} setContacts={setContacts} connection={connection}/>
                     </div>
 
                     <div id="mainScreen" className="col d-flex card flex-column">

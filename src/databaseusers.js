@@ -94,7 +94,7 @@ export const getDB = async function(setDataBase) {
 
 
 
-    export const addUserToChat = async (nameConnected, setContacts, setMyMessages, username, password, nickname, server, setNickNameUserChat, setUserChat) => {
+    export const addUserToChat = async (nameConnected, setContacts, setMyMessages, username, password, nickname, server, setNickNameUserChat, setUserChat, connection) => {
     
         // add other server
         var myResponse = await axios.post(
@@ -111,11 +111,12 @@ export const getDB = async function(setDataBase) {
                 )
             }
         })
-        .then((myResponse2) => {
+        .then(async (myResponse2) => {
             updateMessages(nameConnected, setMyMessages);
             updateContacts(nameConnected, setContacts);
             setNickNameUserChat(nickname);
             setUserChat(username);
+            await connection.send("Changed");
         })
             
         //const data = myResponse.data

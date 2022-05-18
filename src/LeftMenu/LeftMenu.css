@@ -20,15 +20,16 @@
 }
 
 #userImg{
-    height: 10vh;
+    height: 9vh;
     border-radius: 50%;
+    padding-top: 0%;
 }
 
 #nameConnected{
     padding-left: 2%;
     font-weight: bold;
     font-family:cursive;
-    font-size: 6vh;
+    font-size: 3vw;
     padding-top: 50%;
 }
 
