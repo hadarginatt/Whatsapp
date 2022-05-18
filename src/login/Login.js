@@ -28,21 +28,17 @@ async function isValidLogin(setUserConnected, userName, navigate) {
         wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
         alertPlaceholder.append(wrapper)
     }
+     //in case all login parameters are valid. 
     var data = await checkIfUserInDB(name, pass);
    
-        //in case all login parameters are valid. 
-    // } else if (data.find((value) => { return value.username === name && value.password === pass })) {
        
-    
-
-      
-
-             // change the state of the name to connected.
+        // change the state of the name to connected.
         setUserConnected(name);
         // go to the chat page.
         navigate('/chat', { state: userName })
         }
        
+        // should add validation for bad request
 
         //in case that username or password are invalid.
     // else {
