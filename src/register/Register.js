@@ -52,7 +52,7 @@ function isValid(dataBase, setDataBase) {
     var pass = document.getElementById("inputPassword").value;
     var verifyPass = document.getElementById("inputPassword2").value;
     var nickname = document.getElementById("inputNickname").value;
-    var image = document.getElementById("inputimg").value;
+  //  var image = document.getElementById("inputimg").value;
 
 
     // save div to alerts about errors and initial the div to be without any message.
@@ -74,8 +74,8 @@ function isValid(dataBase, setDataBase) {
     noDigit.innerHTML = ""
     noMatch.innerHTML = ""
     noNickName.innerHTML = ""
-    noImg.innerHTML = ""
-    invalidImg.innerHTML = ""
+   // noImg.innerHTML = ""
+   // invalidImg.innerHTML = ""
     lengthNockName.innerHTML = ""
 
     // the flag will indicate if the parameters in the input are valid.
@@ -167,25 +167,25 @@ function isValid(dataBase, setDataBase) {
     }
 
     //check if there is an input of image.
-    if (image.length === 0) {
-        flag = false;
-        var errorHtml = document.createElement('div')
-        var message = "Please choose profile picture"
-        errorHtml.innerHTML = "<p><small id='noImage' className='errorMessages'>" + message + "</small></p>"
-        noImg.append(errorHtml)
-    }
+    // if (image.length === 0) {
+    //     flag = false;
+    //     var errorHtml = document.createElement('div')
+    //     var message = "Please choose profile picture"
+    //     errorHtml.innerHTML = "<p><small id='noImage' className='errorMessages'>" + message + "</small></p>"
+    //     noImg.append(errorHtml)
+    // }
 
     //check if the image is valid.
-    let allowedExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
-    let type = document.getElementById('inputimg').files[0].type;
+    // let allowedExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
+    // let type = document.getElementById('inputimg').files[0].type;
 
-    if (allowedExtension.indexOf(type) == -1) {
-        flag = false;
-        var errorHtml = document.createElement('div')
-        var message = "wrong type of profile image"
-        errorHtml.innerHTML = "<p><small id='invalidImage' className='errorMessages'>" + message + "</small></p>"
-        invalidImg.append(errorHtml)
-    }
+    // if (allowedExtension.indexOf(type) == -1) {
+    //     flag = false;
+    //     var errorHtml = document.createElement('div')
+    //     var message = "wrong type of profile image"
+    //     errorHtml.innerHTML = "<p><small id='invalidImage' className='errorMessages'>" + message + "</small></p>"
+    //     invalidImg.append(errorHtml)
+    // }
 
     return flag;
 }
@@ -211,7 +211,7 @@ function Register({ setUserConnected, dataBase, setDataBase }) {
             var name = document.getElementById("inputUserName").value;
             var pass = document.getElementById("inputPassword").value;
             var nickname = document.getElementById("inputNickname").value;
-            var img = URL.createObjectURL(document.getElementById('inputimg').files[0])
+            //var img = URL.createObjectURL(document.getElementById('inputimg').files[0])
             //var img = "URL.createObjectURL(document.getElementById('inputimg').files[0])"
 
             //update the new user in the database.
@@ -269,6 +269,7 @@ function Register({ setUserConnected, dataBase, setDataBase }) {
                         <div id="noNickNameAlert" className='alerts'></div>
                         <div id="lengthAlert" className='alerts'></div>
                     </div>
+                     {/*
                     <div className="App">
                         <label>
                         <label htmlFor="inputAddress" className="form-label">Press To Add Profile Picture</label>
@@ -278,6 +279,7 @@ function Register({ setUserConnected, dataBase, setDataBase }) {
                         <div id="emptyImg" className='alerts'></div>
                         <div id="invalidImg" className='alerts'></div>
                     </div>
+                    */}
                     <div className="col form-floating  offset-3">
                         <p>Already registered? <a href='/'>Click here</a> to Login</p>
                     </div>
