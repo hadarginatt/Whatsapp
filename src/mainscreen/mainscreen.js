@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import {updateMessages, addNewMessage} from '../databaseusers'
 
 
-function MainScreen({ nameConnected, user, dataBase, myMessages, setMyMessages, nickNameUserChat }) {
+function MainScreen({ nameConnected, user, dataBase, myMessages, setMyMessages, nickNameUserChat, connection}) {
     
     useEffect(async () => {
         updateMessages(nameConnected, setMyMessages)
@@ -35,7 +35,7 @@ function MainScreen({ nameConnected, user, dataBase, myMessages, setMyMessages, 
                 </div>
 
                 <div id="screenLimit" className="row d-flex card flex-row">
-                {showTypeArea(user, setMyMessages, nameConnected)}
+                {showTypeArea(user, setMyMessages, nameConnected, connection)}
                 </div>
 
             </div>
@@ -92,7 +92,7 @@ function showChat(username, myMessages) {
 
 {/**display the input area for the messages. inlculde sending text, record and attach video/image messages.
  */}
- function showTypeArea(username, setMessages, nameConnected) {
+ function showTypeArea(username, setMessages, nameConnected, connection) {
 
     if (username === "" || username === "null") {
         return;
@@ -100,7 +100,7 @@ function showChat(username, myMessages) {
         return (
             <div id="inputArea" className="input-group mb-3">
                 <div className="input-group-prepend">
-                    <button onClick={function (e) { sendNewMessage(username, setMessages, nameConnected) }} id="sendMessage">
+                    <button onClick={function (e) { sendNewMessage(username, setMessages, nameConnected, connection) }} id="sendMessage">
                         <i className="bi bi-send-fill"></i>
                     </button>
                 </div>
@@ -113,7 +113,7 @@ function showChat(username, myMessages) {
 
 {/**function for adding the new message to the local data base. 
  */}
- function sendNewMessage(username, setMessages, nameConnected) {
+ function sendNewMessage(username, setMessages, nameConnected, connection) {
     //get the new message.
     if (username === "null" || username === "" || document.getElementById("newMessage") === null) {
         return;
@@ -125,20 +125,7 @@ function showChat(username, myMessages) {
     } else {
         // insert into the local database.
         addNewMessage(nameConnected, setMessages, username, content);
-
-
-        // // INSERT INTO DB !!!!!!! WITH FETCH !!!!
-        // var newMessage = { type, content, time, date, fromto };
-
-        // //insert into local data the new data.
-
-        // var newUserMessages = myMessages;
-        // newUserMessages = newUserMessages.find((value) => { return value.user === username }).message;
-        // newUserMessages.push(newMessage);
-        // var newM = myMessages;
-        // newM[username] = newUserMessages;
-        // setMessages(newM.concat([]));
-        //insert into the state of the data.
+        connection.invoke("Changed");
         document.getElementById("newMessage").value = "";
     }
 }

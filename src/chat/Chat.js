@@ -3,6 +3,7 @@ import LeftMenu from '../LeftMenu/LeftMenu'
 import React, { useState, useEffect } from 'react'
 import MainScreen from '../mainscreen/mainscreen'
 import {updateMessages, getNickNameContact} from '../databaseusers'
+import { HubConnectionBuilder, HttpTransportType } from '@microsoft/signalr';
 
 
 function Chat({ nameConnected, dataBase , setDataBase}) {
@@ -12,6 +13,33 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
         window.location.replace("/")
     }
 
+    //save the messages of my account.
+    const [myMessages, setMyMessages] = useState([]);
+
+    // signalR
+    const [ connection, setConnection ] = useState(null);
+    useEffect(() => {
+        updateMessages(nameConnected, setMyMessages)
+        const newConnection = new HubConnectionBuilder()
+            .withUrl('http://localhost:5022/Hubs/MyHub', {skipNegotiation: true,
+            transport: HttpTransportType.WebSockets})
+            .withAutomaticReconnect()
+            .build();
+        setConnection(newConnection);
+    }, []);
+    useEffect(() => {
+        if (connection) {
+            connection.start()
+                .then(() => {
+                    console.log('Connected!');
+                    connection.on('ChangedRecieved', function () {
+                        updateMessages(nameConnected, setMyMessages);
+                    });
+                })
+                //.catch(e => console.log('Connection failed: ', e));
+        }
+    }, [connection]);
+
     // state of the user name that this user wants to talk to him, saved in the parent component.
     const [user, setUser] = useState('null');
     // the nickname of the user that we talk with him
@@ -20,11 +48,10 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
     const setUserChat = (newName) => {
         setUser(newName)
     }
-    //save the messages of my account.
-    const [myMessages, setMyMessages] = useState([]);
-    useEffect(async () => {
-        updateMessages(nameConnected, setMyMessages)
-    }, []);
+    
+    // useEffect(async () => {
+        
+    // }, []);
 
     
     return (
@@ -35,11 +62,11 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
                     {/**side screen */}
                     {/**the property param for the child */}
                     <div id="leftMenuchat" className='col-3'>
-                        <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages} setNickNameUserChat={setNickNameUserChat}/>
+                        <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages} setNickNameUserChat={setNickNameUserChat} connection={connection}/>
                     </div>
 
                     <div id="mainScreen" className="col d-flex card flex-column">
-                        <MainScreen nameConnected={nameConnected} user={user} dataBase={dataBase} myMessages={myMessages} setMyMessages={setMyMessages} nickNameUserChat={nickNameUserChat} />
+                        <MainScreen nameConnected={nameConnected} user={user} dataBase={dataBase} myMessages={myMessages} setMyMessages={setMyMessages} nickNameUserChat={nickNameUserChat} connection={connection}/>
                     </div>
                 </div>
             </div>
