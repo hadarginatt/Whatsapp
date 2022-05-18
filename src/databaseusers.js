@@ -35,6 +35,10 @@ export function getNickNameContact(name) {
     return localDB.contacts.find((value) => value.id === name).name;
 }
 
+export function getServerContact(name) {
+    return localDB.contacts.find((value) => value.id === name).server;
+}
+
 
 export const updateMessages = async function(nameConnected, setMyMessages) {
     await fetch('http://localhost:5022/api/contacts/GetUser/?username=' + nameConnected)
@@ -120,49 +124,41 @@ export const getDB = async function(setDataBase) {
         
     }
 
-    // export const addNewMessage = async (nameConnected, setContacts, setMyMessages, username, password, nickname, server, setNickNameUserChat, setUserChat, content) => {
+    export const addNewMessage = async (nameConnected, setMyMessages, username, content) => {
     
-    //     var myResponse = await axios.post(
-    //         // add to myself
-    //         'http://localhost:5022/api/contacts/' +  username + '/messages',
-    //         {from:nameConnected, to: username, conetnt:content},
-    //         { withCredentials: true},
-    //     )
-    //     .then(async (myResponse) => {
-    //         if (myResponse.status == 200) {
-    //             var myResponse2 = await axios.post(
-    //                 'http://' + server + '/api/invitations',
-    //                 {from:nameConnected, to: username, server:"localhost:5022"},
-    //                 { withCredentials: true},
-    //             )
-    //         }
-    //     })
-    //     .then((myResponse2) => {
-    //         updateMessages(nameConnected, setMyMessages);
-    //         updateContacts(nameConnected, setContacts);
-    //         setNickNameUserChat(nickname);
-    //         setUserChat(username);
-    //     })
-            
-    //     //const data = myResponse.data
-    //     //const data = await fetchContacts();
-    //     //console.log("nick at: add user", nickname);
-        
-    // }
-
-    export const checkIfUserInDB = async (setDataBase, username, password, nickname, server) => {
-    
-        // add other server
         var myResponse = await axios.post(
-            'http://localhost:5022/api/contacts/AddUser',
-            {username : username, password: password, nickname : nickname, server: server },
+            // add to myself
+            'http://localhost:5022/api/contacts/' +  username + '/messages',
+            {from:nameConnected, to: username, content: content},
             { withCredentials: true},
         )
-        
-        // const data = myResponse.data
-        //const data = await fetchContacts();
-        //setDataBase(data);
-        //console.log(data);
-       
+        .then(async (myResponse) => {
+            if (myResponse.status == 200) {
+                var myResponse2 = await axios.post(
+                    'http://' + getServerContact(username) + '/api/transfer',
+                    {from:nameConnected, to: username, content: content},
+                    { withCredentials: true},
+                )
+            }
+        })
+        .then(() => {
+            updateMessages(nameConnected, setMyMessages);
+        })
     }
+
+    // export const checkIfUserInDB = async (setDataBase, username, password, nickname, server) => {
+    
+    //     // add other server
+    //     var myResponse = await axios.post(
+    //         'http://localhost:5022/api/contacts/AddUser',
+    //         {username : username, password: password, nickname : nickname, server: server },
+    //         { withCredentials: true},
+    //     )
+        
+    //     // const data = myResponse.data
+    //     //const data = await fetchContacts();
+    //     //setDataBase(data);
+    //     //console.log(data);
+       
+    // }
 
