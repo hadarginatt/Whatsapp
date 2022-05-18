@@ -146,19 +146,28 @@ export const getDB = async function(setDataBase) {
         })
     }
 
-    // export const checkIfUserInDB = async (setDataBase, username, password, nickname, server) => {
+    export const checkIfUserInDB = async (username, password) => {
     
-    //     // add other server
-    //     var myResponse = await axios.post(
-    //         'http://localhost:5022/api/contacts/AddUser',
-    //         {username : username, password: password, nickname : nickname, server: server },
-    //         { withCredentials: true},
-    //     )
+        // get the response from the server
+        var myLoginResponse = await axios.post(
+            'http://localhost:5022/api/contacts/logInUserCheck',
+            {username : username, password: password},
+            { withCredentials: true},
+        )
         
-    //     // const data = myResponse.data
-    //     //const data = await fetchContacts();
-    //     //setDataBase(data);
-    //     //console.log(data);
+        .then(async (myLoginResponse) => {
+            if (myLoginResponse.status == 200) {
+            }
+        }) 
+    }   
+
+
+        // const data = myLoginResponse.data
+        // console.log(data.status);
+        // return data;
+        //const data = await fetchContacts();
+        //setDataBase(data);
+        //console.log(data);
        
-    // }
+    
 
