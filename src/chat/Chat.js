@@ -2,7 +2,7 @@ import './Chat.css'
 import LeftMenu from '../LeftMenu/LeftMenu'
 import React, { useState, useEffect } from 'react'
 import MainScreen from '../mainscreen/mainscreen'
-import {updateMessages, getNickNameContact} from '../databaseusers'
+import {updateMessages, updateContacts} from '../databaseusers'
 import { HubConnectionBuilder, HttpTransportType } from '@microsoft/signalr';
 
 
@@ -15,10 +15,12 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
 
     //save the messages of my account.
     const [myMessages, setMyMessages] = useState([]);
+    const [contacts, setContacts] = useState([])
 
     // signalR
     const [ connection, setConnection ] = useState(null);
     useEffect(() => {
+        updateContacts(nameConnected, setContacts)
         updateMessages(nameConnected, setMyMessages)
         const newConnection = new HubConnectionBuilder()
             .withUrl('http://localhost:5022/Hubs/MyHub', {skipNegotiation: true,
@@ -33,7 +35,9 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
                 .then(() => {
                     console.log('Connected!');
                     connection.on('ChangedRecieved', function () {
-                        updateMessages(nameConnected, setMyMessages);
+                        console.log("change!");
+                        updateContacts(nameConnected, setContacts)
+                        updateMessages(nameConnected, setMyMessages)
                     });
                 })
                 //.catch(e => console.log('Connection failed: ', e));
@@ -62,11 +66,11 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
                     {/**side screen */}
                     {/**the property param for the child */}
                     <div id="leftMenuchat" className='col-3'>
-                        <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages} setNickNameUserChat={setNickNameUserChat} connection={connection}/>
+                        <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages} setNickNameUserChat={setNickNameUserChat} contacts={contacts} setContacts={setContacts}/>
                     </div>
 
                     <div id="mainScreen" className="col d-flex card flex-column">
-                        <MainScreen nameConnected={nameConnected} user={user} dataBase={dataBase} myMessages={myMessages} setMyMessages={setMyMessages} nickNameUserChat={nickNameUserChat} connection={connection}/>
+                        <MainScreen nameConnected={nameConnected} user={user} dataBase={dataBase} myMessages={myMessages} setMyMessages={setMyMessages} nickNameUserChat={nickNameUserChat} connection={connection} contacts={contacts} setContacts={setContacts}/>
                     </div>
                 </div>
             </div>

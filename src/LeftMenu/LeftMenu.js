@@ -82,9 +82,9 @@ async function addNewUser(setContacts, nameConnected, myMessages, setMyMessages,
 }
 
 // the messages that the user connected with.
-function LeftMenu({ nameConnected, setUserChat, myMessages, setMyMessages, setNickNameUserChat, connection}) {
+function LeftMenu({ nameConnected, setUserChat, myMessages, setMyMessages, setNickNameUserChat, contacts, setContacts}) {
 
-    const [contacts, setContacts] = useState([])
+    
     useEffect(async () => {
         updateContacts(nameConnected, setContacts)
         updateMessages(nameConnected, setMyMessages)

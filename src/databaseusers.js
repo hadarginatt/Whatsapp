@@ -51,7 +51,7 @@ export const updateMessages = async function(nameConnected, setMyMessages) {
             localDB.chats = data.chats;
             console.log(data.chats);
             console.log(localDB.chats);
-            setMyMessages(localDB.chats);
+            setMyMessages(localDB.chats.concat([]));
         })
 }
 
@@ -124,7 +124,7 @@ export const getDB = async function(setDataBase) {
         
     }
 
-    export const addNewMessage = async (nameConnected, setMyMessages, username, content) => {
+    export const addNewMessage = async (nameConnected, setMyMessages, username, content, connection, setContacts) => {
     
         var myResponse = await axios.post(
             // add to myself
@@ -141,8 +141,11 @@ export const getDB = async function(setDataBase) {
                 )
             }
         })
-        .then(() => {
+        .then(async () => {
             updateMessages(nameConnected, setMyMessages);
+            updateContacts(nameConnected, setContacts);
+            console.log("send change!");
+            await connection.send("Changed");
         })
     }
 

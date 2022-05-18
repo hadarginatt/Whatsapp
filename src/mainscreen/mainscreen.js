@@ -4,12 +4,13 @@ import Recorder from '../recorder/Recorder'
 import { Modal, ModalBody, ModalHeader } from 'react-bootstrap';
 import logo2 from '../chat/logo2.jpeg'
 import { useEffect, useRef, useState } from 'react';
-import {updateMessages, addNewMessage} from '../databaseusers'
+import {updateMessages, addNewMessage, updateContacts} from '../databaseusers'
 
 
-function MainScreen({ nameConnected, user, dataBase, myMessages, setMyMessages, nickNameUserChat, connection}) {
+function MainScreen({ nameConnected, user, dataBase, myMessages, setMyMessages, nickNameUserChat, connection, contacts, setContacts}) {
     
     useEffect(async () => {
+        updateContacts(nameConnected, setContacts)
         updateMessages(nameConnected, setMyMessages)
     }, []);
 
@@ -35,7 +36,7 @@ function MainScreen({ nameConnected, user, dataBase, myMessages, setMyMessages, 
                 </div>
 
                 <div id="screenLimit" className="row d-flex card flex-row">
-                {showTypeArea(user, setMyMessages, nameConnected, connection)}
+                {showTypeArea(user, setMyMessages, nameConnected, connection, setContacts)}
                 </div>
 
             </div>
@@ -92,7 +93,7 @@ function showChat(username, myMessages) {
 
 {/**display the input area for the messages. inlculde sending text, record and attach video/image messages.
  */}
- function showTypeArea(username, setMessages, nameConnected, connection) {
+ function showTypeArea(username, setMessages, nameConnected, connection, setContacts) {
 
     if (username === "" || username === "null") {
         return;
@@ -100,7 +101,7 @@ function showChat(username, myMessages) {
         return (
             <div id="inputArea" className="input-group mb-3">
                 <div className="input-group-prepend">
-                    <button onClick={function (e) { sendNewMessage(username, setMessages, nameConnected, connection) }} id="sendMessage">
+                    <button onClick={function (e) { sendNewMessage(username, setMessages, nameConnected, connection, setContacts) }} id="sendMessage">
                         <i className="bi bi-send-fill"></i>
                     </button>
                 </div>
@@ -113,7 +114,7 @@ function showChat(username, myMessages) {
 
 {/**function for adding the new message to the local data base. 
  */}
- function sendNewMessage(username, setMessages, nameConnected, connection) {
+ async function sendNewMessage(username, setMessages, nameConnected, connection, setContacts) {
     //get the new message.
     if (username === "null" || username === "" || document.getElementById("newMessage") === null) {
         return;
@@ -124,8 +125,7 @@ function showChat(username, myMessages) {
         return;
     } else {
         // insert into the local database.
-        addNewMessage(nameConnected, setMessages, username, content);
-        connection.invoke("Changed");
+        addNewMessage(nameConnected, setMessages, username, content, connection, setContacts);
         document.getElementById("newMessage").value = "";
     }
 }
