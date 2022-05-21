@@ -15,6 +15,9 @@ var localDB = {
     contacts: []
 }
 
+
+export var serverConnected = "localhost:5022";
+
 export function getNickName() {
     return localDB.UserDetails.nickname;
 }
@@ -116,7 +119,7 @@ export const getDB = async function(setDataBase) {
             updateContacts(nameConnected, setContacts);
             setNickNameUserChat(nickname);
             setUserChat(username);
-            await connection.send("Changed");
+            await connection.send("Changed", username, server);
         })
             
         //const data = myResponse.data
@@ -126,7 +129,7 @@ export const getDB = async function(setDataBase) {
     }
 
     export const addNewMessage = async (nameConnected, setMyMessages, username, content, connection, setContacts) => {
-    
+        var serverUser = getServerContact(username);
         var myResponse = await axios.post(
             // add to myself
             'http://localhost:5022/api/contacts/' +  username + '/messages',
@@ -136,7 +139,7 @@ export const getDB = async function(setDataBase) {
         .then(async (myResponse) => {
             if (myResponse.status == 200) {
                 var myResponse2 = await axios.post(
-                    'http://' + getServerContact(username) + '/api/transfer',
+                    'http://' + serverUser + '/api/transfer',
                     {from:nameConnected, to: username, content: content},
                     { withCredentials: true},
                 )
@@ -146,7 +149,7 @@ export const getDB = async function(setDataBase) {
             updateMessages(nameConnected, setMyMessages);
             updateContacts(nameConnected, setContacts);
             console.log("send change!");
-            await connection.send("Changed");
+            await connection.send("Changed", username, serverUser);
         })
     }
 

@@ -2,7 +2,7 @@ import './Chat.css'
 import LeftMenu from '../LeftMenu/LeftMenu'
 import React, { useState, useEffect } from 'react'
 import MainScreen from '../mainscreen/mainscreen'
-import {updateMessages, updateContacts} from '../databaseusers'
+import {updateMessages, updateContacts, serverConnected} from '../databaseusers'
 import { HubConnectionBuilder, HttpTransportType } from '@microsoft/signalr';
 
 
@@ -16,6 +16,8 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
     //save the messages of my account.
     const [myMessages, setMyMessages] = useState([]);
     const [contacts, setContacts] = useState([])
+    // state of the user name that this user wants to talk to him, saved in the parent component.
+    const [user, setUser] = useState('null');
 
     // signalR
     const [ connection, setConnection ] = useState(null);
@@ -34,18 +36,21 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
             connection.start()
                 .then(() => {
                     console.log('Connected!');
-                    connection.on('ChangedRecieved', function () {
+                    connection.on('ChangedRecieved', function (username, server) {
                         console.log("change!");
-                        updateContacts(nameConnected, setContacts)
-                        updateMessages(nameConnected, setMyMessages)
+                        console.log("u:", username);
+                        console.log("s:", server);
+                        if ((username == nameConnected) && (server == serverConnected)) {
+                            updateContacts(nameConnected, setContacts);
+                            updateMessages(nameConnected, setMyMessages);
+                        }  
                     });
                 })
                 //.catch(e => console.log('Connection failed: ', e));
         }
     }, [connection]);
 
-    // state of the user name that this user wants to talk to him, saved in the parent component.
-    const [user, setUser] = useState('null');
+    
     // the nickname of the user that we talk with him
     const [nickNameUserChat, setNickNameUserChat] = useState("null");
     // function to inject to the child left menu.
