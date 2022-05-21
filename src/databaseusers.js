@@ -153,7 +153,7 @@ export const getDB = async function(setDataBase) {
         })
     }
 
-    export const checkIfUserInDB = async (username, password) => {
+    export const checkIfUserInDB = async (username, password,Answer, setAnswer) => {
     
         // get the response from the server
         var myLoginResponse = await axios.post(
@@ -163,9 +163,33 @@ export const getDB = async function(setDataBase) {
         )
         
         .then(async (myLoginResponse) => {
+            console.log(myLoginResponse);
             if (myLoginResponse.status == 200) {
+                setAnswer(true);
+                return true;
+                
+                
+                //return Answer
+            }
+            else if(myLoginResponse.status == 400){
+                setAnswer(false);
+                //return Answer;
             }
         }) 
+
+        .catch(async (myLoginResponse) => {
+            console.log("error" ,myLoginResponse);
+            if (myLoginResponse.response.status == 400) {
+                console.log("worllldddd");
+
+                setAnswer(false);
+                return false;
+                
+                
+                //return Answer
+            }
+        })
+        return myLoginResponse;
     }   
 
 

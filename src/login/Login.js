@@ -1,16 +1,21 @@
 import './Login.css'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate} from 'react-router-dom';
+import React, { useState } from "react";
 import {checkIfUserInDB} from '../databaseusers'
+
 
 
 {/**
 the function checks that all user parameters inserted correctly in the Login form.
  */}
-async function isValidLogin(setUserConnected, userName, navigate) {
+ async function isValidLogin(setUserConnected, userName, navigate,Answer, setAnswer) {
     var name = document.getElementById("userName").value;
     var pass = document.getElementById("password").value;
     var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
     alertPlaceholder.innerHTML = ""
+
+    // answer passed to the post request
+    //const [Answer, setAnswer] = useState(true);
 
     // post request for the user
    
@@ -29,25 +34,79 @@ async function isValidLogin(setUserConnected, userName, navigate) {
         alertPlaceholder.append(wrapper)
     }
      //in case all login parameters are valid. 
-    var data = await checkIfUserInDB(name, pass);
+    var feedback = await checkIfUserInDB(name, pass,Answer, setAnswer);
+    //debugger
+    console.log("the feedback is", feedback)
    
-       
+       if(feedback == true){
+        console.log("hellooo from true condition")
         // change the state of the name to connected.
         setUserConnected(name);
         // go to the chat page.
         navigate('/chat', { state: userName })
-        }
-       
-        // should add validation for bad request
-
+       }
         //in case that username or password are invalid.
-    // else {
-    //     var wrapper = document.createElement('div')
-    //     var type = 'warning'
-    //     var message = 'Oops!! User name or Password invalid.'
-    //     wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
-    //     alertPlaceholder.append(wrapper)
-    // }
+     if (feedback == false) {
+        console.log("hellooo from false condition")
+        var wrapper = document.createElement('div')
+        var type = 'warning'
+        var message = 'Oops!! User name or Password invalid.'
+        wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+        alertPlaceholder.append(wrapper)
+    }
+}
+
+
+
+
+
+
+
+// {/**
+// the function checks that all user parameters inserted correctly in the Login form.
+//  */}
+// async function isValidLogin(setUserConnected, userName, navigate) {
+//     var name = document.getElementById("userName").value;
+//     var pass = document.getElementById("password").value;
+//     var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+//     alertPlaceholder.innerHTML = ""
+
+//     // post request for the user
+   
+ 
+//     // // get the user that registerd to this server
+//     // const res = await fetch('http://localhost:5022/api/contacts/GetUsers');
+//     // const data = await res.json();
+//     // console.log(data);
+
+//     //in case of empty fields username or password popup alert message.
+//     if (name == "" || name == null || pass == "" || pass == null) {
+//         var wrapper = document.createElement('div')
+//         var type = 'warning'
+//         var message = 'Oops!! Empty fields! Please enter user name and password.'
+//         wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+//         alertPlaceholder.append(wrapper)
+//     }
+//      //in case all login parameters are valid. 
+//     var data = await checkIfUserInDB(name, pass);
+   
+       
+//         // change the state of the name to connected.
+//         setUserConnected(name);
+//         // go to the chat page.
+//         navigate('/chat', { state: userName })
+//         }
+       
+//         // should add validation for bad request
+
+//         //in case that username or password are invalid.
+//     // else {
+//     //     var wrapper = document.createElement('div')
+//     //     var type = 'warning'
+//     //     var message = 'Oops!! User name or Password invalid.'
+//     //     wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+//     //     alertPlaceholder.append(wrapper)
+//     // }
 
 
 
@@ -58,6 +117,8 @@ function Login({ setUserConnected, userName }) {
     // the way to acces the location sharedData.
     const sharedData = useLocation();
     const navigate = useNavigate()
+    const [Answer, setAnswer] = useState(null);
+  
 
     return (
         <div id="page">
@@ -78,16 +139,16 @@ function Login({ setUserConnected, userName }) {
                     </div>
                     <div id="liveAlertPlaceholder"></div>
                     {/**checks if the login is valid*/}
-                    <button onClick={async () => { await isValidLogin(setUserConnected, userName, navigate) }} type="button"
+                    <button onClick={async () => { await isValidLogin(setUserConnected, userName, navigate,Answer, setAnswer) }} type="button"
                         className="btn btn-primary" id="liveAlertBtn">Login</button>
                 </div>
             </div>
         </div>
     );
 }
-
+ 
 export default Login;
-
+ 
 
 
 
