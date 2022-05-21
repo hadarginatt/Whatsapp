@@ -65,17 +65,18 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
     
     return (
         <div>
+            <span><a href="http://localhost:5069/Rates" id="rate">Rate Us!</a></span>
             <div className="row flex-row" id="header"><p id="namePage">Chats</p></div>
             <div className="container-fluid" id="screen">
                 <div id="chats" className="row card flex-row">
                     {/**side screen */}
                     {/**the property param for the child */}
                     <div id="leftMenuchat" className='col-3'>
-                        <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages} setNickNameUserChat={setNickNameUserChat} contacts={contacts} setContacts={setContacts} connection={connection}/>
+                        <LeftMenu nameConnected={nameConnected} setUserChat={setUserChat} myMessages={myMessages} setMyMessages={setMyMessages} setNickNameUserChat={setNickNameUserChat} contacts={contacts} setContacts={setContacts} connection={connection} />
                     </div>
 
                     <div id="mainScreen" className="col d-flex card flex-column">
-                        <MainScreen nameConnected={nameConnected} user={user} dataBase={dataBase} myMessages={myMessages} setMyMessages={setMyMessages} nickNameUserChat={nickNameUserChat} connection={connection} contacts={contacts} setContacts={setContacts}/>
+                        <MainScreen nameConnected={nameConnected} user={user} dataBase={dataBase} myMessages={myMessages} setMyMessages={setMyMessages} nickNameUserChat={nickNameUserChat} connection={connection} contacts={contacts} setContacts={setContacts} />
                     </div>
                 </div>
             </div>

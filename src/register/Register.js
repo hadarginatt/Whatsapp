@@ -239,6 +239,7 @@ function Register({ setUserConnected, dataBase, setDataBase }) {
     
     return (
         <div>
+        <span><a href="http://localhost:5069/Rates" id="rate">Rate Us!</a></span>
         <div className="row flex-row" id="headerRegister"><p id="namePageRegister">Register</p></div>
             <div id="registerForm" className="offset-2">
                 <form className="row g-2">

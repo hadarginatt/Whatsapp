@@ -122,7 +122,8 @@ function Login({ setUserConnected, userName }) {
 
     return (
         <div id="page">
-        <div className="row flex-row" id="headerLogin"><p id="namePageLogin">Login</p></div>
+            <span><a href="http://localhost:5069/Rates" id="rate">Rate Us!</a></span>
+            <div className="row flex-row" id="headerLogin"><p id="namePageLogin">Login</p></div>
             <div id="inputsLogin" className="container-fluid">
                 <div className="row col-4 offset-4 ">
                     <div className="form-floating mb-3">
@@ -139,7 +140,7 @@ function Login({ setUserConnected, userName }) {
                     </div>
                     <div id="liveAlertPlaceholder"></div>
                     {/**checks if the login is valid*/}
-                    <button onClick={async () => { await isValidLogin(setUserConnected, userName, navigate,Answer, setAnswer) }} type="button"
+                    <button onClick={async () => { await isValidLogin(setUserConnected, userName, navigate, Answer, setAnswer) }} type="button"
                         className="btn btn-primary" id="liveAlertBtn">Login</button>
                 </div>
             </div>

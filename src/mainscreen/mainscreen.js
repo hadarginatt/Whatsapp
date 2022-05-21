@@ -3,6 +3,7 @@ import Message from '../message/Message'
 import Recorder from '../recorder/Recorder'
 import { Modal, ModalBody, ModalHeader } from 'react-bootstrap';
 import logo2 from '../chat/logo2.jpeg'
+import newUserImg from '../newUser.png'
 import { useEffect, useRef, useState } from 'react';
 import {updateMessages, addNewMessage, updateContacts} from '../databaseusers'
 
@@ -53,8 +54,8 @@ function showUserProfile(username, nickNameUserChat) {
         // var img = dataBase.find((value) => { return value.username === username }).img
         return (
             <div id="userNameChat" className="row card d-flex flex-row">
-                <div className="card-body">{/** 
-                    <img id="imgUserChat" src={img}></img>*/}
+                <div className="card-body">
+                    <img id="imgUserChat" src={newUserImg}></img>
                     {nickNameUserChat}
                     
                 </div>

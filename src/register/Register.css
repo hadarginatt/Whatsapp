@@ -33,3 +33,8 @@ body{
 #uploadImage:hover{
     cursor: pointer;
 }
+
+#rate{
+    margin-left: 2%;
+    font-size:3vh;
+  }

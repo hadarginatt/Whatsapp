@@ -25,4 +25,8 @@ body{
   transform: translate(-50%, -50%);
 }
 
+#rate{
+  margin-left: 2%;
+  font-size:3vh;
+}
 
