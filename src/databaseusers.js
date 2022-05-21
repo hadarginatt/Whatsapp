@@ -44,7 +44,7 @@ export function getServerContact(name) {
 
 
 export const updateMessages = async function(nameConnected, setMyMessages) {
-    await fetch('http://'+ serverConnected +'/api/contacts/GetUser/?username=' + nameConnected)
+    await fetch('http://'+ serverConnected +'/api/contacts/GetUser/' + nameConnected)
         .then(response => response.json())
         .then(data => {
             localDB.UserDetails.username = data.username;
@@ -61,7 +61,7 @@ export const updateMessages = async function(nameConnected, setMyMessages) {
 
 // save the contacts of the user that connected
 export const updateContacts = async function(nameConnected, setContacts) {
-    await fetch('http://'+ serverConnected +'/api/contacts?name=' + nameConnected)
+    await fetch('http://'+ serverConnected +'/api/contacts/' + nameConnected)
         .then(response => response.json())
         .then(data => {
             localDB.contacts = data;
