@@ -25,7 +25,7 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
         updateContacts(nameConnected, setContacts)
         updateMessages(nameConnected, setMyMessages)
         const newConnection = new HubConnectionBuilder()
-            .withUrl('http://localhost:5022/Hubs/MyHub', {skipNegotiation: true,
+            .withUrl('http://'+ serverConnected +'/Hubs/MyHub', {skipNegotiation: true,
             transport: HttpTransportType.WebSockets})
             .withAutomaticReconnect()
             .build();

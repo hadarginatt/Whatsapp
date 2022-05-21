@@ -44,7 +44,7 @@ export function getServerContact(name) {
 
 
 export const updateMessages = async function(nameConnected, setMyMessages) {
-    await fetch('http://localhost:5022/api/contacts/GetUser/?username=' + nameConnected)
+    await fetch('http://'+ serverConnected +'/api/contacts/GetUser/?username=' + nameConnected)
         .then(response => response.json())
         .then(data => {
             localDB.UserDetails.username = data.username;
@@ -61,7 +61,7 @@ export const updateMessages = async function(nameConnected, setMyMessages) {
 
 // save the contacts of the user that connected
 export const updateContacts = async function(nameConnected, setContacts) {
-    await fetch('http://localhost:5022/api/contacts?name=' + nameConnected)
+    await fetch('http://'+ serverConnected +'/api/contacts?name=' + nameConnected)
         .then(response => response.json())
         .then(data => {
             localDB.contacts = data;
@@ -75,7 +75,7 @@ export const addUserToDB = async (setDataBase, username, password, nickname, ser
     
     // add other server
     var myResponse = await axios.post(
-        'http://localhost:5022/api/contacts/AddUser',
+        'http://'+ serverConnected +'/api/contacts/AddUser',
         {username : username, password: password, nickname : nickname, server: server },
         { withCredentials: true},
     )
@@ -89,7 +89,7 @@ export const addUserToDB = async (setDataBase, username, password, nickname, ser
 
 
 export const getDB = async function(setDataBase) {
-    const res = await fetch('http://localhost:5022/api/contacts/GetUsers');
+    const res = await fetch('http://'+ serverConnected +'/api/contacts/GetUsers');
     const data = await res.json();
     setDataBase(data);
     console.log(data);  
@@ -101,7 +101,7 @@ export const getDB = async function(setDataBase) {
     
         // add other server
         var myResponse = await axios.post(
-            'http://localhost:5022/api/contacts/' + nameConnected,
+            'http://'+ serverConnected +'/api/contacts/' + nameConnected,
             {username:username, password: "", nickname: nickname, server: server},
             { withCredentials: true},
         )
@@ -109,7 +109,7 @@ export const getDB = async function(setDataBase) {
             if (myResponse.status == 200) {
                 var myResponse2 = await axios.post(
                     'http://' + server + '/api/invitations',
-                    {from:nameConnected, to: username, server:"localhost:5022"},
+                    {from:nameConnected, to: username, server: serverConnected},
                     { withCredentials: true},
                 )
             }
@@ -132,7 +132,7 @@ export const getDB = async function(setDataBase) {
         var serverUser = getServerContact(username);
         var myResponse = await axios.post(
             // add to myself
-            'http://localhost:5022/api/contacts/' +  username + '/messages',
+            'http://'+ serverConnected +'/api/contacts/' +  username + '/messages',
             {from:nameConnected, to: username, content: content},
             { withCredentials: true},
         )
@@ -157,7 +157,7 @@ export const getDB = async function(setDataBase) {
     
         // get the response from the server
         var myLoginResponse = await axios.post(
-            'http://localhost:5022/api/contacts/logInUserCheck',
+            'http://'+ serverConnected +'/api/contacts/logInUserCheck',
             {username : username, password: password},
             { withCredentials: true},
         )
