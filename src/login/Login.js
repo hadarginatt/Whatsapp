@@ -122,8 +122,17 @@ function Login({ setUserConnected, userName }) {
 
     return (
         <div id="page">
-            <div><a href="http://localhost:5069/Rates" id="rate">Rate Us!</a></div>
-            <br></br>
+            <header>
+                <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="http://localhost:5069/Rates">Rate Us</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                </nav>
+            </header>
             <div className="row flex-row" id="headerLogin"><p id="namePageLogin">Login</p></div>
             <div id="inputsLogin" className="container-fluid">
                 <div className="row col-4 offset-4 ">
