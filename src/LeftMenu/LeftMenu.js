@@ -39,7 +39,7 @@ async function addNewUser(setContacts, nameConnected, myMessages, setMyMessages,
     
     var result = await addUserToChat(nameConnected, setContacts, setMyMessages, username, "", nickName, server, setNickNameUserChat, setUserChat, connection)
     if (result === false) {
-        console.log("NOT INNNNNNNNNNNNNn");
+      //  console.log("NOT INNNNNNNNNNNNNn");
         var errorHtml = document.createElement('div')
         var message = "Oops. the user is not valid"
         errorHtml.innerHTML = "<p><small id='notValidUser' className='errorMessages'>" + message + "</small></p>"
