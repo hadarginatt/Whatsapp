@@ -65,7 +65,8 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
     
     return (
         <div>
-            <span><a href="http://localhost:5069/Rates" id="rate">Rate Us!</a></span>
+            <div><a href="http://localhost:5069/Rates" id="rate">Rate Us!</a></div>
+            <br></br>
             <div className="row flex-row" id="header"><p id="namePage">Chats</p></div>
             <div className="container-fluid" id="screen">
                 <div id="chats" className="row card flex-row">

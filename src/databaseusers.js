@@ -71,20 +71,17 @@ export const updateContacts = async function(nameConnected, setContacts) {
 }
 
 
-export const addUserToDB = async (setDataBase, username, password, nickname, server) => {
-    
+export const addUserToDB = async (username, password, nickname, setUserConnected, dataBase, shareDataBaseUsers) => {
     // add other server
     var myResponse = await axios.post(
         'http://'+ serverConnected +'/api/contacts/AddUser',
-        {username : username, password: password, nickname : nickname, server: server },
+        {username : username, password: password, nickname : nickname, server: serverConnected },
         { withCredentials: true},
-    )
-    
-    // const data = myResponse.data
-    //const data = await fetchContacts();
-    //setDataBase(data);
-    //console.log(data);
-   
+    ).then(() => {
+        setUserConnected(username);
+        //change the locations state of login (now is null).
+        shareDataBaseUsers('/chat', { state: dataBase });
+    });
 }
 
 

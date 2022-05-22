@@ -122,7 +122,8 @@ function Login({ setUserConnected, userName }) {
 
     return (
         <div id="page">
-            <span><a href="http://localhost:5069/Rates" id="rate">Rate Us!</a></span>
+            <div><a href="http://localhost:5069/Rates" id="rate">Rate Us!</a></div>
+            <br></br>
             <div className="row flex-row" id="headerLogin"><p id="namePageLogin">Login</p></div>
             <div id="inputsLogin" className="container-fluid">
                 <div className="row col-4 offset-4 ">

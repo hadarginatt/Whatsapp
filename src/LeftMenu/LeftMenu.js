@@ -113,10 +113,10 @@ function showUsers(nameConnected, setUserChat, contacts, setContacts, setMyMessa
         console.log("contact:", contact);
         var lastMessage = contact.last;
         var name = contact.id;
-        // SPLIT DATE AND TIME
-        var time = contact.lastdate;
-        var date = contact.lastdate;
-        var img = newUserImg
+        // split date and time of the message
+        var time = getTime(contact.lastdate);
+        var date = getDate(contact.lastdate);
+        var img = newUserImg;
         var nickname = contact.name;
         return <div onClick={() => {setUserChat(contact.id); setNickNameUserChat(contact.name); updateMessages(nameConnected, setMyMessages); updateContacts(nameConnected, setContacts);}}
         key={key}><UserChat nickName={nickname} time={time} date={date} lastMessage={lastMessage}
@@ -124,6 +124,47 @@ function showUsers(nameConnected, setUserChat, contacts, setContacts, setMyMessa
     })
     return addUser;
 }
+
+{/**represents the current time when sending a new message.
+ */}
+function getTime(lastDate) {
+    if (lastDate == null) {
+        return null;
+    }
+    console.log(lastDate);
+    var dateTime = new Date(lastDate);
+    var hours = dateTime.getHours();
+    if (hours < 10) {
+        hours = "0" + hours
+    }
+    var minutes = dateTime.getMinutes();
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+    var time = hours + ":" + minutes;
+    return time;
+}
+
+{/**represents the current date when sending a new message.
+ */}
+function getDate(lastDate) {
+    if (lastDate == null) {
+        return null;
+    }
+    var dateTime = new Date(lastDate);
+    var day = dateTime.getDate();
+    if (day < 10) {
+        day = "0" + day
+    }
+    var month = dateTime.getMonth() + 1;
+    if (month < 10) {
+        month = "0" + month;
+    }
+    var date = day + "/" + month + "/" + dateTime.getFullYear();
+
+    return date;
+}
+
 
 
 export default LeftMenu;

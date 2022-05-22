@@ -131,37 +131,4 @@ function showChat(username, myMessages) {
     }
 }
 
-
-{/**represents the current time when sending a new message.
- */}
-// function getTime() {
-//     var today = new Date();
-//     var hours = today.getHours()
-//     if (hours < 10) {
-//         hours = "0" + hours
-//     }
-//     var minutes = today.getMinutes()
-//     if (minutes < 10) {
-//         minutes = "0" + minutes;
-//     }
-//     var time = hours + ":" + minutes;
-//     return time;
-// }
-
-{/**represents the current date when sending a new message.
- */}
-// function getDate() {
-//     var today = new Date();
-//     var day = today.getDate()
-//     if (day < 10) {
-//         day = "0" + day
-//     }
-//     var month = today.getMonth() + 1
-//     if (month < 10) {
-//         month = "0" + month;
-//     }
-//     var date = day + "/" + month + "/" + today.getFullYear();
-
-//     return date;
-// }
 export default MainScreen;

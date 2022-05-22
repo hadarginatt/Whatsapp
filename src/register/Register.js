@@ -206,41 +206,18 @@ function Register({ setUserConnected, dataBase, setDataBase }) {
 
     function Upload() {
         if (isValid(dataBase, setDataBase)) {
-
-            
             var name = document.getElementById("inputUserName").value;
             var pass = document.getElementById("inputPassword").value;
             var nickname = document.getElementById("inputNickname").value;
-            //var img = URL.createObjectURL(document.getElementById('inputimg').files[0])
-            //var img = "URL.createObjectURL(document.getElementById('inputimg').files[0])"
-
-            //update the new user in the database.
-
-            //if the user not 
-            
-
-            //username, password, nickname, server
-           
-            var server = "http://localhost:5022/"
-            addUserToDB(setDataBase,name, pass, nickname,server);
-
-            // delete this two line 
-            // add user to the api - add user method from the api
-            // activate get user from the api
-            //dataBase.push({ username: name, password: pass, nickName: nickname, img: img, messages: [] })
-            //setDataBase(dataBase.concat([]))
-            // set the name of the user of connected
-            setUserConnected(name);
-
-            //change the locations state of login (now is null).
-            shareDataBaseUsers('/chat', { state: dataBase });
+            addUserToDB(name, pass, nickname, setUserConnected, dataBase, shareDataBaseUsers);
         }
     }
     
     return (
         <div>
-        <span><a href="http://localhost:5069/Rates" id="rate">Rate Us!</a></span>
-        <div className="row flex-row" id="headerRegister"><p id="namePageRegister">Register</p></div>
+            <div><a href="http://localhost:5069/Rates" id="rate">Rate Us!</a></div>
+            <br></br>
+            <div className="row flex-row" id="headerRegister"><p id="namePageRegister">Register</p></div>
             <div id="registerForm" className="offset-2">
                 <form className="row g-2">
                     <div className="col-md-10">
@@ -270,22 +247,11 @@ function Register({ setUserConnected, dataBase, setDataBase }) {
                         <div id="noNickNameAlert" className='alerts'></div>
                         <div id="lengthAlert" className='alerts'></div>
                     </div>
-                     {/*
-                    <div className="App">
-                        <label>
-                        <label htmlFor="inputAddress" className="form-label">Press To Add Profile Picture</label>
-                        <input hidden={true} id="inputimg" type="file" accept="image/*" name="image" />
-                        <i id="uploadImage" class="bi bi-image"></i>
-                        </label>
-                        <div id="emptyImg" className='alerts'></div>
-                        <div id="invalidImg" className='alerts'></div>
-                    </div>
-                    */}
                     <div className="col form-floating  offset-3">
                         <p>Already registered? <a href='/'>Click here</a> to Login</p>
                     </div>
                     <div className="col-12" id="buttenSignIn">
-                    {/*upload and checks the inserted parameters*/}
+                        {/*upload and checks the inserted parameters*/}
                         <button onClick={function (e) { Upload() }} type="button" className="btn btn-primary">Sign in</button>
                     </div>
                 </form>
