@@ -2,7 +2,7 @@ import './Chat.css'
 import LeftMenu from '../LeftMenu/LeftMenu'
 import React, { useState, useEffect } from 'react'
 import MainScreen from '../mainscreen/mainscreen'
-import {updateMessages, updateContacts, serverConnected} from '../databaseusers'
+import {updateMessages, updateContacts, serverConnected, rateURL} from '../databaseusers'
 import { HubConnectionBuilder, HttpTransportType } from '@microsoft/signalr';
 
 
@@ -35,11 +35,7 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
         if (connection) {
             connection.start()
                 .then(() => {
-                    console.log('Connected!');
                     connection.on('ChangedRecieved', function (username, server) {
-                        console.log("change!");
-                        console.log("u:", username);
-                        console.log("s:", server);
                         if ((username == nameConnected) && (server == serverConnected)) {
                             updateContacts(nameConnected, setContacts);
                             updateMessages(nameConnected, setMyMessages);
@@ -57,10 +53,6 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
     const setUserChat = (newName) => {
         setUser(newName)
     }
-    
-    // useEffect(async () => {
-        
-    // }, []);
 
     
     return (
@@ -68,7 +60,7 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
             <header>
                 <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="http://localhost:5069/Rates">Rate Us</a>
+                        <a class="navbar-brand" href={rateURL}>Rate Us</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
@@ -94,8 +86,6 @@ function Chat({ nameConnected, dataBase , setDataBase}) {
     );
 
 }
-
-
 
 
 export default Chat;

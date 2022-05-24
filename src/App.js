@@ -1,4 +1,3 @@
-
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './login/Login'
@@ -21,7 +20,6 @@ function App() {
     const res = await fetch('http://localhost:5022/api/contacts/GetUsers');
     const data = await res.json();
     setDataBase(data);
-    console.log(data);
   }, []);
 
 

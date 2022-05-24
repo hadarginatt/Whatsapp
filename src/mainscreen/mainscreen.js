@@ -46,7 +46,6 @@ function MainScreen({ nameConnected, user, dataBase, myMessages, setMyMessages, 
 }
 
 
-
 function showUserProfile(username, nickNameUserChat) {
     if (username === "" || username === "null") {
         return;
@@ -77,9 +76,7 @@ function showChat(username, myMessages) {
         return;
         // show the relevant chat.
     } else {
-    console.log(username);
     var messagesFromUser = myMessages.find((value) => { return value.username === username });
-    console.log("from show chat:", messagesFromUser);
     if (messagesFromUser === undefined) {
         return;
     }

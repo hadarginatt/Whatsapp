@@ -16,7 +16,8 @@ var localDB = {
 }
 
 
-export var serverConnected = "localhost:5022";
+export var serverConnected = "192.168.220.223:5022";
+export var rateURL = "http://localhost:5069/Rates";
 
 export function getNickName() {
     return localDB.UserDetails.nickname;
@@ -52,8 +53,6 @@ export const updateMessages = async function(nameConnected, setMyMessages) {
             localDB.UserDetails.server = data.server;
             localDB.UserDetails.nickname = data.nickname;
             localDB.chats = data.chats;
-            console.log(data.chats);
-            console.log(localDB.chats);
             setMyMessages(localDB.chats.concat([]));
         })
 }
@@ -65,7 +64,6 @@ export const updateContacts = async function(nameConnected, setContacts) {
         .then(response => response.json())
         .then(data => {
             localDB.contacts = data;
-            console.log(localDB.contacts);
             setContacts(localDB.contacts);
         })
 }
@@ -89,7 +87,6 @@ export const getDB = async function(setDataBase) {
     const res = await fetch('http://'+ serverConnected +'/api/contacts/GetUsers');
     const data = await res.json();
     setDataBase(data);
-    console.log(data);  
     }
 
 
@@ -118,10 +115,6 @@ export const getDB = async function(setDataBase) {
             setUserChat(username);
             await connection.send("Changed", username, server);
         })
-            
-        //const data = myResponse.data
-        //const data = await fetchContacts();
-        //console.log("nick at: add user", nickname);
         
     }
 
@@ -145,7 +138,6 @@ export const getDB = async function(setDataBase) {
         .then(async () => {
             updateMessages(nameConnected, setMyMessages);
             updateContacts(nameConnected, setContacts);
-            console.log("send change!");
             await connection.send("Changed", username, serverUser);
         })
     }
@@ -160,7 +152,6 @@ export const getDB = async function(setDataBase) {
         )
         
         .then(async (myLoginResponse) => {
-            console.log(myLoginResponse);
             if (myLoginResponse.status == 200) {
                 setAnswer(true);
                 return true;
@@ -175,27 +166,12 @@ export const getDB = async function(setDataBase) {
         }) 
 
         .catch(async (myLoginResponse) => {
-            console.log("error" ,myLoginResponse);
             if (myLoginResponse.response.status == 400) {
-                console.log("worllldddd");
-
                 setAnswer(false);
                 return false;
-                
-                
-                //return Answer
             }
         })
         return myLoginResponse;
     }   
-
-
-        // const data = myLoginResponse.data
-        // console.log(data.status);
-        // return data;
-        //const data = await fetchContacts();
-        //setDataBase(data);
-        //console.log(data);
-       
     
 

@@ -13,12 +13,11 @@ the new user is based on the hardcoded database only */}
 async function addNewUser(setContacts, nameConnected, myMessages, setMyMessages, setUserChat, setShowModalUser, setNickNameUserChat, connection) {
     //DELETE
     var dataBase;
-   // console.log("adding")
     var errorMessage = document.getElementById("errorMessage")
     errorMessage.innerHTML = ""
     var userName = document.getElementById("usernameInput").value
     var nickName = document.getElementById("nicknameInput").value
-    var server = document.getElementById("serverInput").value
+    const server = document.getElementById("serverInput").value
 
     if (userName === "" || userName === null) {
         var errorHtml = document.createElement('div')
@@ -39,14 +38,12 @@ async function addNewUser(setContacts, nameConnected, myMessages, setMyMessages,
     
     var result = await addUserToChat(nameConnected, setContacts, setMyMessages, username, "", nickName, server, setNickNameUserChat, setUserChat, connection)
     if (result === false) {
-        console.log("NOT INNNNNNNNNNNNNn");
         var errorHtml = document.createElement('div')
         var message = "Oops. the user is not valid"
         errorHtml.innerHTML = "<p><small id='notValidUser' className='errorMessages'>" + message + "</small></p>"
         errorMessage.append(errorHtml)
         return;
     }
-    console.log("end");
     document.getElementById("usernameInput").value = ""
     setShowModalUser(false)
 }
@@ -105,12 +102,10 @@ function LeftMenu({ nameConnected, setUserChat, myMessages, setMyMessages, setNi
 }
 
 function showUsers(nameConnected, setUserChat, contacts, setContacts, setMyMessages, setNickNameUserChat) {
-    console.log(contacts);
     if (contacts.length === 0) {
         return <div id="noUsers">No chats yet.</div>
     }
     var addUser = contacts.map((contact, key) => {
-        console.log("contact:", contact);
         var lastMessage = contact.last;
         var name = contact.id;
         // split date and time of the message
@@ -131,7 +126,6 @@ function getTime(lastDate) {
     if (lastDate == null) {
         return null;
     }
-    console.log(lastDate);
     var dateTime = new Date(lastDate);
     var hours = dateTime.getHours();
     if (hours < 10) {

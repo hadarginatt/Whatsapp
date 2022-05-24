@@ -1,32 +1,7 @@
 import './Register.css'
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import logo from '../chat/logo.jpeg'
-import axios from 'axios';
-import {addUserToDB, getDB} from '../databaseusers'
-
-
-
-// //username, password, nickname, server
-//  const addUserToDB = async function(setDataBase,username, password, nickname, server) {
-//     let body= JSON.stringify({username: username, password: password, nickname: nickname, server: server})
-
-//     const res = fetch('http://localhost:5022/api/contacts/AddUser', 
-//         {
-//             method: "POST",
-//             headers: { 'Content-Type': 'application/json' },
-//             mode: "no-cors",
-//             body: body
-//         }
-//     ).then(response => response.json())
-//     .then(data => {
-//         console.log(data);
-//     });
-    //const data = await res.json();
-    //setDataBase(data);
-   // console.log(data);  
-//}
-
+import {addUserToDB, getDB, rateURL} from '../databaseusers'
 
 
 
@@ -42,18 +17,11 @@ function isValid(dataBase, setDataBase) {
     // check if there a person already
      getDB(setDataBase);
      
-
-
-
-
-
     // save the data from the input form.
     var name = document.getElementById("inputUserName").value;
     var pass = document.getElementById("inputPassword").value;
     var verifyPass = document.getElementById("inputPassword2").value;
     var nickname = document.getElementById("inputNickname").value;
-  //  var image = document.getElementById("inputimg").value;
-
 
     // save div to alerts about errors and initial the div to be without any message.
     var noUserName = document.getElementById('noUserNameAlert')
@@ -166,27 +134,6 @@ function isValid(dataBase, setDataBase) {
         noLetter.append(errorHtml)
     }
 
-    //check if there is an input of image.
-    // if (image.length === 0) {
-    //     flag = false;
-    //     var errorHtml = document.createElement('div')
-    //     var message = "Please choose profile picture"
-    //     errorHtml.innerHTML = "<p><small id='noImage' className='errorMessages'>" + message + "</small></p>"
-    //     noImg.append(errorHtml)
-    // }
-
-    //check if the image is valid.
-    // let allowedExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
-    // let type = document.getElementById('inputimg').files[0].type;
-
-    // if (allowedExtension.indexOf(type) == -1) {
-    //     flag = false;
-    //     var errorHtml = document.createElement('div')
-    //     var message = "wrong type of profile image"
-    //     errorHtml.innerHTML = "<p><small id='invalidImage' className='errorMessages'>" + message + "</small></p>"
-    //     invalidImg.append(errorHtml)
-    // }
-
     return flag;
 }
 
@@ -218,7 +165,7 @@ function Register({ setUserConnected, dataBase, setDataBase }) {
             <header>
                 <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="http://localhost:5069/Rates">Rate Us</a>
+                        <a class="navbar-brand" href={rateURL}>Rate Us</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
