@@ -90,38 +90,6 @@ export const getDB = async function(setDataBase) {
     }
 
 
-
-    // export const addUserToChat = async (nameConnected, setContacts, setMyMessages, username, password, nickname, server, setNickNameUserChat, setUserChat, connection) => {
-    
-    //     // add other server
-    //     var myResponse = await axios.post(
-    //         'http://'+ serverConnected +'/api/contacts/' + nameConnected,
-    //         {username:username, password: "", nickname: nickname, server: server},
-    //         { withCredentials: true},
-    //     )
-    //     .then(async (myResponse) => {
-    //         if (myResponse.status == 200) {
-    //             var myResponse2 = await axios.post(
-    //                 'http://' + server + '/api/invitations',
-    //                 {from:nameConnected, to: username, server: serverConnected},
-    //                 { withCredentials: true},
-    //             )
-    //         }
-    //     })
-    //     .then(async (myResponse2) => {
-    //         updateMessages(nameConnected, setMyMessages);
-    //         updateContacts(nameConnected, setContacts);
-    //         setNickNameUserChat(nickname);
-    //         setUserChat(username);
-    //         await connection.send("Changed", username, server);
-    //     })
-            
-    //     //const data = myResponse.data
-    //     //const data = await fetchContacts();
-    //     //console.log("nick at: add user", nickname);
-        
-    // }
-
     export const addUserToChat = async (nameConnected, setContacts, setMyMessages, username, password, nickname, server, setNickNameUserChat, setUserChat, connection) => {
     
         // add other server
@@ -149,12 +117,8 @@ export const getDB = async function(setDataBase) {
         })
 
         .catch(async (myResponse) => {
-            console.log("error" ,myResponse);
             if (myResponse.response.status == 400) {
-                console.log("worllldddd");
                 return false;
-                
-                
             }
         })
         return myResponse;
