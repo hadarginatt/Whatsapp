@@ -17,6 +17,7 @@ var localDB = {
 
 
 export var serverConnected = "192.168.220.223:5022";
+//export var serverConnected = "localhost:5022";
 export var rateURL = "http://localhost:5069/Rates";
 
 export function getNickName() {
@@ -95,11 +96,11 @@ export const getDB = async function(setDataBase) {
         // add other server
         var myResponse = await axios.post(
             'http://'+ serverConnected +'/api/contacts/' + nameConnected,
-            {username:username, password: "", nickname: nickname, server: server},
+            {id:username, name: nickname, server: server},
             { withCredentials: true},
         )
         .then(async (myResponse) => {
-            if (myResponse.status == 200) {
+            if (myResponse.status == 201) {
                 var myResponse2 = await axios.post(
                     'http://' + server + '/api/invitations',
                     {from:nameConnected, to: username, server: serverConnected},
@@ -130,12 +131,12 @@ export const getDB = async function(setDataBase) {
         var serverUser = getServerContact(username);
         var myResponse = await axios.post(
             // add to myself
-            'http://'+ serverConnected +'/api/contacts/' +  username + '/messages',
-            {from:nameConnected, to: username, content: content},
+            'http://'+ serverConnected +'/api/contacts/' +  username + '/messages/' + nameConnected,
+            {content: content},
             { withCredentials: true},
         )
         .then(async (myResponse) => {
-            if (myResponse.status == 200) {
+            if (myResponse.status == 201) {
                 var myResponse2 = await axios.post(
                     'http://' + serverUser + '/api/transfer',
                     {from:nameConnected, to: username, content: content},
