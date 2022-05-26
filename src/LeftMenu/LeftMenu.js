@@ -4,15 +4,11 @@ import UserChat from '../userchat/UserChat';
 import newUserImg from '../newUser.png'
 import { Modal} from 'react-bootstrap';
 import {updateMessages, updateContacts, getNickName, addUserToChat} from '../databaseusers'
-//    export const addUserToChat = async (setContacts, setMyMessages, username, password, nickname, server) => {
-
 
 
 {/**the function adds a new user to the left menu.
 the new user is based on the hardcoded database only */}
 async function addNewUser(setContacts, nameConnected, myMessages, setMyMessages, setUserChat, setShowModalUser, setNickNameUserChat, connection) {
-    //DELETE
-    var dataBase;
     var errorMessage = document.getElementById("errorMessage")
     errorMessage.innerHTML = ""
     var userName = document.getElementById("usernameInput").value
@@ -56,7 +52,6 @@ function LeftMenu({ nameConnected, setUserChat, myMessages, setMyMessages, setNi
         updateMessages(nameConnected, setMyMessages)
     }, []);
     
-    // DO A METHOD API THAT GIVE ME THE NICKNAME
     const [showModalAddUser, setShowModalUser] = useState(false)
 
     return (

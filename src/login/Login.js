@@ -14,7 +14,7 @@ the function checks that all user parameters inserted correctly in the Login for
     var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
     alertPlaceholder.innerHTML = ""
 
-    //in case of empty fields username or password popup alert message.
+    // in case of empty fields username or password popup alert message.
     if (name == "" || name == null || pass == "" || pass == null) {
         var wrapper = document.createElement('div')
         var type = 'warning'
@@ -22,7 +22,7 @@ the function checks that all user parameters inserted correctly in the Login for
         wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
         alertPlaceholder.append(wrapper)
     }
-     //in case all login parameters are valid. 
+     // in case all login parameters are valid. 
     var feedback = await checkIfUserInDB(name, pass,Answer, setAnswer);
    
        if(feedback == true){
@@ -31,7 +31,7 @@ the function checks that all user parameters inserted correctly in the Login for
         // go to the chat page.
         navigate('/chat', { state: userName })
        }
-        //in case that username or password are invalid.
+        // in case that username or password are invalid.
      if (feedback == false) {
         var wrapper = document.createElement('div')
         var type = 'warning'

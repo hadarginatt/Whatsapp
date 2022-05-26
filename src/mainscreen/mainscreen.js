@@ -1,7 +1,5 @@
 import './mainscreen.css'
 import Message from '../message/Message'
-import Recorder from '../recorder/Recorder'
-import { Modal, ModalBody, ModalHeader } from 'react-bootstrap';
 import logo2 from '../chat/logo2.jpeg'
 import newUserImg from '../newUser.png'
 import { useEffect, useRef, useState } from 'react';

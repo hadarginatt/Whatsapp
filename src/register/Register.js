@@ -13,7 +13,6 @@ in addition - checks if the user is not signed in already.
 
 function isValid(dataBase, setDataBase) {
 
-    //fetch  setdatabase
     // check if there a person already
      getDB(setDataBase);
      

@@ -164,13 +164,9 @@ export const getDB = async function(setDataBase) {
             if (myLoginResponse.status == 200) {
                 setAnswer(true);
                 return true;
-                
-                
-                //return Answer
             }
             else if(myLoginResponse.status == 400){
                 setAnswer(false);
-                //return Answer;
             }
         }) 
 
