@@ -16,8 +16,8 @@ var localDB = {
 }
 
 
-export var serverConnected = "192.168.220.223:5022";
-//export var serverConnected = "localhost:5022";
+//export var serverConnected = "192.168.220.223:5022";
+export var serverConnected = "localhost:5022";
 export var rateURL = "http://localhost:5069/Rates";
 
 export function getNickName() {
