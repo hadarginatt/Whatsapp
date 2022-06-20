@@ -1,8 +1,8 @@
 # Whatsapp Web Project By Noa & Hadar
 
  # Students:
-   Noa Eitan , Id: 316222777
-   Hadar Ginatt , Id: 207542663
+   Noa Eitan
+   Hadar Ginatt
     
    # Relevant Packages:
    
